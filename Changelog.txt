@@ -4,3 +4,4 @@ Changelog
 0.0.2 - Move Block added
 0.0.3 - Eyedropper & Paintbrush added 
 0.0.4 - Reset All & Rotate Block added
+0.0.5 - Separate tool actions from EventHandler
