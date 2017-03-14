@@ -5,6 +5,7 @@ import giltwist.tsquare.items.DoMoveBlock;
 import giltwist.tsquare.items.DoPaintbrush;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoRotateBlock;
+import giltwist.tsquare.items.ItemBase;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -12,12 +13,15 @@ public class TSquareEventHandler {
 
 	@SubscribeEvent
 	public void leftBlockClick(PlayerInteractEvent.LeftClickBlock event) {
-		Boolean shouldCancel = true;
+		Boolean shouldCancel = false;
 		String itemUnlocal;
 		if (event.getItemStack() == null) { // Prevent NPE in switch if empty
 			itemUnlocal = "EmptyHand";
 		} else {
 			itemUnlocal = event.getEntityPlayer().getHeldItemMainhand().getUnlocalizedName();
+			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab){
+				shouldCancel=true;
+			}
 		}
 
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
@@ -51,14 +55,21 @@ public class TSquareEventHandler {
 	@SubscribeEvent
 	public void rightBlockClick(PlayerInteractEvent.RightClickBlock event) {
 
-		Boolean shouldCancel = true;
+		Boolean shouldCancel = false;
 		String itemUnlocal;
 		if (event.getEntityPlayer().getHeldItemMainhand() == null) {
 			itemUnlocal = "EmptyHand"; // prevent NPE
 		} else {
 			itemUnlocal = event.getEntityPlayer().getHeldItemMainhand().getUnlocalizedName();
+			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab){
+				shouldCancel=true;
+			}
+		
 		}
+		
+		
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
+			
 			switch (itemUnlocal) {
 
 			case "item.itemEyeDropper":
@@ -98,13 +109,16 @@ public class TSquareEventHandler {
 	@SubscribeEvent
 	public void rightClickItem(PlayerInteractEvent.RightClickItem event) {
 
-		Boolean shouldCancel = true;
+		Boolean shouldCancel = false;
 
 		String itemUnlocal;
 		if (event.getEntityPlayer().getHeldItemMainhand() == null) {
 			itemUnlocal = "EmptyHand"; // prevent NPE
 		} else {
 			itemUnlocal = event.getEntityPlayer().getHeldItemMainhand().getUnlocalizedName();
+			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab){
+				shouldCancel=true;
+			}
 		}
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
 			switch (itemUnlocal) {
