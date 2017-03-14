@@ -1,12 +1,9 @@
 package giltwist.tsquare;
 
-import java.util.Iterator;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -83,7 +80,7 @@ public class TSquareEventHandler {
 			break;
 		case "item.itemMoveBlock": // push only to air on click, anywhere on
 									// sneak-click
-			if (event.getSide().isServer()&&!event.getEntityPlayer().isSwingInProgress && event.getHand().toString() == "MAIN_HAND") {
+			if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
 
 				BlockPos movestart = event.getPos();
 				BlockPos moveend = event.getPos().subtract(event.getFace().getDirectionVec());
