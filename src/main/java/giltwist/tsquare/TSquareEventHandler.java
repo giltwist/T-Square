@@ -54,7 +54,7 @@ public class TSquareEventHandler {
 					}
 				}
 
-				if (isBlock) {
+				if (isBlock&&!event.getEntityPlayer().isSneaking()) {
 					placemat = net.minecraft.block.Block.getBlockFromName(offHand);
 					// event.getEntityPlayer().addChatMessage(new
 					// TextComponentString("Placing material: " +
@@ -176,7 +176,7 @@ public class TSquareEventHandler {
 					}
 				}
 
-				if (isBlock) {
+				if (isBlock&&!event.getEntity().isSneaking()) {
 					placemat = net.minecraft.block.Block.getBlockFromName(offHand);
 
 					placematState = placemat.getStateFromMeta(event.getEntityPlayer().getHeldItemOffhand().getMetadata());
