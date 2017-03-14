@@ -10,6 +10,7 @@ public class ModItems {
 	public static ItemBase itemEyeDropper;
 	public static ItemBase itemPaintbrush;
 	public static ItemBase itemResetAll;
+	public static ItemBase itemRotateBlock;
 	
 	public static void init() {
 		
@@ -17,6 +18,7 @@ public class ModItems {
 		itemEyeDropper = register(new ItemBase("itemEyeDropper").setCreativeTab(TSquare.creativeTab));
 		itemPaintbrush = register(new ItemBase("itemPaintbrush").setCreativeTab(TSquare.creativeTab));
 		itemResetAll = register(new ItemBase("itemResetAll").setCreativeTab(TSquare.creativeTab));
+		itemRotateBlock = register(new ItemBase("itemRotateBlock").setCreativeTab(TSquare.creativeTab));
 	}
 
 	private static <T extends Item> T register(T item) {

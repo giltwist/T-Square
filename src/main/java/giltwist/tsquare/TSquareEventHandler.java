@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class TSquareEventHandler {
 
-	
 	@SubscribeEvent
 	public void leftBlockClick(PlayerInteractEvent.LeftClickBlock event) {
 		Boolean shouldCancel = true;
@@ -21,19 +20,19 @@ public class TSquareEventHandler {
 		} else {
 			itemUnlocal = event.getEntityPlayer().getHeldItemMainhand().getUnlocalizedName();
 		}
- 
+
 		switch (itemUnlocal) {
 
 		case "item.itemEyeDropper": // Report material on click, save on
 									// sneak-click
-			if ( event.getSide().isServer()&&!event.getEntityPlayer().isSwingInProgress&&event.getHand().toString() == "MAIN_HAND" ) {
+			if (event.getSide().isServer() && !event.getEntityPlayer().isSwingInProgress && event.getHand().toString() == "MAIN_HAND") {
 
 				if (event.getEntityPlayer().isSneaking()) {
 
 					event.getEntityPlayer().addChatMessage(new TextComponentString("Material Saved: " + event.getWorld().getBlockState(event.getPos()).getBlock().getLocalizedName()));
 					event.getEntityPlayer().getEntityData().setString("TSquarePlaceMaterial", event.getWorld().getBlockState(event.getPos()).getBlock().getRegistryName().toString());
 				} else {
-					event.getEntityPlayer().addChatMessage(new TextComponentString(event.toString() +" | Block's material: " + event.getWorld().getBlockState(event.getPos()).getBlock().getLocalizedName()));
+					event.getEntityPlayer().addChatMessage(new TextComponentString("Block's material: " + event.getWorld().getBlockState(event.getPos()).getBlock().getLocalizedName()));
 				}
 
 			}
@@ -54,7 +53,7 @@ public class TSquareEventHandler {
 					}
 				}
 
-				if (isBlock&&!event.getEntityPlayer().isSneaking()) {
+				if (isBlock && !event.getEntityPlayer().isSneaking()) {
 					placemat = net.minecraft.block.Block.getBlockFromName(offHand);
 					// event.getEntityPlayer().addChatMessage(new
 					// TextComponentString("Placing material: " +
@@ -71,7 +70,12 @@ public class TSquareEventHandler {
 						IBlockState placematState = placemat.getDefaultState();
 						event.getWorld().setBlockState(event.getPos(), placematState);
 					} else {
-						event.getEntityPlayer().addChatMessage(new TextComponentString("No material saved or offhand"));
+						if (event.getEntityPlayer().isSneaking()) {
+							event.getEntityPlayer().addChatMessage(new TextComponentString("No material saved (offhand ignored)"));
+
+						} else {
+							event.getEntityPlayer().addChatMessage(new TextComponentString("No material saved or offhand"));
+						}
 					}
 
 				}
@@ -95,8 +99,18 @@ public class TSquareEventHandler {
 
 			}
 			break;
+		case "item.itemRotateBlock": //rotate on clicked face
+			
+			if (event.getSide().isServer() && !event.getEntityPlayer().isSwingInProgress && event.getHand().toString() == "MAIN_HAND") {
+
+				//event.getEntityPlayer().addChatMessage(new TextComponentString("Face: " + event.getFace()));
+				event.getWorld().getBlockState(event.getPos()).getBlock().rotateBlock(event.getWorld(), event.getPos(), event.getFace());
+
+					
+			}
+			break;
 		case "item.itemResetAll": // info only
-			if (event.getSide().isServer()&&!event.getEntityPlayer().isSwingInProgress && event.getHand().toString() == "MAIN_HAND") {
+			if (event.getSide().isServer() && !event.getEntityPlayer().isSwingInProgress && event.getHand().toString() == "MAIN_HAND") {
 				event.getEntityPlayer().addChatMessage(new TextComponentString("Sneak-Right click to reset your T-Square variables"));
 			}
 			break;
@@ -110,7 +124,6 @@ public class TSquareEventHandler {
 	@SubscribeEvent
 	public void rightBlockClick(PlayerInteractEvent.RightClickBlock event) {
 
-				
 		Boolean shouldCancel = true;
 
 		String itemUnlocal;
@@ -176,7 +189,7 @@ public class TSquareEventHandler {
 					}
 				}
 
-				if (isBlock&&!event.getEntity().isSneaking()) {
+				if (isBlock && !event.getEntity().isSneaking()) {
 					placemat = net.minecraft.block.Block.getBlockFromName(offHand);
 
 					placematState = placemat.getStateFromMeta(event.getEntityPlayer().getHeldItemOffhand().getMetadata());
@@ -193,7 +206,12 @@ public class TSquareEventHandler {
 						placematState = placemat.getStateFromMeta(event.getEntityPlayer().getEntityData().getInteger("TSquarePlaceState"));
 						event.getWorld().setBlockState(event.getPos(), placematState);
 					} else {
-						event.getEntityPlayer().addChatMessage(new TextComponentString("No block state saved or offhand"));
+						if (event.getEntityPlayer().isSneaking()) {
+
+							event.getEntityPlayer().addChatMessage(new TextComponentString("No block state saved (offhand ignored)"));
+						} else {
+							event.getEntityPlayer().addChatMessage(new TextComponentString("No block state saved or offhand"));
+						}
 					}
 
 				}
@@ -208,6 +226,16 @@ public class TSquareEventHandler {
 				} else {
 					event.getEntityPlayer().addChatMessage(new TextComponentString("Sneak-Right click to reset your T-Square variables"));
 				}
+			}
+			break;
+		case "item.itemRotateBlock": //rotate on face opposite clicked
+			
+			if (event.getSide().isServer() && !event.getEntityPlayer().isSwingInProgress && event.getHand().toString() == "MAIN_HAND") {
+
+				//event.getEntityPlayer().addChatMessage(new TextComponentString("Face: " + event.getFace()));
+				event.getWorld().getBlockState(event.getPos()).getBlock().rotateBlock(event.getWorld(), event.getPos(), event.getFace().getOpposite());
+
+					
 			}
 			break;
 		default:
@@ -238,18 +266,17 @@ public class TSquareEventHandler {
 		case "item.itemResetAll": // info on click, reset on sneak-click
 			if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
 				if (event.getEntityPlayer().isSneaking()) {
-					
-					for (int i=0; i<event.getEntityPlayer().getEntityData().getKeySet().size();i++){
-						
-						String key=event.getEntityPlayer().getEntityData().getKeySet().toArray()[i].toString();
-						if (key.startsWith("TSquare")){
-							
-							event.getEntityPlayer().addChatMessage(new TextComponentString("Removed: "+key.toString()));
+
+					for (int i = 0; i < event.getEntityPlayer().getEntityData().getKeySet().size(); i++) {
+
+						String key = event.getEntityPlayer().getEntityData().getKeySet().toArray()[i].toString();
+						if (key.startsWith("TSquare")) {
+
+							event.getEntityPlayer().addChatMessage(new TextComponentString("Removed: " + key.toString()));
 							event.getEntityPlayer().getEntityData().getKeySet().remove(key);
 						}
-						
+
 					}
-					
 
 				} else {
 					event.getEntityPlayer().addChatMessage(new TextComponentString("Sneak-Right click to reset your T-Square variables"));
@@ -280,7 +307,7 @@ public class TSquareEventHandler {
 		switch (itemUnlocal) {
 
 		case "item.itemResetAll": // info on click, reset on sneak-click
-			if (event.getHand().toString() == "MAIN_HAND"&&!event.getEntityPlayer().isSwingInProgress) {
+			if (event.getHand().toString() == "MAIN_HAND" && !event.getEntityPlayer().isSwingInProgress) {
 				event.getEntityPlayer().addChatMessage(new TextComponentString("Sneak-Right click to reset your T-Square variables"));
 			}
 			break;
