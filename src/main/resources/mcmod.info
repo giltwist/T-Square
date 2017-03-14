@@ -1,0 +1,16 @@
+[
+{
+  "modid": "tsquare",
+  "name": "T-Square Builder Tools",
+  "description": "Precision creative building tools for single player Forge from one of the original devs of VoxelSniper",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Giltwist"],
+  "credits": "EvilSeph for introducing me to the VoxelBox.  Przerwap for the original VoxelSniper.",
+  "logoFile": "assets/tsquare/textures/tsquarelogo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]

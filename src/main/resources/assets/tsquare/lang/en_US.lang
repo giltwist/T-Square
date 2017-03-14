@@ -1,0 +1,9 @@
+itemGroup.tsquare=T-Square Builder Tools
+
+# Items
+item.itemMoveBlock.name=Move Block
+item.itemEyeDropper.name=Eye Dropper
+item.itemPaintbrush.name=Paintbrush
+item.itemResetAll.name=Reset T-Square
+
+# Blocks
