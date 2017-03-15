@@ -1,11 +1,11 @@
 package giltwist.tsquare;
 
+import giltwist.tsquare.items.DoBlockInfo;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoMoveBlock;
 import giltwist.tsquare.items.DoPaintbrush;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoRotateBlock;
-import giltwist.tsquare.items.ItemBase;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -29,6 +29,9 @@ public class TSquareEventHandler {
 
 			case "item.itemEyeDropper":
 				DoEyeDropper.material(event);
+				break;
+			case "item.itemBlockInfo":
+				DoBlockInfo.material(event);
 				break;
 			case "item.itemPaintbrush":
 				DoPaintbrush.material(event);
@@ -74,7 +77,9 @@ public class TSquareEventHandler {
 
 			case "item.itemEyeDropper":
 				DoEyeDropper.blockstate(event);
-
+				break;
+			case "item.itemBlockInfo":
+				DoBlockInfo.blockstate(event);
 				break;
 			case "item.itemMoveBlock":
 

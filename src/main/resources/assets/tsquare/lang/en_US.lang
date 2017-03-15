@@ -5,6 +5,8 @@ item.itemMoveBlock.name=Move Block
 item.itemEyeDropper.name=Eye Dropper
 item.itemPaintbrush.name=Paintbrush
 item.itemResetAll.name=Reset T-Square
-item.itemRotateBlock.name=RotateBlock
+item.itemRotateBlock.name=Rotate Block
+item.itemBlockInfo.name=Block Info
+
 
 # Blocks
