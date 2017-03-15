@@ -4,6 +4,7 @@ import giltwist.tsquare.items.DoBlockInfo;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoMoveBlock;
 import giltwist.tsquare.items.DoPaintbrush;
+import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoRotateBlock;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -135,6 +136,11 @@ public class TSquareEventHandler {
 					DoResetAll.warn(event.getEntityPlayer());
 				}
 				break;
+			case "item.itemReplaceMode":
+			
+				DoReplaceMode.blockstate(event.getEntityPlayer(),event.getItemStack());
+				break;
+			
 			default:
 				shouldCancel = false;
 				break;
@@ -159,6 +165,10 @@ public class TSquareEventHandler {
 			case "item.itemResetAll": // info on click, reset on sneak-click
 
 				DoResetAll.warn(event.getEntityPlayer());
+				break;
+			case "item.itemReplaceMode":
+				
+				DoReplaceMode.material(event.getEntityPlayer(),event.getItemStack());
 				break;
 			default:
 				break;

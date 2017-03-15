@@ -8,5 +8,7 @@ item.itemResetAll.name=Reset T-Square
 item.itemRotateBlock.name=Rotate Block
 item.itemBlockInfo.name=Block Info
 
+item.itemReplaceMode.name=Replace Mode: All
+
 
 # Blocks

@@ -1,6 +1,7 @@
 package giltwist.tsquare;
 
 import giltwist.tsquare.items.ItemBase;
+import giltwist.tsquare.items.ItemReplaceMode;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -13,6 +14,10 @@ public class ModItems {
 	public static ItemBase itemRotateBlock;
 	public static ItemBase itemBlockInfo;
 	
+	public static ItemReplaceMode itemReplaceMode;
+	
+	
+		
 	public static void init() {
 		
 		itemMoveBlock = register(new ItemBase("itemMoveBlock").setCreativeTab(TSquare.creativeTab));
@@ -21,7 +26,11 @@ public class ModItems {
 		itemResetAll = register(new ItemBase("itemResetAll").setCreativeTab(TSquare.creativeTab));
 		itemRotateBlock = register(new ItemBase("itemRotateBlock").setCreativeTab(TSquare.creativeTab));
 		itemBlockInfo = register(new ItemBase("itemBlockInfo").setCreativeTab(TSquare.creativeTab));
-	}
+		
+		itemReplaceMode = new ItemReplaceMode();
+		itemReplaceMode.initModel();				
+		}
+	
 
 	private static <T extends Item> T register(T item) {
 		GameRegistry.register(item);
