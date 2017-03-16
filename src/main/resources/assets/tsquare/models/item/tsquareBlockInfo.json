@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "tsquare:items/itemRotateBlock"
+		"layer0": "tsquare:items/tsquareBlockInfo"
 	}
 }

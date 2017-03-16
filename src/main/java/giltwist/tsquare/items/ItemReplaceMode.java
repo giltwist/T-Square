@@ -15,10 +15,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemReplaceMode extends Item {
 
 	public ItemReplaceMode() {
-		setRegistryName("itemReplaceMode");
-		setUnlocalizedName("itemReplaceMode");
+		setRegistryName("tsquareReplaceMode");
+		setUnlocalizedName("tsquareReplaceMode");
 		setCreativeTab(TSquare.creativeTab);
 		GameRegistry.register(this);
+		
 	}
 
 	@SideOnly(Side.CLIENT)

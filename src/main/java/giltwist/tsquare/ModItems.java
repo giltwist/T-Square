@@ -7,28 +7,28 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModItems {
 
-	public static ItemBase itemMoveBlock;
-	public static ItemBase itemEyeDropper;
-	public static ItemBase itemPaintbrush;
-	public static ItemBase itemResetAll;
-	public static ItemBase itemRotateBlock;
-	public static ItemBase itemBlockInfo;
+	public static ItemBase tsquareMoveBlock;
+	public static ItemBase tsquareEyeDropper;
+	public static ItemBase tsquarePaintbrush;
+	public static ItemBase tsquareResetAll;
+	public static ItemBase tsquareRotateBlock;
+	public static ItemBase tsquareBlockInfo;
 	
-	public static ItemReplaceMode itemReplaceMode;
+	public static ItemReplaceMode tsquareReplaceMode;
 	
 	
 		
 	public static void init() {
 		
-		itemMoveBlock = register(new ItemBase("itemMoveBlock").setCreativeTab(TSquare.creativeTab));
-		itemEyeDropper = register(new ItemBase("itemEyeDropper").setCreativeTab(TSquare.creativeTab));
-		itemPaintbrush = register(new ItemBase("itemPaintbrush").setCreativeTab(TSquare.creativeTab));
-		itemResetAll = register(new ItemBase("itemResetAll").setCreativeTab(TSquare.creativeTab));
-		itemRotateBlock = register(new ItemBase("itemRotateBlock").setCreativeTab(TSquare.creativeTab));
-		itemBlockInfo = register(new ItemBase("itemBlockInfo").setCreativeTab(TSquare.creativeTab));
+		tsquareMoveBlock = register(new ItemBase("tsquareMoveBlock").setCreativeTab(TSquare.creativeTab));
+		tsquareEyeDropper = register(new ItemBase("tsquareEyeDropper").setCreativeTab(TSquare.creativeTab));
+		tsquarePaintbrush = register(new ItemBase("tsquarePaintbrush").setCreativeTab(TSquare.creativeTab));
+		tsquareResetAll = register(new ItemBase("tsquareResetAll").setCreativeTab(TSquare.creativeTab));
+		tsquareRotateBlock = register(new ItemBase("tsquareRotateBlock").setCreativeTab(TSquare.creativeTab));
+		tsquareBlockInfo = register(new ItemBase("tsquareBlockInfo").setCreativeTab(TSquare.creativeTab));
 		
-		itemReplaceMode = new ItemReplaceMode();
-		itemReplaceMode.initModel();				
+		tsquareReplaceMode = new ItemReplaceMode();
+		tsquareReplaceMode.initModel();				
 		}
 	
 

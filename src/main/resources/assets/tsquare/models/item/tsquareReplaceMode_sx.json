@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "tsquare:items/toggleReplaceModeSx"
+        "layer0": "tsquare:items/tsquareReplaceModeSx"
     }
 }

@@ -1,14 +1,14 @@
 itemGroup.tsquare=T-Square Builder Tools
 
 # Items
-item.itemMoveBlock.name=Move Block
-item.itemEyeDropper.name=Eye Dropper
-item.itemPaintbrush.name=Paintbrush
-item.itemResetAll.name=Reset T-Square
-item.itemRotateBlock.name=Rotate Block
-item.itemBlockInfo.name=Block Info
+item.tsquareMoveBlock.name=Move Block
+item.tsquareEyeDropper.name=Eye Dropper
+item.tsquarePaintbrush.name=Paintbrush
+item.tsquareResetAll.name=Reset T-Square
+item.tsquareRotateBlock.name=Rotate Block
+item.tsquareBlockInfo.name=Block Info
 
-item.itemReplaceMode.name=Replace Mode: All
+item.tsquareReplaceMode.name=Replace Mode: All
 
 
 # Blocks

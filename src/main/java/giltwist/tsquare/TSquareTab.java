@@ -13,7 +13,7 @@ public class TSquareTab extends CreativeTabs {
 
 	@Override
 	public Item getTabIconItem() {
-		return ModItems.itemMoveBlock;
+		return ModItems.tsquareMoveBlock;
 	}
 
 }

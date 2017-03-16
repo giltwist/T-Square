@@ -28,23 +28,23 @@ public class TSquareEventHandler {
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
 			switch (itemUnlocal) {
 
-			case "item.itemEyeDropper":
+			case "item.tsquareEyeDropper":
 				DoEyeDropper.material(event);
 				break;
-			case "item.itemBlockInfo":
+			case "item.tsquareBlockInfo":
 				DoBlockInfo.material(event);
 				break;
-			case "item.itemPaintbrush":
+			case "item.tsquarePaintbrush":
 				DoPaintbrush.material(event);
 				break;
-			case "item.itemMoveBlock":
+			case "item.tsquareMoveBlock":
 				DoMoveBlock.push(event);
 				break;
-			case "item.itemRotateBlock":
+			case "item.tsquareRotateBlock":
 
 				DoRotateBlock.rotation(event.getEntityPlayer(), event.getPos(), event.getFace());
 				break;
-			case "item.itemResetAll":
+			case "item.tsquareResetAll":
 				DoResetAll.warn(event.getEntityPlayer());
 				break;
 			default:
@@ -76,20 +76,20 @@ public class TSquareEventHandler {
 			
 			switch (itemUnlocal) {
 
-			case "item.itemEyeDropper":
+			case "item.tsquareEyeDropper":
 				DoEyeDropper.blockstate(event);
 				break;
-			case "item.itemBlockInfo":
+			case "item.tsquareBlockInfo":
 				DoBlockInfo.blockstate(event);
 				break;
-			case "item.itemMoveBlock":
+			case "item.tsquareMoveBlock":
 
 				DoMoveBlock.pull(event);
 				break;
-			case "item.itemPaintbrush":
+			case "item.tsquarePaintbrush":
 				DoPaintbrush.blockstate(event);
 				break;
-			case "item.itemResetAll": // info on click, reset on sneak-click
+			case "item.tsquareResetAll": // info on click, reset on sneak-click
 
 				if (event.getEntityPlayer().isSneaking()) {
 					DoResetAll.reset(event.getEntityPlayer());
@@ -100,7 +100,7 @@ public class TSquareEventHandler {
 				}
 
 				break;
-			case "item.itemRotateBlock":
+			case "item.tsquareRotateBlock":
 				DoRotateBlock.rotation(event.getEntityPlayer(), event.getPos(), event.getFace().getOpposite());
 				break;
 			default:
@@ -129,14 +129,14 @@ public class TSquareEventHandler {
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
 			switch (itemUnlocal) {
 
-			case "item.itemResetAll":
+			case "item.tsquareResetAll":
 				if (event.getEntityPlayer().isSneaking()) {
 					DoResetAll.reset(event.getEntityPlayer());
 				} else {
 					DoResetAll.warn(event.getEntityPlayer());
 				}
 				break;
-			case "item.itemReplaceMode":
+			case "item.tsquareReplaceMode":
 			
 				DoReplaceMode.blockstate(event.getEntityPlayer(),event.getItemStack());
 				break;
@@ -162,11 +162,11 @@ public class TSquareEventHandler {
 		if (event.getHand().toString() == "MAIN_HAND") {
 			switch (itemUnlocal) {
 
-			case "item.itemResetAll": // info on click, reset on sneak-click
+			case "item.tsquareResetAll": // info on click, reset on sneak-click
 
 				DoResetAll.warn(event.getEntityPlayer());
 				break;
-			case "item.itemReplaceMode":
+			case "item.tsquareReplaceMode":
 				
 				DoReplaceMode.material(event.getEntityPlayer(),event.getItemStack());
 				break;
