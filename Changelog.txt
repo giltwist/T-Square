@@ -6,3 +6,4 @@ Changelog
 0.0.4 - Reset All & Rotate Block added
 0.0.5 - Separate tool actions from EventHandler
 0.0.6 - Replace Mode,  and Block Info added.  Tweaked Eye Dropper. Refactored unlocalized item names to be more unique.
+0.0.7 - Square by center added

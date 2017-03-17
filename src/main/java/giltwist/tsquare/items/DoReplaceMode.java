@@ -7,7 +7,8 @@ import net.minecraft.nbt.NBTTagCompound;
 public class DoReplaceMode {
 
 	
-	public static void material(EntityPlayer player, ItemStack itemstack) {
+	public static void material(EntityPlayer player) {
+		ItemStack itemstack=player.getHeldItemMainhand();
 		NBTTagCompound tagCompound = itemstack.getTagCompound();
 		if (tagCompound == null) {
 			tagCompound = new NBTTagCompound();
@@ -26,7 +27,8 @@ public class DoReplaceMode {
 	}
 	}
 
-	public static void blockstate(EntityPlayer player, ItemStack itemstack){
+	public static void blockstate(EntityPlayer player){
+		ItemStack itemstack=player.getHeldItemMainhand();
 		NBTTagCompound tagCompound = itemstack.getTagCompound();
 		if (tagCompound == null) {
 			tagCompound = new NBTTagCompound();

@@ -7,6 +7,7 @@ import giltwist.tsquare.items.DoPaintbrush;
 import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoRotateBlock;
+import giltwist.tsquare.items.DoSquareCenter;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -20,8 +21,8 @@ public class TSquareEventHandler {
 			itemUnlocal = "EmptyHand";
 		} else {
 			itemUnlocal = event.getEntityPlayer().getHeldItemMainhand().getUnlocalizedName();
-			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab){
-				shouldCancel=true;
+			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab) {
+				shouldCancel = true;
 			}
 		}
 
@@ -65,15 +66,14 @@ public class TSquareEventHandler {
 			itemUnlocal = "EmptyHand"; // prevent NPE
 		} else {
 			itemUnlocal = event.getEntityPlayer().getHeldItemMainhand().getUnlocalizedName();
-			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab){
-				shouldCancel=true;
+			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab) {
+				shouldCancel = true;
 			}
-		
+
 		}
-		
-		
+
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
-			
+
 			switch (itemUnlocal) {
 
 			case "item.tsquareEyeDropper":
@@ -122,8 +122,8 @@ public class TSquareEventHandler {
 			itemUnlocal = "EmptyHand"; // prevent NPE
 		} else {
 			itemUnlocal = event.getEntityPlayer().getHeldItemMainhand().getUnlocalizedName();
-			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab){
-				shouldCancel=true;
+			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab) {
+				shouldCancel = true;
 			}
 		}
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
@@ -137,10 +137,12 @@ public class TSquareEventHandler {
 				}
 				break;
 			case "item.tsquareReplaceMode":
-			
-				DoReplaceMode.blockstate(event.getEntityPlayer(),event.getItemStack());
+				DoReplaceMode.blockstate(event.getEntityPlayer());
 				break;
-			
+			case "item.tsquareSquareCenter":
+				DoSquareCenter.blockstate(event.getEntityPlayer());
+				break;
+
 			default:
 				shouldCancel = false;
 				break;
@@ -152,28 +154,15 @@ public class TSquareEventHandler {
 
 	@SubscribeEvent
 	public void leftClickEmpty(PlayerInteractEvent.LeftClickEmpty event) {
+		if (event.getEntityPlayer().getHeldItemMainhand() != null) {
 
-		String itemUnlocal;
-		if (event.getEntityPlayer().getHeldItemMainhand() == null) {
-			itemUnlocal = "EmptyHand"; // prevent NPE
-		} else {
-			itemUnlocal = event.getEntityPlayer().getHeldItemMainhand().getUnlocalizedName();
-		}
-		if (event.getHand().toString() == "MAIN_HAND") {
-			switch (itemUnlocal) {
+			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab && event.getHand().toString() == "MAIN_HAND") {
+				// For the love of Notch, why is this the only client-side only click event?
+				// Packet triggers LeftEmptyPacketHandler server-side
+				TSquarePacketHandler.INSTANCE.sendToServer(new LeftEmptyPacket(7));
 
-			case "item.tsquareResetAll": // info on click, reset on sneak-click
-
-				DoResetAll.warn(event.getEntityPlayer());
-				break;
-			case "item.tsquareReplaceMode":
-				
-				DoReplaceMode.material(event.getEntityPlayer(),event.getItemStack());
-				break;
-			default:
-				break;
 			}
 		}
-	}
 
+	}
 }

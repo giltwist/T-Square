@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModItems {
 
+	//Utilities
 	public static ItemBase tsquareMoveBlock;
 	public static ItemBase tsquareEyeDropper;
 	public static ItemBase tsquarePaintbrush;
@@ -16,6 +17,8 @@ public class ModItems {
 	
 	public static ItemReplaceMode tsquareReplaceMode;
 	
+	//Basic Shapes
+	public static ItemBase tsquareSquareCenter;
 	
 		
 	public static void init() {
@@ -26,9 +29,12 @@ public class ModItems {
 		tsquareResetAll = register(new ItemBase("tsquareResetAll").setCreativeTab(TSquare.creativeTab));
 		tsquareRotateBlock = register(new ItemBase("tsquareRotateBlock").setCreativeTab(TSquare.creativeTab));
 		tsquareBlockInfo = register(new ItemBase("tsquareBlockInfo").setCreativeTab(TSquare.creativeTab));
+		tsquareSquareCenter = register(new ItemBase("tsquareSquareCenter").setCreativeTab(TSquare.creativeTab));
 		
 		tsquareReplaceMode = new ItemReplaceMode();
 		tsquareReplaceMode.initModel();				
+		
+		
 		}
 	
 

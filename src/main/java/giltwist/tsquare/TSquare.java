@@ -38,6 +38,7 @@ public class TSquare {
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
         proxy.init(e);
+        TSquarePacketHandler.registerMessages("tsquare");
     }
 
     @Mod.EventHandler
