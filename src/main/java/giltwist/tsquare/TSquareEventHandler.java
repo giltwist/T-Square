@@ -48,6 +48,9 @@ public class TSquareEventHandler {
 			case "item.tsquareResetAll":
 				DoResetAll.warn(event.getEntityPlayer());
 				break;
+			case "item.tsquareSquareCenter":
+				DoSquareCenter.material(event.getEntityPlayer());
+				break;
 			default:
 				shouldCancel = false;
 				break;

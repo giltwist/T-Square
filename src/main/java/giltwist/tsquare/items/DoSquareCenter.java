@@ -11,54 +11,61 @@ import net.minecraft.util.text.TextComponentString;
 public class DoSquareCenter {
 
 	public static void material(EntityPlayer player) {
+		if (!player.isSwingInProgress) {
+			EnumFacing face;
+			BlockPos center = FindLookedBlock.getBlockPos(player);
+			if (center == null) {
+				player.addChatMessage(new TextComponentString("No block found within 200m"));
+			} else {
 
-		EnumFacing face;
-		BlockPos center = FindLookedBlock.getBlockPos(player);
-		if (center == null) {
-			player.addChatMessage(new TextComponentString("No block found within 200m"));
-		} else {
-			// player.addChatMessage(new TextComponentString("You are looking
-			// at: " +
-			// player.worldObj.getBlockState(center).getBlock().getLocalizedName()));
-			// player.addChatMessage(new TextComponentString("Keys: " +
-			// player.getEntityData().toString() ));
-			if (player.getEntityData().hasKey("TSquarePlaceMaterial")) {
+				// player.addChatMessage(new TextComponentString("You are
+				// looking
+				// at: " +
+				// player.worldObj.getBlockState(center).getBlock().getLocalizedName()));
+				// player.addChatMessage(new TextComponentString("Keys: " +
+				// player.getEntityData().toString() ));
+				if (player.getEntityData().hasKey("TSquarePlaceMaterial")) {
 
-				IBlockState placematState = Block.getBlockFromName(player.getEntityData().getString("TSquarePlaceMaterial")).getDefaultState();
-				// player.worldObj.setBlockState(center, placematState);
-				face = FindLookedBlock.getBlockFace(player);
-				int size = player.getHeldItemMainhand().stackSize;
-				// Set<BlockPos> toReplace=new HashSet<BlockPos>();
+					IBlockState placematState = Block.getBlockFromName(player.getEntityData().getString("TSquarePlaceMaterial")).getDefaultState();
+					// player.worldObj.setBlockState(center, placematState);
+					face = FindLookedBlock.getBlockFace(player);
+					int size = player.getHeldItemMainhand().stackSize;
+					// Set<BlockPos> toReplace=new HashSet<BlockPos>();
 
-				if (face != null) {
-					for (int i = -1 * (size - 1); i <= (size - 1); i++) {
-						for (int j = -1 * (size - 1); j <= (size - 1); j++) {
+					if (face != null) {
+						if (player.isSneaking()) {
+							center = center.offset(face);
+						}
 
-							if (face == EnumFacing.UP || face == EnumFacing.DOWN) {
-								// toReplace.add(new
-								// BlockPos(center.getX()+i,center.getY(),center.getZ()+j));
-								player.worldObj.setBlockState(new BlockPos(center.getX() + i, center.getY(), center.getZ() + j), placematState);
-							}
-							if (face == EnumFacing.NORTH || face == EnumFacing.SOUTH) {
-								// toReplace.add(new
-								// BlockPos(center.getX()+i,center.getY(),center.getZ()+j));
-								player.worldObj.setBlockState(new BlockPos(center.getX() + i, center.getY() + j, center.getZ()), placematState);
-							}
-							if (face == EnumFacing.EAST || face == EnumFacing.WEST) {
-								// toReplace.add(new
-								// BlockPos(center.getX()+i,center.getY(),center.getZ()+j));
-								player.worldObj.setBlockState(new BlockPos(center.getX(), center.getY() + i, center.getZ() + j), placematState);
+						for (int i = -1 * (size - 1); i <= (size - 1); i++) {
+							for (int j = -1 * (size - 1); j <= (size - 1); j++) {
+
+								if (face == EnumFacing.UP || face == EnumFacing.DOWN) {
+									// toReplace.add(new
+									// BlockPos(center.getX()+i,center.getY(),center.getZ()+j));
+									player.worldObj.setBlockState(new BlockPos(center.getX() + i, center.getY(), center.getZ() + j), placematState);
+								}
+								if (face == EnumFacing.NORTH || face == EnumFacing.SOUTH) {
+									// toReplace.add(new
+									// BlockPos(center.getX()+i,center.getY(),center.getZ()+j));
+									player.worldObj.setBlockState(new BlockPos(center.getX() + i, center.getY() + j, center.getZ()), placematState);
+								}
+								if (face == EnumFacing.EAST || face == EnumFacing.WEST) {
+									// toReplace.add(new
+									// BlockPos(center.getX()+i,center.getY(),center.getZ()+j));
+									player.worldObj.setBlockState(new BlockPos(center.getX(), center.getY() + i, center.getZ() + j), placematState);
+								}
 							}
 						}
 					}
+
+				} else {
+					player.addChatMessage(new TextComponentString("No material saved"));
 				}
 
-			} else {
-				player.addChatMessage(new TextComponentString("No material saved"));
 			}
 
 		}
-
 	}
 
 	public static void blockstate(EntityPlayer player) {
@@ -77,7 +84,7 @@ public class DoSquareCenter {
 
 				Block placemat;
 				IBlockState placematState;
-				
+
 				placemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquarePlaceMaterial"));
 				placematState = placemat.getStateFromMeta(player.getEntityData().getInteger("TSquarePlaceState"));
 				// player.worldObj.setBlockState(center, placematState);
@@ -86,6 +93,9 @@ public class DoSquareCenter {
 				// Set<BlockPos> toReplace=new HashSet<BlockPos>();
 
 				if (face != null) {
+					if (player.isSneaking()) {
+						center = center.offset(face);
+					}
 					for (int i = -1 * (size - 1); i <= (size - 1); i++) {
 						for (int j = -1 * (size - 1); j <= (size - 1); j++) {
 
