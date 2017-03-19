@@ -11,10 +11,10 @@ public class DoEyeDropper {
 
 			if (event.getEntityPlayer().isSneaking()) {
 
-				event.getEntityPlayer().addChatMessage(new TextComponentString("Replace Material: " + event.getWorld().getBlockState(event.getPos()).getBlock().getLocalizedName()));
+				event.getEntityPlayer().addChatMessage(new TextComponentString("Replace Material: " + event.getWorld().getBlockState(event.getPos()).getBlock().getRegistryName().toString()));
 				event.getEntityPlayer().getEntityData().setString("TSquareReplaceMaterial", event.getWorld().getBlockState(event.getPos()).getBlock().getRegistryName().toString());
 			} else {
-				event.getEntityPlayer().addChatMessage(new TextComponentString("Place Material: " + event.getWorld().getBlockState(event.getPos()).getBlock().getLocalizedName()));
+				event.getEntityPlayer().addChatMessage(new TextComponentString("Place Material: " + event.getWorld().getBlockState(event.getPos()).getBlock().getRegistryName().toString()));
 				event.getEntityPlayer().getEntityData().setString("TSquarePlaceMaterial", event.getWorld().getBlockState(event.getPos()).getBlock().getRegistryName().toString());
 							}
 

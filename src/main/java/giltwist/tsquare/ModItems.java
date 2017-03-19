@@ -1,6 +1,7 @@
 package giltwist.tsquare;
 
 import giltwist.tsquare.items.ItemBase;
+import giltwist.tsquare.items.ItemEraser;
 import giltwist.tsquare.items.ItemReplaceMode;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -16,6 +17,7 @@ public class ModItems {
 	public static ItemBase tsquareBlockInfo;
 	
 	public static ItemReplaceMode tsquareReplaceMode;
+	public static ItemEraser tsquareEraser;
 	
 	//Basic Shapes
 	public static ItemBase tsquareSquareCenter;
@@ -32,7 +34,10 @@ public class ModItems {
 		tsquareSquareCenter = register(new ItemBase("tsquareSquareCenter").setCreativeTab(TSquare.creativeTab));
 		
 		tsquareReplaceMode = new ItemReplaceMode();
-		tsquareReplaceMode.initModel();				
+		tsquareReplaceMode.initModel();
+		
+		tsquareEraser = new ItemEraser();
+		tsquareEraser.initModel();		
 		
 		
 		}

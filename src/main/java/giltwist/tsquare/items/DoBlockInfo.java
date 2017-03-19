@@ -8,7 +8,7 @@ public class DoBlockInfo {
 	public static void material(PlayerInteractEvent.LeftClickBlock event) {
 
 		if (!event.getEntityPlayer().isSwingInProgress) {
-				event.getEntityPlayer().addChatMessage(new TextComponentString("Block's material: " + event.getWorld().getBlockState(event.getPos()).getBlock().getLocalizedName()));
+				event.getEntityPlayer().addChatMessage(new TextComponentString("Block's material: " + event.getWorld().getBlockState(event.getPos()).getBlock().getRegistryName().toString()));
 				//event.getEntityPlayer().addChatMessage(new TextComponentString("Sighted face: " + event.getFace()));
 				
 

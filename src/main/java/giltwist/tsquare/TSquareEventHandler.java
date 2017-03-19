@@ -1,6 +1,7 @@
 package giltwist.tsquare;
 
 import giltwist.tsquare.items.DoBlockInfo;
+import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoMoveBlock;
 import giltwist.tsquare.items.DoPaintbrush;
@@ -141,6 +142,9 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareReplaceMode":
 				DoReplaceMode.blockstate(event.getEntityPlayer());
+				break;
+			case "item.tsquareEraser":
+				DoEraser.blockstate(event.getEntityPlayer());
 				break;
 			case "item.tsquareSquareCenter":
 				DoSquareCenter.blockstate(event.getEntityPlayer());
