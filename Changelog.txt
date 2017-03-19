@@ -9,3 +9,4 @@ Changelog
 0.0.7 - Square by center added
 0.0.8 - Eraser added
 0.1.0 - Undo logging added
+0.1.1 - Undo tool added

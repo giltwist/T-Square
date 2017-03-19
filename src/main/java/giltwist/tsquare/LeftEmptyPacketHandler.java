@@ -4,6 +4,7 @@ import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoSquareCenter;
+import giltwist.tsquare.items.DoUndo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -34,7 +35,9 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 		case "item.tsquareResetAll":
 			DoResetAll.warn(player);
 			break;
-
+		case "item.tsquareUndo":
+			DoUndo.warn(player);
+			break;
 		case "item.tsquareReplaceMode":
 			DoReplaceMode.material(player);
 			break;

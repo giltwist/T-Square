@@ -9,6 +9,7 @@ import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoRotateBlock;
 import giltwist.tsquare.items.DoSquareCenter;
+import giltwist.tsquare.items.DoUndo;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -48,6 +49,9 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareResetAll":
 				DoResetAll.warn(event.getEntityPlayer());
+				break;
+			case "item.tsquareUndo":
+				DoUndo.warn(event.getEntityPlayer());
 				break;
 			case "item.tsquareSquareCenter":
 				DoSquareCenter.material(event.getEntityPlayer());
@@ -94,15 +98,20 @@ public class TSquareEventHandler {
 				DoPaintbrush.blockstate(event);
 				break;
 			case "item.tsquareResetAll": // info on click, reset on sneak-click
-
 				if (event.getEntityPlayer().isSneaking()) {
 					DoResetAll.reset(event.getEntityPlayer());
 
 				} else {
-
 					DoResetAll.warn(event.getEntityPlayer());
 				}
+				break;
+			case "item.tsquareUndo": // info on click, reset on sneak-click
+				if (event.getEntityPlayer().isSneaking()) {
+					DoUndo.undo(event.getEntityPlayer());
 
+				} else {
+					DoUndo.warn(event.getEntityPlayer());
+				}
 				break;
 			case "item.tsquareRotateBlock":
 				DoRotateBlock.rotation(event.getEntityPlayer(), event.getPos(), event.getFace().getOpposite());
@@ -138,6 +147,13 @@ public class TSquareEventHandler {
 					DoResetAll.reset(event.getEntityPlayer());
 				} else {
 					DoResetAll.warn(event.getEntityPlayer());
+				}
+				break;
+			case "item.tsquareUndo":
+				if (event.getEntityPlayer().isSneaking()) {
+					DoUndo.undo(event.getEntityPlayer());
+				} else {
+					DoUndo.warn(event.getEntityPlayer());
 				}
 				break;
 			case "item.tsquareReplaceMode":
