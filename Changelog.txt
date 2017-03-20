@@ -12,3 +12,4 @@ Changelog
 0.1.1 - Undo tool added
 0.2.0 - Replace Mode & Eraser functionality added to Block Control
 0.2.1 - Cube by Center added
+0.2.2 - Circle by Center added

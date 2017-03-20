@@ -1,6 +1,7 @@
 package giltwist.tsquare;
 
 import giltwist.tsquare.items.DoBlockInfo;
+import giltwist.tsquare.items.DoCircleCenter;
 import giltwist.tsquare.items.DoCubeCenter;
 import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
@@ -11,7 +12,6 @@ import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoRotateBlock;
 import giltwist.tsquare.items.DoSquareCenter;
 import giltwist.tsquare.items.DoUndo;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -46,7 +46,6 @@ public class TSquareEventHandler {
 				DoMoveBlock.push(event);
 				break;
 			case "item.tsquareRotateBlock":
-
 				DoRotateBlock.rotation(event.getEntityPlayer(), event.getPos(), event.getFace());
 				break;
 			case "item.tsquareResetAll":
@@ -57,6 +56,9 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareSquareCenter":
 				DoSquareCenter.material(event.getEntityPlayer());
+				break;
+			case "item.tsquareCircleCenter":
+				DoCircleCenter.material(event.getEntityPlayer());
 				break;
 			case "item.tsquareCubeCenter":
 				DoCubeCenter.material(event.getEntityPlayer());
@@ -169,6 +171,9 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareSquareCenter":
 				DoSquareCenter.blockstate(event.getEntityPlayer());
+				break;
+			case "item.tsquareCircleCenter":
+				DoCircleCenter.blockstate(event.getEntityPlayer());
 				break;
 			case "item.tsquareCubeCenter":
 				DoCubeCenter.blockstate(event.getEntityPlayer());

@@ -1,5 +1,6 @@
 package giltwist.tsquare;
 
+import giltwist.tsquare.items.DoCircleCenter;
 import giltwist.tsquare.items.DoCubeCenter;
 import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoReplaceMode;
@@ -50,6 +51,9 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 			break;
 		case "item.tsquareCubeCenter":
 			DoCubeCenter.material(player);
+			break;
+		case "item.tsquareCircleCenter":
+			DoCircleCenter.material(player);
 			break;
 		default:
 			break;
