@@ -10,6 +10,7 @@ import giltwist.tsquare.items.DoPaintbrush;
 import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoRotateBlock;
+import giltwist.tsquare.items.DoSphereCenter;
 import giltwist.tsquare.items.DoSquareCenter;
 import giltwist.tsquare.items.DoUndo;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -34,7 +35,7 @@ public class TSquareEventHandler {
 			switch (itemUnlocal) {
 
 			case "item.tsquareEyeDropper":
-				DoEyeDropper.material(event);
+				DoEyeDropper.material(event.getEntityPlayer());
 				break;
 			case "item.tsquareBlockInfo":
 				DoBlockInfo.material(event);
@@ -61,6 +62,9 @@ public class TSquareEventHandler {
 				DoCircleCenter.material(event.getEntityPlayer());
 				break;
 			case "item.tsquareCubeCenter":
+				DoCubeCenter.material(event.getEntityPlayer());
+				break;
+			case "item.tsquareSphereCenter":
 				DoCubeCenter.material(event.getEntityPlayer());
 				break;
 			default:
@@ -92,7 +96,7 @@ public class TSquareEventHandler {
 			switch (itemUnlocal) {
 
 			case "item.tsquareEyeDropper":
-				DoEyeDropper.blockstate(event);
+				DoEyeDropper.blockstate(event.getEntityPlayer());
 				break;
 			case "item.tsquareBlockInfo":
 				DoBlockInfo.blockstate(event);
@@ -163,6 +167,9 @@ public class TSquareEventHandler {
 					DoUndo.warn(event.getEntityPlayer());
 				}
 				break;
+			case "item.tsquareEyeDropper":
+				DoEyeDropper.blockstate(event.getEntityPlayer());
+				break;
 			case "item.tsquareReplaceMode":
 				DoReplaceMode.blockstate(event.getEntityPlayer());
 				break;
@@ -177,6 +184,9 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareCubeCenter":
 				DoCubeCenter.blockstate(event.getEntityPlayer());
+				break;
+			case "item.tsquareSphereCenter":
+				DoSphereCenter.blockstate(event.getEntityPlayer());
 				break;
 
 			default:

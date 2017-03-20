@@ -10,7 +10,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 
-public class DoCircleCenter {
+public class DoSphereCenter {
 
 	public static void material(EntityPlayer player) {
 		if (!player.isSwingInProgress) {
@@ -32,7 +32,7 @@ public class DoCircleCenter {
 						Set<BlockPos> blocksToChange = new HashSet<BlockPos>();
 						for (int i = -1 * (size - 1); i <= (size - 1); i++) {
 							for (int j = -1 * (size - 1); j <= (size - 1); j++) {
-								// the -1 <= below prevents "nipples"
+
 								if ((i * i + j * j) - 1 <= (size - 1) * (size - 1)) {
 									if (face == EnumFacing.UP || face == EnumFacing.DOWN) {
 										blocksToChange.add(new BlockPos(center.getX() + i, center.getY(), center.getZ() + j));
@@ -81,18 +81,11 @@ public class DoCircleCenter {
 					Set<BlockPos> blocksToChange = new HashSet<BlockPos>();
 					for (int i = -1 * (size - 1); i <= (size - 1); i++) {
 						for (int j = -1 * (size - 1); j <= (size - 1); j++) {
+							for (int k = -1 * (size - 1); k <= (size - 1); k++) {
+								if ((i * i + j * j + k * k) - 1 <= (size - 1) * (size - 1)) {
 
-							if ((i * i + j * j) - 1 <= (size - 1) * (size - 1)) {
-								if (face == EnumFacing.UP || face == EnumFacing.DOWN) {
-									blocksToChange.add(new BlockPos(center.getX() + i, center.getY(), center.getZ() + j));
+									blocksToChange.add(new BlockPos(center.getX() + i, center.getY() + j, center.getZ() + k));
 								}
-								if (face == EnumFacing.NORTH || face == EnumFacing.SOUTH) {
-									blocksToChange.add(new BlockPos(center.getX() + i, center.getY() + j, center.getZ()));
-								}
-								if (face == EnumFacing.EAST || face == EnumFacing.WEST) {
-									blocksToChange.add(new BlockPos(center.getX(), center.getY() + i, center.getZ() + j));
-								}
-
 							}
 						}
 					}

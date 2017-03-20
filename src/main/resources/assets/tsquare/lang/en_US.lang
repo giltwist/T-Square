@@ -15,6 +15,7 @@ item.tsquareUndo.name=Undo
 item.tsquareSquareCenter.name=Square by Center
 item.tsquareCircleCenter.name=Circle by Center
 item.tsquareCubeCenter.name=Cube by Center
+item.tsquareSphereCenter.name=Sphere by Center
 
 
 

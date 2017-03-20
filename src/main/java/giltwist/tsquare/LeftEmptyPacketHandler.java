@@ -3,8 +3,10 @@ package giltwist.tsquare;
 import giltwist.tsquare.items.DoCircleCenter;
 import giltwist.tsquare.items.DoCubeCenter;
 import giltwist.tsquare.items.DoEraser;
+import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
+import giltwist.tsquare.items.DoSphereCenter;
 import giltwist.tsquare.items.DoSquareCenter;
 import giltwist.tsquare.items.DoUndo;
 import net.minecraft.entity.player.EntityPlayer;
@@ -46,6 +48,9 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 		case "item.tsquareEraser":
 			DoEraser.material(player);
 			break;
+		case "item.tsquareEyeDropper":
+			DoEyeDropper.material(player);
+			break;
 		case "item.tsquareSquareCenter":
 			DoSquareCenter.material(player);
 			break;
@@ -54,6 +59,9 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 			break;
 		case "item.tsquareCircleCenter":
 			DoCircleCenter.material(player);
+			break;
+		case "item.tsquareSphereCenter":
+			DoSphereCenter.material(player);
 			break;
 		default:
 			break;

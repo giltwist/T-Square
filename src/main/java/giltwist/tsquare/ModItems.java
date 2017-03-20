@@ -24,6 +24,7 @@ public class ModItems {
 	public static ItemBase tsquareSquareCenter;
 	public static ItemBase tsquareCircleCenter;
 	public static ItemBase tsquareCubeCenter;
+	public static ItemBase tsquareSphereCenter;
 	
 		
 	public static void init() {
@@ -37,6 +38,7 @@ public class ModItems {
 		tsquareSquareCenter = register(new ItemBase("tsquareSquareCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareCircleCenter = register(new ItemBase("tsquareCircleCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareCubeCenter = register(new ItemBase("tsquareCubeCenter").setCreativeTab(TSquare.creativeTab));
+		tsquareSphereCenter = register(new ItemBase("tsquareSphereCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareUndo = register(new ItemBase("tsquareUndo").setCreativeTab(TSquare.creativeTab));
 		
 		tsquareReplaceMode = new ItemReplaceMode();
