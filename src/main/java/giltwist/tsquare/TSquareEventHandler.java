@@ -3,6 +3,7 @@ package giltwist.tsquare;
 import giltwist.tsquare.items.DoBlockInfo;
 import giltwist.tsquare.items.DoCircleCenter;
 import giltwist.tsquare.items.DoCubeCenter;
+import giltwist.tsquare.items.DoCuboid2Corners;
 import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoMoveBlock;
@@ -66,6 +67,13 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareSphereCenter":
 				DoCubeCenter.material(event.getEntityPlayer());
+				break;
+			case "item.tsquareCuboid2Corners":
+				if (event.getEntityPlayer().isSneaking()) {
+					DoCuboid2Corners.material(event.getEntityPlayer());
+				} else {
+					DoCuboid2Corners.setPoint(event.getEntityPlayer(), 1);
+				}
 				break;
 			default:
 				shouldCancel = false;
@@ -188,6 +196,13 @@ public class TSquareEventHandler {
 			case "item.tsquareSphereCenter":
 				DoSphereCenter.blockstate(event.getEntityPlayer());
 				break;
+			case "item.tsquareCuboid2Corners":
+				if (event.getEntityPlayer().isSneaking()) {
+					DoCuboid2Corners.blockstate(event.getEntityPlayer());
+				} else {
+					DoCuboid2Corners.setPoint(event.getEntityPlayer(), 2);
+				}
+				break;
 
 			default:
 				shouldCancel = false;
@@ -203,7 +218,8 @@ public class TSquareEventHandler {
 		if (event.getEntityPlayer().getHeldItemMainhand() != null) {
 
 			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab && event.getHand().toString() == "MAIN_HAND") {
-				// For the love of Notch, why is this the only client-side only click event?
+				// For the love of Notch, why is this the only client-side only
+				// click event?
 				// Packet triggers LeftEmptyPacketHandler server-side
 				TSquarePacketHandler.INSTANCE.sendToServer(new LeftEmptyPacket(7));
 
@@ -211,6 +227,5 @@ public class TSquareEventHandler {
 		}
 
 	}
-	
-	
+
 }

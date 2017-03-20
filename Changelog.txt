@@ -14,3 +14,4 @@ Changelog
 0.2.1 - Cube by Center added
 0.2.2 - Circle by Center added
 0.2.3 - Sphere by Center added, eyedropper now works at range
+0.2.4 - Cuboid by 2 corners added

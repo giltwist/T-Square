@@ -54,6 +54,7 @@ public class DoPaintbrush {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void blockstate(PlayerInteractEvent.RightClickBlock event) {
 		
 		

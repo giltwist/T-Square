@@ -2,6 +2,7 @@ package giltwist.tsquare;
 
 import giltwist.tsquare.items.DoCircleCenter;
 import giltwist.tsquare.items.DoCubeCenter;
+import giltwist.tsquare.items.DoCuboid2Corners;
 import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoReplaceMode;
@@ -62,6 +63,13 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 			break;
 		case "item.tsquareSphereCenter":
 			DoSphereCenter.material(player);
+			break;
+		case "item.tsquareCuboid2Corners":
+			if (player.isSneaking()){
+			DoCuboid2Corners.material(player);
+			}else{
+				DoCuboid2Corners.setPoint(player,1);
+			}
 			break;
 		default:
 			break;
