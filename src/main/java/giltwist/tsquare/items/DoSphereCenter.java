@@ -32,18 +32,11 @@ public class DoSphereCenter {
 						Set<BlockPos> blocksToChange = new HashSet<BlockPos>();
 						for (int i = -1 * (size - 1); i <= (size - 1); i++) {
 							for (int j = -1 * (size - 1); j <= (size - 1); j++) {
+								for (int k = -1 * (size - 1); k <= (size - 1); k++) {
+									if ((i * i + j * j + k * k) - 1 <= (size - 1) * (size - 1)) {
 
-								if ((i * i + j * j) - 1 <= (size - 1) * (size - 1)) {
-									if (face == EnumFacing.UP || face == EnumFacing.DOWN) {
-										blocksToChange.add(new BlockPos(center.getX() + i, center.getY(), center.getZ() + j));
+										blocksToChange.add(new BlockPos(center.getX() + i, center.getY() + j, center.getZ() + k));
 									}
-									if (face == EnumFacing.NORTH || face == EnumFacing.SOUTH) {
-										blocksToChange.add(new BlockPos(center.getX() + i, center.getY() + j, center.getZ()));
-									}
-									if (face == EnumFacing.EAST || face == EnumFacing.WEST) {
-										blocksToChange.add(new BlockPos(center.getX(), center.getY() + i, center.getZ() + j));
-									}
-
 								}
 							}
 						}
