@@ -1,5 +1,6 @@
 package giltwist.tsquare;
 
+import giltwist.tsquare.items.DoBlob;
 import giltwist.tsquare.items.DoBlockInfo;
 import giltwist.tsquare.items.DoCircleCenter;
 import giltwist.tsquare.items.DoCubeCenter;
@@ -81,6 +82,13 @@ public class TSquareEventHandler {
 					DoLine.material(event.getEntityPlayer());
 				} else {
 					DoLine.setPoint(event.getEntityPlayer(), 1);
+				}
+				break;
+			case "item.tsquareBlob":
+				if (event.getEntityPlayer().isSneaking()) {
+					DoBlob.material(event.getEntityPlayer());
+				} else {
+					DoBlob.changeGrowth(event.getEntityPlayer(), 1);
 				}
 				break;
 			default:
@@ -216,6 +224,13 @@ public class TSquareEventHandler {
 					DoLine.blockstate(event.getEntityPlayer());
 				} else {
 					DoLine.setPoint(event.getEntityPlayer(), 2);
+				}
+				break;
+			case "item.tsquareBlob":
+				if (event.getEntityPlayer().isSneaking()) {
+					//DoBlob.blockstate(event.getEntityPlayer());
+				} else {
+					DoBlob.changeGrowth(event.getEntityPlayer(), -1);
 				}
 				break;
 			default:

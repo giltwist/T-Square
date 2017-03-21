@@ -1,5 +1,6 @@
 package giltwist.tsquare;
 
+import giltwist.tsquare.items.DoBlob;
 import giltwist.tsquare.items.DoCircleCenter;
 import giltwist.tsquare.items.DoCubeCenter;
 import giltwist.tsquare.items.DoCuboid2Corners;
@@ -77,6 +78,13 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 			DoLine.material(player);
 			}else{
 				DoLine.setPoint(player,1);
+			}
+			break;
+		case "item.tsquareBlob":
+			if (player.isSneaking()){
+			DoBlob.material(player);
+			}else{
+				DoBlob.changeGrowth(player,1);
 			}
 			break;
 		default:

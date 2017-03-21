@@ -29,28 +29,36 @@ public class ModItems {
 	//Advanced Shapes
 	public static ItemBase tsquareCuboid2Corners;
 	public static ItemBase tsquareLine;
+	
+	//Randomized Shapes
+	public static ItemBase tsquareBlob;
+	
+	//Terraformers
 		
 	public static void init() {
 		
-		tsquareMoveBlock = register(new ItemBase("tsquareMoveBlock").setCreativeTab(TSquare.creativeTab));
+		tsquareBlob = register(new ItemBase("tsquareBlob").setCreativeTab(TSquare.creativeTab));
+		tsquareBlockInfo = register(new ItemBase("tsquareBlockInfo").setCreativeTab(TSquare.creativeTab));
+		tsquareCircleCenter = register(new ItemBase("tsquareCircleCenter").setCreativeTab(TSquare.creativeTab));
+		tsquareCubeCenter = register(new ItemBase("tsquareCubeCenter").setCreativeTab(TSquare.creativeTab));
+		tsquareCuboid2Corners = register(new ItemBase("tsquareCuboid2Corners").setCreativeTab(TSquare.creativeTab));
 		tsquareEyeDropper = register(new ItemBase("tsquareEyeDropper").setCreativeTab(TSquare.creativeTab));
+		tsquareLine = register(new ItemBase("tsquareLine").setCreativeTab(TSquare.creativeTab));
+		tsquareMoveBlock = register(new ItemBase("tsquareMoveBlock").setCreativeTab(TSquare.creativeTab));
 		tsquarePaintbrush = register(new ItemBase("tsquarePaintbrush").setCreativeTab(TSquare.creativeTab));
 		tsquareResetAll = register(new ItemBase("tsquareResetAll").setCreativeTab(TSquare.creativeTab));
 		tsquareRotateBlock = register(new ItemBase("tsquareRotateBlock").setCreativeTab(TSquare.creativeTab));
-		tsquareBlockInfo = register(new ItemBase("tsquareBlockInfo").setCreativeTab(TSquare.creativeTab));
-		tsquareSquareCenter = register(new ItemBase("tsquareSquareCenter").setCreativeTab(TSquare.creativeTab));
-		tsquareCircleCenter = register(new ItemBase("tsquareCircleCenter").setCreativeTab(TSquare.creativeTab));
-		tsquareCubeCenter = register(new ItemBase("tsquareCubeCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareSphereCenter = register(new ItemBase("tsquareSphereCenter").setCreativeTab(TSquare.creativeTab));
-		tsquareCuboid2Corners = register(new ItemBase("tsquareCuboid2Corners").setCreativeTab(TSquare.creativeTab));
-		tsquareLine = register(new ItemBase("tsquareLine").setCreativeTab(TSquare.creativeTab));
+		tsquareSquareCenter = register(new ItemBase("tsquareSquareCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareUndo = register(new ItemBase("tsquareUndo").setCreativeTab(TSquare.creativeTab));
+		
+		tsquareEraser = new ItemEraser();
+		tsquareEraser.initModel();
 		
 		tsquareReplaceMode = new ItemReplaceMode();
 		tsquareReplaceMode.initModel();
 		
-		tsquareEraser = new ItemEraser();
-		tsquareEraser.initModel();		
+				
 		
 		
 		}

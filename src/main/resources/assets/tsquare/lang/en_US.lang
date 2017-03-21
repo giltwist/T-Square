@@ -21,4 +21,10 @@ item.tsquareSphereCenter.name=Sphere by Center
 item.tsquareCuboid2Corners.name=Cuboid by 2 Corners
 item.tsquareLine.name=Line
 
+#Randomized Shapes
+item.tsquareBlob.name=Blob
+
+
+#Terraformers
+
 # Blocks

@@ -17,3 +17,4 @@ Changelog
 0.2.4 - Cuboid by 2 corners added
 0.2.5 - Line added
 0.2.6 - Bucket to replace air, water, lava added
+0.3.0 - Blob added

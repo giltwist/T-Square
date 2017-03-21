@@ -1,4 +1,4 @@
 1) No /commands, only mouse clicks
 2) Left click = material, right click = block state
-3) Click = set points, sneak-click = activate
+3) Click = set options, sneak-click = activate
 4) Equipment slots for toggles, especially offhand slot
