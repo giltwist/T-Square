@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -42,8 +43,6 @@ public class BlockControl {
 		}
 
 		File undoLog = new File(undoPath + player.getName() + "@" + time.getTime());
-		// player.addChatMessage(new
-		// TextComponentString(undoLog.getAbsolutePath()));
 
 		try {
 			undoLog.createNewFile();
@@ -68,25 +67,25 @@ public class BlockControl {
 	public static void changeBlocks(EntityPlayer player, BlockPos[] toReplace, boolean completeState) {
 		Block placemat = null;
 		IBlockState placematState = null;
-		Block replacemat =null;
-		//IBlockState replacematState = null;
+		Block replacemat = null;
+		// IBlockState replacematState = null;
 
 		ItemStack offhandItem = player.getHeldItemOffhand();
 		String offhandItemUnlocal;
 		String replaceMode = "all";
-		boolean hasPlaceStateIfNeeded=true;
-		boolean hasReplaceStateIfNeeded=true;
-		
+		boolean hasPlaceStateIfNeeded = true;
+		boolean hasReplaceStateIfNeeded = true;
 
 		if (offhandItem == null) {
 			offhandItemUnlocal = "EmptyOffhand";
 		} else {
 			offhandItemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
+			 //player.addChatMessage(new TextComponentString("Offhand: " + offhandItemUnlocal));
 
 		}
-		
+
 		if (player.getEntityData().hasKey("TSquarePlaceMaterial")) {
-			
+
 			if (offhandItemUnlocal.equalsIgnoreCase("item.tsquareEraser")) {
 				placemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
 				if (offhandItem.hasTagCompound() && offhandItem.getTagCompound().hasKey("mode")) {
@@ -101,82 +100,109 @@ public class BlockControl {
 			if (offhandItemUnlocal.equalsIgnoreCase("item.tsquareReplaceMode")) {
 				if (offhandItem.hasTagCompound() && offhandItem.getTagCompound().hasKey("mode")) {
 					replaceMode = offhandItem.getTagCompound().getString("mode");
-					//player.addChatMessage(new TextComponentString("Replace Mode: " + replaceMode));
-					
-						if (!player.getEntityData().hasKey("TSquareReplaceState") && (replaceMode.equalsIgnoreCase("s")||replaceMode.equalsIgnoreCase("sx"))){
-							hasReplaceStateIfNeeded=false;
-						}
-					
+
+					if (!player.getEntityData().hasKey("TSquareReplaceState") && (replaceMode.equalsIgnoreCase("s") || replaceMode.equalsIgnoreCase("sx"))) {
+						hasReplaceStateIfNeeded = false;
+					}
+
 				}
 			}
 
+			if (offhandItemUnlocal.equalsIgnoreCase("item.bucket")) {
+				replaceMode = "air";
+			}
+			if (offhandItemUnlocal.equalsIgnoreCase("item.bucketWater")) {
+				
+				replaceMode = "water";
+			}
+			if (offhandItemUnlocal.equalsIgnoreCase("item.bucketLava")) {
+				replaceMode = "lava";
+			}
+
 			if (completeState) {
-				if (player.getEntityData().hasKey("TSquarePlaceState")){
-				placematState = placemat.getStateFromMeta(player.getEntityData().getInteger("TSquarePlaceState"));
-				}else{
-				hasPlaceStateIfNeeded=false;
+				if (player.getEntityData().hasKey("TSquarePlaceState")) {
+					placematState = placemat.getStateFromMeta(player.getEntityData().getInteger("TSquarePlaceState"));
+				} else {
+					hasPlaceStateIfNeeded = false;
 				}
 			} else {
 				placematState = placemat.getDefaultState();
 			}
 
-			if (hasPlaceStateIfNeeded){
-				if (hasReplaceStateIfNeeded){
-					if(replaceMode.equalsIgnoreCase("all")||player.getEntityData().hasKey("TSquareReplaceMaterial")){
-										
-				String tempmat;
-				int tempmeta;
-			for (int i = 0; i < toReplace.length; i++) {
+			if (hasPlaceStateIfNeeded) {
+				if (hasReplaceStateIfNeeded) {
+					if (replaceMode.equalsIgnoreCase("all") || replaceMode.equalsIgnoreCase("air") || replaceMode.equalsIgnoreCase("water") || replaceMode.equalsIgnoreCase("lava") || player.getEntityData().hasKey("TSquareReplaceMaterial")) {
 
-				switch (replaceMode) {
-				case "m":
-					replacemat=net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
-					tempmat=player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
-					if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)){
-						player.worldObj.setBlockState(toReplace[i], placematState);
-					}
-					break;
-				case "mx":
-					replacemat=net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
-					tempmat=player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
-					if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)){
-						player.worldObj.setBlockState(toReplace[i], placematState);
-					}
-					break;
-				case "s":
-					replacemat=net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
-					tempmat=player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
-					tempmeta=player.worldObj.getBlockState(toReplace[i]).getBlock().getMetaFromState(player.worldObj.getBlockState(toReplace[i]));
-					if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)&&tempmeta==player.getEntityData().getInteger("TSquareReplaceState")){
-						player.worldObj.setBlockState(toReplace[i], placematState);
-					}
-					break;
-				case "sx":
-					replacemat=net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
-					tempmat=player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
-					tempmeta=player.worldObj.getBlockState(toReplace[i]).getBlock().getMetaFromState(player.worldObj.getBlockState(toReplace[i]));
-					if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)||tempmeta!=player.getEntityData().getInteger("TSquareReplaceState")){
-						player.worldObj.setBlockState(toReplace[i], placematState);
-					}
-					break;
-				default: // Replace all blocks
-					player.worldObj.setBlockState(toReplace[i], placematState);
-					break;
+						String tempmat;
+						int tempmeta;
+						for (int i = 0; i < toReplace.length; i++) {
 
-				}
+							switch (replaceMode) {
+							case "m":
+								replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
+								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
+								if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
+									player.worldObj.setBlockState(toReplace[i], placematState);
+								}
+								break;
+							case "mx":
+								replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
+								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
+								if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
+									player.worldObj.setBlockState(toReplace[i], placematState);
+								}
+								break;
+							case "s":
+								replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
+								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
+								tempmeta = player.worldObj.getBlockState(toReplace[i]).getBlock().getMetaFromState(player.worldObj.getBlockState(toReplace[i]));
+								if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat) && tempmeta == player.getEntityData().getInteger("TSquareReplaceState")) {
+									player.worldObj.setBlockState(toReplace[i], placematState);
+								}
+								break;
+							case "sx":
+								replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
+								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
+								tempmeta = player.worldObj.getBlockState(toReplace[i]).getBlock().getMetaFromState(player.worldObj.getBlockState(toReplace[i]));
+								if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat) || tempmeta != player.getEntityData().getInteger("TSquareReplaceState")) {
+									player.worldObj.setBlockState(toReplace[i], placematState);
+								}
+								break;
+							case "air":
+								replacemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
+								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
+								if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
+									player.worldObj.setBlockState(toReplace[i], placematState);
+								}
+								break;
+							case "water":			
+								if (player.worldObj.getBlockState(toReplace[i]).getMaterial()==Material.WATER) {
+									player.worldObj.setBlockState(toReplace[i], placematState);
+								}
+								break;
+							case "lava":
+								if (player.worldObj.getBlockState(toReplace[i]).getMaterial()==Material.LAVA) {
+									player.worldObj.setBlockState(toReplace[i], placematState);
+								}
+								break;
+							default: // Replace all blocks
+								player.worldObj.setBlockState(toReplace[i], placematState);
+								break;
 
-			}
-					}else{
+							}
+
+						}
+					} else {
 						player.addChatMessage(new TextComponentString("Error: No replace material saved"));
 					}
-			
-				}else{
+
+				} else {
 					player.addChatMessage(new TextComponentString("Error: No replace blockstate saved"));
 				}
-			} else{
+			} else {
 				player.addChatMessage(new TextComponentString("Error: No place blockstate saved"));
 			}
-		} else{
+		} else {
 			player.addChatMessage(new TextComponentString("Error: No place material saved"));
 		}
 
@@ -214,7 +240,8 @@ public class BlockControl {
 				continue;
 
 			bits = file.getName().split("@");
-			//player.addChatMessage(new TextComponentString("Timestamp check: " + bits[1]));
+			// player.addChatMessage(new TextComponentString("Timestamp check: "
+			// + bits[1]));
 			if (bits[0].equalsIgnoreCase(player.getName()) && Long.parseLong(bits[1]) > newestUndo) {
 				newestUndo = Long.parseLong(bits[1]);
 			}
