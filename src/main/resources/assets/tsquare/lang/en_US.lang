@@ -19,5 +19,6 @@ item.tsquareSphereCenter.name=Sphere by Center
 
 # Advanced Shapes
 item.tsquareCuboid2Corners.name=Cuboid by 2 Corners
+item.tsquareLine.name=Line
 
 # Blocks

@@ -6,6 +6,7 @@ import giltwist.tsquare.items.DoCubeCenter;
 import giltwist.tsquare.items.DoCuboid2Corners;
 import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
+import giltwist.tsquare.items.DoLine;
 import giltwist.tsquare.items.DoMoveBlock;
 import giltwist.tsquare.items.DoPaintbrush;
 import giltwist.tsquare.items.DoReplaceMode;
@@ -73,6 +74,13 @@ public class TSquareEventHandler {
 					DoCuboid2Corners.material(event.getEntityPlayer());
 				} else {
 					DoCuboid2Corners.setPoint(event.getEntityPlayer(), 1);
+				}
+				break;
+			case "item.tsquareLine":
+				if (event.getEntityPlayer().isSneaking()) {
+					DoLine.material(event.getEntityPlayer());
+				} else {
+					DoLine.setPoint(event.getEntityPlayer(), 1);
 				}
 				break;
 			default:
@@ -203,7 +211,13 @@ public class TSquareEventHandler {
 					DoCuboid2Corners.setPoint(event.getEntityPlayer(), 2);
 				}
 				break;
-
+			case "item.tsquareLine":
+				if (event.getEntityPlayer().isSneaking()) {
+					DoLine.blockstate(event.getEntityPlayer());
+				} else {
+					DoLine.setPoint(event.getEntityPlayer(), 2);
+				}
+				break;
 			default:
 				shouldCancel = false;
 				break;

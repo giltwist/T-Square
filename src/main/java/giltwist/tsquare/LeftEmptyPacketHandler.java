@@ -5,6 +5,7 @@ import giltwist.tsquare.items.DoCubeCenter;
 import giltwist.tsquare.items.DoCuboid2Corners;
 import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
+import giltwist.tsquare.items.DoLine;
 import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoSphereCenter;
@@ -69,6 +70,13 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 			DoCuboid2Corners.material(player);
 			}else{
 				DoCuboid2Corners.setPoint(player,1);
+			}
+			break;
+		case "item.tsquareLine":
+			if (player.isSneaking()){
+			DoLine.material(player);
+			}else{
+				DoLine.setPoint(player,1);
 			}
 			break;
 		default:
