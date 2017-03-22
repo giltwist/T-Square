@@ -1,5 +1,6 @@
 package giltwist.tsquare;
 
+import giltwist.tsquare.items.DoBlend;
 import giltwist.tsquare.items.DoBlob;
 import giltwist.tsquare.items.DoBlockInfo;
 import giltwist.tsquare.items.DoCircleCenter;
@@ -69,6 +70,9 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareSphereCenter":
 				DoCubeCenter.material(event.getEntityPlayer());
+				break;
+			case "item.tsquareBlendSphere":
+				DoBlend.sphere(event.getEntityPlayer(),true);
 				break;
 			case "item.tsquareCuboid2Corners":
 				if (event.getEntityPlayer().isSneaking()) {
@@ -211,6 +215,9 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareSphereCenter":
 				DoSphereCenter.blockstate(event.getEntityPlayer());
+				break;
+			case "item.tsquareBlendSphere":
+				DoBlend.sphere(event.getEntityPlayer(),false);
 				break;
 			case "item.tsquareCuboid2Corners":
 				if (event.getEntityPlayer().isSneaking()) {

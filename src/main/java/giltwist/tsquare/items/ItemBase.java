@@ -24,5 +24,11 @@ public class ItemBase extends Item {
 		super.setCreativeTab(tab);
 		return this;
 	}
+	
+	@Override
+	public ItemBase setMaxDamage(int i) {
+		super.setMaxDamage(i);
+		return this;
+	}
 
 }

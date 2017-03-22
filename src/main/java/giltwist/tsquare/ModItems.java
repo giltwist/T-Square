@@ -34,10 +34,12 @@ public class ModItems {
 	public static ItemBase tsquareBlob;
 	
 	//Terraformers
-		
+	public static ItemBase tsquareBlendSphere;
+	
 	public static void init() {
 		
-		tsquareBlob = register(new ItemBase("tsquareBlob").setCreativeTab(TSquare.creativeTab));
+		tsquareBlendSphere = register(new ItemBase("tsquareBlendSphere").setCreativeTab(TSquare.creativeTab));
+		tsquareBlob = register(new ItemBase("tsquareBlob").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
 		tsquareBlockInfo = register(new ItemBase("tsquareBlockInfo").setCreativeTab(TSquare.creativeTab));
 		tsquareCircleCenter = register(new ItemBase("tsquareCircleCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareCubeCenter = register(new ItemBase("tsquareCubeCenter").setCreativeTab(TSquare.creativeTab));

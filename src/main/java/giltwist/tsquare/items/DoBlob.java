@@ -16,11 +16,8 @@ public class DoBlob {
 
 	public static void changeGrowth(EntityPlayer player, int amount) {
 		ItemStack mainItem = player.getHeldItemMainhand();
-		if (mainItem.getMaxDamage() == 0) {
-			mainItem.getItem().setMaxDamage(20);
-			mainItem.getItem().showDurabilityBar(mainItem);
-		}
-		int newDamage = Math.min(Math.max(mainItem.getItemDamage() + amount, 0), 19);
+				mainItem.getItem().showDurabilityBar(mainItem);
+			int newDamage = Math.min(Math.max(mainItem.getItemDamage() + amount, 0), 19);
 		mainItem.setItemDamage(newDamage);
 	}
 
@@ -83,10 +80,9 @@ public class DoBlob {
 
 		ItemStack mainItem = player.getHeldItemMainhand();
 
-		if (mainItem.getMaxDamage() == 0) {
-			mainItem.getItem().setMaxDamage(20);
+		
 			mainItem.getItem().showDurabilityBar(mainItem);
-		}
+		
 		BlockPos center = FindLookedBlock.getBlockPos(player);
 		if (center == null) {
 			player.addChatMessage(new TextComponentString("No block found within 200m"));

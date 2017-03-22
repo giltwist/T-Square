@@ -18,3 +18,4 @@ Changelog
 0.2.5 - Line added
 0.2.6 - Bucket to replace air, water, lava added
 0.3.0 - Blob added
+0.4.0 - Blend Sphere added

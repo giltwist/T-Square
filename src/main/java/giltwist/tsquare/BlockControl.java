@@ -8,7 +8,9 @@ import java.nio.file.StandardOpenOption;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -80,7 +82,8 @@ public class BlockControl {
 			offhandItemUnlocal = "EmptyOffhand";
 		} else {
 			offhandItemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
-			 //player.addChatMessage(new TextComponentString("Offhand: " + offhandItemUnlocal));
+			// player.addChatMessage(new TextComponentString("Offhand: " +
+			// offhandItemUnlocal));
 
 		}
 
@@ -112,7 +115,7 @@ public class BlockControl {
 				replaceMode = "air";
 			}
 			if (offhandItemUnlocal.equalsIgnoreCase("item.bucketWater")) {
-				
+
 				replaceMode = "water";
 			}
 			if (offhandItemUnlocal.equalsIgnoreCase("item.bucketLava")) {
@@ -175,13 +178,13 @@ public class BlockControl {
 									player.worldObj.setBlockState(toReplace[i], placematState);
 								}
 								break;
-							case "water":			
-								if (player.worldObj.getBlockState(toReplace[i]).getMaterial()==Material.WATER) {
+							case "water":
+								if (player.worldObj.getBlockState(toReplace[i]).getMaterial() == Material.WATER) {
 									player.worldObj.setBlockState(toReplace[i], placematState);
 								}
 								break;
 							case "lava":
-								if (player.worldObj.getBlockState(toReplace[i]).getMaterial()==Material.LAVA) {
+								if (player.worldObj.getBlockState(toReplace[i]).getMaterial() == Material.LAVA) {
 									player.worldObj.setBlockState(toReplace[i], placematState);
 								}
 								break;
@@ -204,6 +207,104 @@ public class BlockControl {
 			}
 		} else {
 			player.addChatMessage(new TextComponentString("Error: No place material saved"));
+		}
+
+	}
+
+	public static void blendBlocks(EntityPlayer player, BlockPos[] toReplace, boolean includeAir) {
+
+		ItemStack offhandItem = player.getHeldItemOffhand();
+		String offhandItemUnlocal;
+		IBlockState[] bestNeighbor = new IBlockState[toReplace.length];
+		boolean includeWater = false;
+		boolean includeLava = false;
+
+		if (offhandItem == null) {
+			offhandItemUnlocal = "EmptyOffhand";
+		} else {
+			offhandItemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
+			if (offhandItemUnlocal.equalsIgnoreCase("item.bucketLava")) {
+				includeLava = true;
+			}
+		}
+
+		if (player.isSneaking()) {
+			includeWater = true;
+		}
+
+		Map<IBlockState, Integer> neighbors = new HashMap<IBlockState, Integer>();
+		int tempCount;
+		IBlockState tempState = null;
+		int countMax;
+		Integer[] neighborCounts;
+
+		int tieCheck;
+
+		// Do search
+		for (int i = 0; i < toReplace.length; i++) {
+
+			neighbors = new HashMap<IBlockState, Integer>();
+			for (int a = -1; a <= 1; a++) {
+				for (int b = -1; b <= 1; b++) {
+					for (int c = -1; c <= 1; c++) {
+
+						tempState = player.worldObj.getBlockState(new BlockPos(toReplace[i].getX() + a, toReplace[i].getY() + b, toReplace[i].getZ() + c));
+
+						
+							if (neighbors.containsKey(tempState)) {
+								tempCount = neighbors.get(tempState) + 1;
+								neighbors.replace(tempState, tempCount);
+							} else {
+								neighbors.put(tempState, 1);
+							}
+							
+							if (tempState.getBlock() == net.minecraft.block.Block.getBlockFromName("minecraft:air") && !includeAir) {
+								neighbors.put(tempState, 0);
+							} 
+							if (tempState.getMaterial() == Material.WATER && !includeWater) {
+								neighbors.put(tempState, 0);
+							} 
+							if (tempState.getMaterial() == Material.LAVA && !includeLava) {
+								neighbors.put(tempState, 0);
+							} 
+
+						
+					}
+				}
+			} 
+			
+			
+			countMax = 0;
+			neighborCounts = neighbors.values().toArray(new Integer[neighbors.values().size()]);
+			for (Integer j : neighborCounts) {
+				if (j > countMax) {
+					countMax = j;
+				}
+			}
+
+			tieCheck = 0;
+			for (IBlockState n : neighbors.keySet()) {
+				if (neighbors.get(n) == countMax) {
+					tieCheck += 1;
+					tempState = n;
+				}
+			}
+
+			if (countMax == 0 || tieCheck != 1) {
+				bestNeighbor[i] = player.worldObj.getBlockState(toReplace[i]);
+
+			} else {
+				bestNeighbor[i] = tempState;
+
+			}
+
+		}
+
+		// Do the replacements
+		for (
+
+				int i = 0; i < toReplace.length; i++) {
+			player.worldObj.setBlockState(toReplace[i], bestNeighbor[i]);
 		}
 
 	}
