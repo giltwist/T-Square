@@ -42,13 +42,18 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 		switch (itemUnlocal) {
 
 		case "item.tsquareResetAll":
-			DoResetAll.warn(player);
+			if (player.isSneaking()) {
+				DoResetAll.reset(player);
+			} else {
+				DoResetAll.warn(player);
+			}
+
 			break;
 		case "item.tsquareUndo":
-			if (player.isSneaking()){
-					DoUndo.undo(player);
-			}else{
-			DoUndo.warn(player);
+			if (player.isSneaking()) {
+				DoUndo.undo(player);
+			} else {
+				DoUndo.warn(player);
 			}
 			break;
 		case "item.tsquareReplaceMode":
@@ -73,40 +78,40 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 			DoSphereCenter.material(player);
 			break;
 		case "item.tsquareBlendSphere":
-			DoBlend.sphere(player,true);
+			DoBlend.sphere(player, true);
 			break;
 		case "item.tsquareCuboid2Corners":
-			if (player.isSneaking()){
-			DoCuboid2Corners.material(player);
-			}else{
-				DoCuboid2Corners.setPoint(player,1);
+			if (player.isSneaking()) {
+				DoCuboid2Corners.material(player);
+			} else {
+				DoCuboid2Corners.setPoint(player, 1);
 			}
 			break;
 		case "item.tsquareLine":
-			if (player.isSneaking()){
-			DoLine.material(player);
-			}else{
-				DoLine.setPoint(player,1);
+			if (player.isSneaking()) {
+				DoLine.material(player);
+			} else {
+				DoLine.setPoint(player, 1);
 			}
 			break;
 		case "item.tsquareBlob":
-			if (player.isSneaking()){
-			DoBlob.material(player);
-			}else{
-				DoBlob.changeGrowth(player,1);
+			if (player.isSneaking()) {
+				DoBlob.material(player);
+			} else {
+				DoBlob.changeGrowth(player, 1);
 			}
 			break;
 		case "item.tsquareSmooth":
-			DoTerraform.sphere(player,4,3); //strong Smooth
+			DoTerraform.sphere(player, 4, 3); // strong Smooth
 			break;
 		case "item.tsquareMelt":
-			DoTerraform.sphere(player,1,7); //strong melt
+			DoTerraform.sphere(player, 1, 7); // strong melt
 			break;
 		case "item.tsquareFill":
-			DoTerraform.sphere(player,7,3); //strong fill
+			DoTerraform.sphere(player, 7, 3); // strong fill
 			break;
 		case "item.tsquareGrow":
-			DoTerraform.sphere(player,7,1); //strong grow
+			DoTerraform.sphere(player, 7, 1); // strong grow
 			break;
 		default:
 			break;

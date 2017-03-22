@@ -37,7 +37,7 @@ public class TSquareEventHandler {
 		}
 
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
-			
+
 			switch (itemUnlocal) {
 
 			case "item.tsquareEyeDropper":
@@ -57,11 +57,11 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareResetAll":
 				if (event.getEntityPlayer().isSneaking()) {
-				DoResetAll.reset(event.getEntityPlayer());
+					DoResetAll.reset(event.getEntityPlayer());
+				} else {
+					DoResetAll.warn(event.getEntityPlayer());
 				}
-				else{
-				DoResetAll.warn(event.getEntityPlayer());}
-				
+
 				break;
 			case "item.tsquareUndo":
 				if (event.getEntityPlayer().isSneaking()) {
@@ -107,16 +107,20 @@ public class TSquareEventHandler {
 				}
 				break;
 			case "item.tsquareSmooth":
-				DoTerraform.sphere(event.getEntityPlayer(),4,3); //strong smooth
+				DoTerraform.sphere(event.getEntityPlayer(), 4, 3); // strong
+																	// smooth
 				break;
 			case "item.tsquareMelt":
-				DoTerraform.sphere(event.getEntityPlayer(),1,7); //strong melt
+				DoTerraform.sphere(event.getEntityPlayer(), 1, 7); // strong
+																	// melt
 				break;
 			case "item.tsquareFill":
-				DoTerraform.sphere(event.getEntityPlayer(),7,3); //strong fill
+				DoTerraform.sphere(event.getEntityPlayer(), 7, 3); // strong
+																	// fill
 				break;
 			case "item.tsquareGrow":
-				DoTerraform.sphere(event.getEntityPlayer(),7,1); //strong fill
+				DoTerraform.sphere(event.getEntityPlayer(), 7, 1); // strong
+																	// fill
 				break;
 			default:
 				shouldCancel = false;
@@ -129,7 +133,7 @@ public class TSquareEventHandler {
 
 	@SubscribeEvent
 	public void rightBlockClick(PlayerInteractEvent.RightClickBlock event) {
-//only items which MUST click a block
+		// only items which MUST click a block
 		Boolean shouldCancel = false;
 		String itemUnlocal;
 		if (event.getEntityPlayer().getHeldItemMainhand() == null) {
@@ -143,7 +147,7 @@ public class TSquareEventHandler {
 		}
 
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
-			
+
 			switch (itemUnlocal) {
 
 			case "item.tsquareBlockInfo":
@@ -169,7 +173,7 @@ public class TSquareEventHandler {
 
 	@SubscribeEvent
 	public void rightClickItem(PlayerInteractEvent.RightClickItem event) {
-//all items that don't care if block.
+		// all items that don't care if block.
 		Boolean shouldCancel = false;
 
 		String itemUnlocal;
@@ -182,20 +186,16 @@ public class TSquareEventHandler {
 			}
 		}
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
-			
+
 			switch (itemUnlocal) {
 
 			case "item.tsquareResetAll":
-				if (event.getEntityPlayer().isSneaking()) {
-					DoResetAll.reset(event.getEntityPlayer());
-				} else {
-					DoResetAll.warn(event.getEntityPlayer());
-				}
+				DoResetAll.warn(event.getEntityPlayer());
 				break;
 			case "item.tsquareUndo":
-			
-					DoUndo.warn(event.getEntityPlayer());
-				
+
+				DoUndo.warn(event.getEntityPlayer());
+
 				break;
 			case "item.tsquareEyeDropper":
 				DoEyeDropper.blockstate(event.getEntityPlayer());
@@ -243,16 +243,17 @@ public class TSquareEventHandler {
 				}
 				break;
 			case "item.tsquareSmooth":
-				DoTerraform.sphere(event.getEntityPlayer(),5,4); //weak smooth
+				DoTerraform.sphere(event.getEntityPlayer(), 5, 4); // weak
+																	// smooth
 				break;
 			case "item.tsquareMelt":
-				DoTerraform.sphere(event.getEntityPlayer(),2,7); //weak melt
+				DoTerraform.sphere(event.getEntityPlayer(), 2, 7); // weak melt
 				break;
 			case "item.tsquareFill":
-				DoTerraform.sphere(event.getEntityPlayer(),7,4); //weak fill
+				DoTerraform.sphere(event.getEntityPlayer(), 7, 4); // weak fill
 				break;
 			case "item.tsquareGrow":
-				DoTerraform.sphere(event.getEntityPlayer(),7,2); //weak grow
+				DoTerraform.sphere(event.getEntityPlayer(), 7, 2); // weak grow
 				break;
 			default:
 				shouldCancel = false;
@@ -273,7 +274,7 @@ public class TSquareEventHandler {
 					// only
 					// click event?
 					// Packet triggers LeftEmptyPacketHandler server-side
-					
+
 					TSquarePacketHandler.INSTANCE.sendToServer(new LeftEmptyPacket(7));
 
 				}
