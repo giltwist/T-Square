@@ -25,6 +25,9 @@ item.tsquareLine.name=Line
 item.tsquareBlob.name=Blob
 
 #Terraformers
-intem.tsquareBlendSphere.name=Blend Sphere
+item.tsquareBlendSphere.name=Blend Sphere
+item.tsquareSmooth.name=Smooth
+item.tsquareMelt.name=Melt
+item.tsquareFill.name=Fill
 
 # Blocks

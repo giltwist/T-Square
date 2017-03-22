@@ -17,6 +17,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 
@@ -250,30 +251,27 @@ public class BlockControl {
 
 						tempState = player.worldObj.getBlockState(new BlockPos(toReplace[i].getX() + a, toReplace[i].getY() + b, toReplace[i].getZ() + c));
 
-						
-							if (neighbors.containsKey(tempState)) {
-								tempCount = neighbors.get(tempState) + 1;
-								neighbors.replace(tempState, tempCount);
-							} else {
-								neighbors.put(tempState, 1);
-							}
-							
-							if (tempState.getBlock() == net.minecraft.block.Block.getBlockFromName("minecraft:air") && !includeAir) {
-								neighbors.put(tempState, 0);
-							} 
-							if (tempState.getMaterial() == Material.WATER && !includeWater) {
-								neighbors.put(tempState, 0);
-							} 
-							if (tempState.getMaterial() == Material.LAVA && !includeLava) {
-								neighbors.put(tempState, 0);
-							} 
+						if (neighbors.containsKey(tempState)) {
+							tempCount = neighbors.get(tempState) + 1;
+							neighbors.replace(tempState, tempCount);
+						} else {
+							neighbors.put(tempState, 1);
+						}
 
-						
+						if (tempState.getBlock() == net.minecraft.block.Block.getBlockFromName("minecraft:air") && !includeAir) {
+							neighbors.put(tempState, 0);
+						}
+						if (tempState.getMaterial() == Material.WATER && !includeWater) {
+							neighbors.put(tempState, 0);
+						}
+						if (tempState.getMaterial() == Material.LAVA && !includeLava) {
+							neighbors.put(tempState, 0);
+						}
+
 					}
 				}
-			} 
-			
-			
+			}
+
 			countMax = 0;
 			neighborCounts = neighbors.values().toArray(new Integer[neighbors.values().size()]);
 			for (Integer j : neighborCounts) {
@@ -304,6 +302,90 @@ public class BlockControl {
 		for (
 
 				int i = 0; i < toReplace.length; i++) {
+			player.worldObj.setBlockState(toReplace[i], bestNeighbor[i]);
+		}
+
+	}
+
+	public static void terraformBlocks(EntityPlayer player, BlockPos[] toReplace, int minAirFacesToMelt, int minNonAirNeighborsToGrow) {
+
+		
+		IBlockState[] bestNeighbor = new IBlockState[toReplace.length];
+		
+		Map<IBlockState, Integer> neighbors = new HashMap<IBlockState, Integer>();
+		int tempCount;
+		IBlockState tempState = null;
+		int countMax;
+		Integer[] neighborCounts;
+
+		// Do search
+		int airCheat;
+		for (int i = 0; i < toReplace.length; i++) {
+
+			neighbors = new HashMap<IBlockState, Integer>();
+			neighbors.put(net.minecraft.block.Block.getBlockFromName("minecraft:air").getDefaultState(), 0);
+			for (EnumFacing f : EnumFacing.values()) {
+
+				tempState = player.worldObj.getBlockState(toReplace[i].offset(f));
+				
+				if (tempState.getBlock()==net.minecraft.block.Block.getBlockFromName("minecraft:air")){
+					airCheat=-1;
+				}else{
+					airCheat=1;
+				}
+
+				if (neighbors.containsKey(tempState)) {
+					tempCount = neighbors.get(tempState) + airCheat;
+					neighbors.replace(tempState, tempCount);
+				} else {
+					neighbors.put(tempState, airCheat);
+				}
+
+			}
+
+			countMax = 0;
+			neighborCounts = neighbors.values().toArray(new Integer[neighbors.values().size()]);
+			for (Integer j : neighborCounts) {
+				if (j > countMax) {
+					countMax = j;
+				}
+			}
+
+			
+			for (IBlockState n : neighbors.keySet()) {
+				if (neighbors.get(n) == countMax) {
+					tempState = n;
+				}
+			}
+
+			if (player.worldObj.getBlockState(toReplace[i]) == net.minecraft.block.Block.getBlockFromName("minecraft:air").getDefaultState()) {
+				
+				if (countMax < minNonAirNeighborsToGrow) {
+					bestNeighbor[i] = player.worldObj.getBlockState(toReplace[i]);
+					
+
+				} else {
+					
+					bestNeighbor[i] = tempState;
+
+				}
+			}else{
+				
+				
+				if ( Math.abs(neighbors.get(net.minecraft.block.Block.getBlockFromName("minecraft:air").getDefaultState())) >=minAirFacesToMelt){
+					
+					bestNeighbor[i]=net.minecraft.block.Block.getBlockFromName("minecraft:air").getDefaultState();
+				}else{
+					
+					bestNeighbor[i] = player.worldObj.getBlockState(toReplace[i]);
+				}
+				
+			}
+
+		}
+
+		// Do the replacements
+		for (int i = 0; i < toReplace.length; i++) {
 			player.worldObj.setBlockState(toReplace[i], bestNeighbor[i]);
 		}
 

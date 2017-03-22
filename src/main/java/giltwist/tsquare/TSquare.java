@@ -16,7 +16,7 @@ public class TSquare {
 
     public static final String MODID = "tsquare";
     public static final String MODNAME = "T-Square Builder Tools";
-    public static final String MODVERSION = "0.4.1";
+    public static final String MODVERSION = "0.5.0";
 
     public static final TSquareTab creativeTab = new TSquareTab();
     

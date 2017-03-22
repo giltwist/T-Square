@@ -16,8 +16,8 @@ import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoRotateBlock;
 import giltwist.tsquare.items.DoSphereCenter;
 import giltwist.tsquare.items.DoSquareCenter;
+import giltwist.tsquare.items.DoTerraform;
 import giltwist.tsquare.items.DoUndo;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -100,6 +100,15 @@ public class TSquareEventHandler {
 				} else {
 					DoBlob.changeGrowth(event.getEntityPlayer(), 1);
 				}
+				break;
+			case "item.tsquareSmooth":
+				DoTerraform.sphere(event.getEntityPlayer(),4,3); //strong smooth
+				break;
+			case "item.tsquareMelt":
+				DoTerraform.sphere(event.getEntityPlayer(),1,7); //strong melt
+				break;
+			case "item.tsquareFill":
+				DoTerraform.sphere(event.getEntityPlayer(),7,3); //strong fill
 				break;
 			default:
 				shouldCancel = false;
@@ -224,6 +233,15 @@ public class TSquareEventHandler {
 				} else {
 					DoBlob.changeGrowth(event.getEntityPlayer(), -1);
 				}
+				break;
+			case "item.tsquareSmooth":
+				DoTerraform.sphere(event.getEntityPlayer(),5,4); //weak smooth
+				break;
+			case "item.tsquareMelt":
+				DoTerraform.sphere(event.getEntityPlayer(),2,7); //weak melt
+				break;
+			case "item.tsquareFill":
+				DoTerraform.sphere(event.getEntityPlayer(),7,4); //weak fill
 				break;
 			default:
 				shouldCancel = false;

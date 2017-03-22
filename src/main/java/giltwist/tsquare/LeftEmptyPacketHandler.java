@@ -12,6 +12,7 @@ import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoSphereCenter;
 import giltwist.tsquare.items.DoSquareCenter;
+import giltwist.tsquare.items.DoTerraform;
 import giltwist.tsquare.items.DoUndo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -95,6 +96,15 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 			}else{
 				DoBlob.changeGrowth(player,1);
 			}
+			break;
+		case "item.tsquareSmooth":
+			DoTerraform.sphere(player,4,3); //strong Smooth
+			break;
+		case "item.tsquareMelt":
+			DoTerraform.sphere(player,1,7); //strong melt
+			break;
+		case "item.tsquareFill":
+			DoTerraform.sphere(player,7,3); //stong fill
 			break;
 		default:
 			break;

@@ -35,6 +35,9 @@ public class ModItems {
 	
 	//Terraformers
 	public static ItemBase tsquareBlendSphere;
+	public static ItemBase tsquareSmooth;
+	public static ItemBase tsquareMelt;
+	public static ItemBase tsquareFill;
 	
 	public static void init() {
 		
@@ -45,11 +48,14 @@ public class ModItems {
 		tsquareCubeCenter = register(new ItemBase("tsquareCubeCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareCuboid2Corners = register(new ItemBase("tsquareCuboid2Corners").setCreativeTab(TSquare.creativeTab));
 		tsquareEyeDropper = register(new ItemBase("tsquareEyeDropper").setCreativeTab(TSquare.creativeTab));
+		tsquareFill = register(new ItemBase("tsquareFill").setCreativeTab(TSquare.creativeTab));
 		tsquareLine = register(new ItemBase("tsquareLine").setCreativeTab(TSquare.creativeTab));
+		tsquareMelt = register(new ItemBase("tsquareMelt").setCreativeTab(TSquare.creativeTab));
 		tsquareMoveBlock = register(new ItemBase("tsquareMoveBlock").setCreativeTab(TSquare.creativeTab));
 		tsquarePaintbrush = register(new ItemBase("tsquarePaintbrush").setCreativeTab(TSquare.creativeTab));
 		tsquareResetAll = register(new ItemBase("tsquareResetAll").setCreativeTab(TSquare.creativeTab));
 		tsquareRotateBlock = register(new ItemBase("tsquareRotateBlock").setCreativeTab(TSquare.creativeTab));
+		tsquareSmooth = register(new ItemBase("tsquareSmooth").setCreativeTab(TSquare.creativeTab));
 		tsquareSphereCenter = register(new ItemBase("tsquareSphereCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareSquareCenter = register(new ItemBase("tsquareSquareCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareUndo = register(new ItemBase("tsquareUndo").setCreativeTab(TSquare.creativeTab));
