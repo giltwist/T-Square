@@ -94,7 +94,7 @@ public class BlockControl {
 				placemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
 				if (offhandItem.hasTagCompound() && offhandItem.getTagCompound().hasKey("mode")) {
 					replaceMode = offhandItem.getTagCompound().getString("mode");
-					player.addChatMessage(new TextComponentString("Replace Mode: " + replaceMode));
+					//player.addChatMessage(new TextComponentString("Replace Mode: " + replaceMode));
 				}
 
 			} else {
