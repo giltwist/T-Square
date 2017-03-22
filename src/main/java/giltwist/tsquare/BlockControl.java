@@ -139,7 +139,34 @@ public class BlockControl {
 
 						String tempmat;
 						int tempmeta;
+						int minPosX = toReplace[0].getX();
+						int minPosY = toReplace[0].getY();
+						int minPosZ = toReplace[0].getZ();
+						int maxPosX = toReplace[0].getX();
+						int maxPosY = toReplace[0].getY();
+						int maxPosZ = toReplace[0].getZ();
+						
 						for (int i = 0; i < toReplace.length; i++) {
+							
+							if (toReplace[i].getX()<minPosX){
+								minPosX=toReplace[i].getX();
+							}
+							if (toReplace[i].getY()<minPosY){
+								minPosY=toReplace[i].getY();
+							}
+							if (toReplace[i].getZ()<minPosZ){
+								minPosZ=toReplace[i].getZ();
+							}
+							
+							if (toReplace[i].getX()>maxPosX){
+								maxPosX=toReplace[i].getX();
+							}
+							if (toReplace[i].getY()>maxPosY){
+								maxPosY=toReplace[i].getY();
+							}
+							if (toReplace[i].getZ()>maxPosZ){
+								maxPosZ=toReplace[i].getZ();
+							}
 
 							switch (replaceMode) {
 							case "m":
@@ -196,6 +223,7 @@ public class BlockControl {
 							}
 
 						}
+						player.worldObj.markBlockRangeForRenderUpdate(minPosX, minPosY, minPosZ, maxPosX, maxPosY, maxPosZ);
 					} else {
 						player.addChatMessage(new TextComponentString("Error: No replace material saved"));
 					}
@@ -242,7 +270,34 @@ public class BlockControl {
 		int tieCheck;
 
 		// Do search
+		int minPosX = toReplace[0].getX();
+		int minPosY = toReplace[0].getY();
+		int minPosZ = toReplace[0].getZ();
+		int maxPosX = toReplace[0].getX();
+		int maxPosY = toReplace[0].getY();
+		int maxPosZ = toReplace[0].getZ();
+		
 		for (int i = 0; i < toReplace.length; i++) {
+			
+			if (toReplace[i].getX()<minPosX){
+				minPosX=toReplace[i].getX();
+			}
+			if (toReplace[i].getY()<minPosY){
+				minPosY=toReplace[i].getY();
+			}
+			if (toReplace[i].getZ()<minPosZ){
+				minPosZ=toReplace[i].getZ();
+			}
+			
+			if (toReplace[i].getX()>maxPosX){
+				maxPosX=toReplace[i].getX();
+			}
+			if (toReplace[i].getY()>maxPosY){
+				maxPosY=toReplace[i].getY();
+			}
+			if (toReplace[i].getZ()>maxPosZ){
+				maxPosZ=toReplace[i].getZ();
+			}
 
 			neighbors = new HashMap<IBlockState, Integer>();
 			for (int a = -1; a <= 1; a++) {
@@ -299,11 +354,10 @@ public class BlockControl {
 		}
 
 		// Do the replacements
-		for (
-
-				int i = 0; i < toReplace.length; i++) {
+		for (int i = 0; i < toReplace.length; i++) {
 			player.worldObj.setBlockState(toReplace[i], bestNeighbor[i]);
 		}
+		player.worldObj.markBlockRangeForRenderUpdate(minPosX, minPosY, minPosZ, maxPosX, maxPosY, maxPosZ);
 
 	}
 
@@ -320,7 +374,34 @@ public class BlockControl {
 
 		// Do search
 		int airCheat;
+		int minPosX = toReplace[0].getX();
+		int minPosY = toReplace[0].getY();
+		int minPosZ = toReplace[0].getZ();
+		int maxPosX = toReplace[0].getX();
+		int maxPosY = toReplace[0].getY();
+		int maxPosZ = toReplace[0].getZ();
+		
 		for (int i = 0; i < toReplace.length; i++) {
+			
+			if (toReplace[i].getX()<minPosX){
+				minPosX=toReplace[i].getX();
+			}
+			if (toReplace[i].getY()<minPosY){
+				minPosY=toReplace[i].getY();
+			}
+			if (toReplace[i].getZ()<minPosZ){
+				minPosZ=toReplace[i].getZ();
+			}
+			
+			if (toReplace[i].getX()>maxPosX){
+				maxPosX=toReplace[i].getX();
+			}
+			if (toReplace[i].getY()>maxPosY){
+				maxPosY=toReplace[i].getY();
+			}
+			if (toReplace[i].getZ()>maxPosZ){
+				maxPosZ=toReplace[i].getZ();
+			}
 
 			neighbors = new HashMap<IBlockState, Integer>();
 			neighbors.put(net.minecraft.block.Block.getBlockFromName("minecraft:air").getDefaultState(), 0);
@@ -388,6 +469,7 @@ public class BlockControl {
 		for (int i = 0; i < toReplace.length; i++) {
 			player.worldObj.setBlockState(toReplace[i], bestNeighbor[i]);
 		}
+		player.worldObj.markBlockRangeForRenderUpdate(minPosX, minPosY, minPosZ, maxPosX, maxPosY, maxPosZ);
 
 	}
 
@@ -438,6 +520,8 @@ public class BlockControl {
 				String rollbackPath = undoPath + player.getName() + "@" + newestUndo;
 				List<String> undoInfo = Files.readAllLines(Paths.get(rollbackPath));
 				String[] currentUndo;
+				
+				
 
 				for (int i = 0; i < undoInfo.size(); i++) {
 
