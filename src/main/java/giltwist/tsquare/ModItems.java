@@ -38,6 +38,7 @@ public class ModItems {
 	public static ItemBase tsquareSmooth;
 	public static ItemBase tsquareMelt;
 	public static ItemBase tsquareFill;
+	public static ItemBase tsquareGrow;
 	
 	public static void init() {
 		
@@ -49,6 +50,7 @@ public class ModItems {
 		tsquareCuboid2Corners = register(new ItemBase("tsquareCuboid2Corners").setCreativeTab(TSquare.creativeTab));
 		tsquareEyeDropper = register(new ItemBase("tsquareEyeDropper").setCreativeTab(TSquare.creativeTab));
 		tsquareFill = register(new ItemBase("tsquareFill").setCreativeTab(TSquare.creativeTab));
+		tsquareGrow = register(new ItemBase("tsquareGrow").setCreativeTab(TSquare.creativeTab));
 		tsquareLine = register(new ItemBase("tsquareLine").setCreativeTab(TSquare.creativeTab));
 		tsquareMelt = register(new ItemBase("tsquareMelt").setCreativeTab(TSquare.creativeTab));
 		tsquareMoveBlock = register(new ItemBase("tsquareMoveBlock").setCreativeTab(TSquare.creativeTab));

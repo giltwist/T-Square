@@ -110,6 +110,9 @@ public class TSquareEventHandler {
 			case "item.tsquareFill":
 				DoTerraform.sphere(event.getEntityPlayer(),7,3); //strong fill
 				break;
+			case "item.tsquareGrow":
+				DoTerraform.sphere(event.getEntityPlayer(),7,1); //strong fill
+				break;
 			default:
 				shouldCancel = false;
 				break;
@@ -242,6 +245,9 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareFill":
 				DoTerraform.sphere(event.getEntityPlayer(),7,4); //weak fill
+				break;
+			case "item.tsquareGrow":
+				DoTerraform.sphere(event.getEntityPlayer(),7,2); //weak grow
 				break;
 			default:
 				shouldCancel = false;

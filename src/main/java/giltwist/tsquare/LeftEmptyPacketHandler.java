@@ -104,7 +104,10 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 			DoTerraform.sphere(player,1,7); //strong melt
 			break;
 		case "item.tsquareFill":
-			DoTerraform.sphere(player,7,3); //stong fill
+			DoTerraform.sphere(player,7,3); //strong fill
+			break;
+		case "item.tsquareGrow":
+			DoTerraform.sphere(player,7,1); //strong grow
 			break;
 		default:
 			break;
