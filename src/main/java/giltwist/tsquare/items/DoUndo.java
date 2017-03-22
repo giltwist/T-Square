@@ -8,13 +8,14 @@ public class DoUndo {
 
 	public static void warn(EntityPlayer player) {
 		if (!player.isSwingInProgress) {
-			player.addChatMessage(new TextComponentString("Sneak-Right click to undo"));
+			player.addChatMessage(new TextComponentString("Sneak-Left click to undo"));
 		}
 	}
 	
 	public static void undo(EntityPlayer player){
-		
+		if (!player.isSwingInProgress) {
 		BlockControl.rollbackMostRecent(player);
+		}
 	}
 
 }

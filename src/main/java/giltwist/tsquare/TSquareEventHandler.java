@@ -17,6 +17,7 @@ import giltwist.tsquare.items.DoRotateBlock;
 import giltwist.tsquare.items.DoSphereCenter;
 import giltwist.tsquare.items.DoSquareCenter;
 import giltwist.tsquare.items.DoUndo;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -36,6 +37,7 @@ public class TSquareEventHandler {
 		}
 
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
+			
 			switch (itemUnlocal) {
 
 			case "item.tsquareEyeDropper":
@@ -57,7 +59,11 @@ public class TSquareEventHandler {
 				DoResetAll.warn(event.getEntityPlayer());
 				break;
 			case "item.tsquareUndo":
-				DoUndo.warn(event.getEntityPlayer());
+				if (event.getEntityPlayer().isSneaking()) {
+					DoUndo.undo(event.getEntityPlayer());
+				} else {
+					DoUndo.warn(event.getEntityPlayer());
+				}
 				break;
 			case "item.tsquareSquareCenter":
 				DoSquareCenter.material(event.getEntityPlayer());
@@ -72,7 +78,7 @@ public class TSquareEventHandler {
 				DoCubeCenter.material(event.getEntityPlayer());
 				break;
 			case "item.tsquareBlendSphere":
-				DoBlend.sphere(event.getEntityPlayer(),true);
+				DoBlend.sphere(event.getEntityPlayer(), true);
 				break;
 			case "item.tsquareCuboid2Corners":
 				if (event.getEntityPlayer().isSneaking()) {
@@ -106,7 +112,7 @@ public class TSquareEventHandler {
 
 	@SubscribeEvent
 	public void rightBlockClick(PlayerInteractEvent.RightClickBlock event) {
-
+//only items which MUST click a block
 		Boolean shouldCancel = false;
 		String itemUnlocal;
 		if (event.getEntityPlayer().getHeldItemMainhand() == null) {
@@ -120,37 +126,17 @@ public class TSquareEventHandler {
 		}
 
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
-
+			
 			switch (itemUnlocal) {
 
-			case "item.tsquareEyeDropper":
-				DoEyeDropper.blockstate(event.getEntityPlayer());
-				break;
 			case "item.tsquareBlockInfo":
 				DoBlockInfo.blockstate(event);
 				break;
 			case "item.tsquareMoveBlock":
-
 				DoMoveBlock.pull(event);
 				break;
 			case "item.tsquarePaintbrush":
 				DoPaintbrush.blockstate(event);
-				break;
-			case "item.tsquareResetAll": // info on click, reset on sneak-click
-				if (event.getEntityPlayer().isSneaking()) {
-					DoResetAll.reset(event.getEntityPlayer());
-
-				} else {
-					DoResetAll.warn(event.getEntityPlayer());
-				}
-				break;
-			case "item.tsquareUndo": // info on click, reset on sneak-click
-				if (event.getEntityPlayer().isSneaking()) {
-					DoUndo.undo(event.getEntityPlayer());
-
-				} else {
-					DoUndo.warn(event.getEntityPlayer());
-				}
 				break;
 			case "item.tsquareRotateBlock":
 				DoRotateBlock.rotation(event.getEntityPlayer(), event.getPos(), event.getFace().getOpposite());
@@ -166,7 +152,7 @@ public class TSquareEventHandler {
 
 	@SubscribeEvent
 	public void rightClickItem(PlayerInteractEvent.RightClickItem event) {
-
+//all items that don't care if block.
 		Boolean shouldCancel = false;
 
 		String itemUnlocal;
@@ -179,6 +165,7 @@ public class TSquareEventHandler {
 			}
 		}
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
+			
 			switch (itemUnlocal) {
 
 			case "item.tsquareResetAll":
@@ -189,11 +176,9 @@ public class TSquareEventHandler {
 				}
 				break;
 			case "item.tsquareUndo":
-				if (event.getEntityPlayer().isSneaking()) {
-					DoUndo.undo(event.getEntityPlayer());
-				} else {
+			
 					DoUndo.warn(event.getEntityPlayer());
-				}
+				
 				break;
 			case "item.tsquareEyeDropper":
 				DoEyeDropper.blockstate(event.getEntityPlayer());
@@ -217,7 +202,7 @@ public class TSquareEventHandler {
 				DoSphereCenter.blockstate(event.getEntityPlayer());
 				break;
 			case "item.tsquareBlendSphere":
-				DoBlend.sphere(event.getEntityPlayer(),false);
+				DoBlend.sphere(event.getEntityPlayer(), false);
 				break;
 			case "item.tsquareCuboid2Corners":
 				if (event.getEntityPlayer().isSneaking()) {
@@ -235,7 +220,7 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareBlob":
 				if (event.getEntityPlayer().isSneaking()) {
-					//DoBlob.blockstate(event.getEntityPlayer());
+					DoBlob.blockstate(event.getEntityPlayer());
 				} else {
 					DoBlob.changeGrowth(event.getEntityPlayer(), -1);
 				}
@@ -251,17 +236,20 @@ public class TSquareEventHandler {
 
 	@SubscribeEvent
 	public void leftClickEmpty(PlayerInteractEvent.LeftClickEmpty event) {
-		if (event.getEntityPlayer().getHeldItemMainhand() != null) {
+		if (event.getHand().toString() == "MAIN_HAND") {
+			if (event.getEntityPlayer().getHeldItemMainhand() != null) {
 
-			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab && event.getHand().toString() == "MAIN_HAND") {
-				// For the love of Notch, why is this the only client-side only
-				// click event?
-				// Packet triggers LeftEmptyPacketHandler server-side
-				TSquarePacketHandler.INSTANCE.sendToServer(new LeftEmptyPacket(7));
+				if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab && event.getHand().toString() == "MAIN_HAND") {
+					// For the love of Notch, why is this the only client-side
+					// only
+					// click event?
+					// Packet triggers LeftEmptyPacketHandler server-side
+					
+					TSquarePacketHandler.INSTANCE.sendToServer(new LeftEmptyPacket(7));
 
+				}
 			}
+
 		}
-
 	}
-
 }

@@ -7,7 +7,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 public class DoMoveBlock {
 
 	public static void push(PlayerInteractEvent.LeftClickBlock event) {
-
+if (!event.getEntityPlayer().isSwingInProgress){
 		BlockPos movestart = event.getPos();
 		BlockPos moveend = event.getPos().subtract(event.getFace().getDirectionVec());
 		IBlockState moveblock = event.getWorld().getBlockState(movestart);
@@ -18,6 +18,7 @@ public class DoMoveBlock {
 			event.getWorld().setBlockState(moveend, moveblock);
 
 		}
+}
 
 	}
 
