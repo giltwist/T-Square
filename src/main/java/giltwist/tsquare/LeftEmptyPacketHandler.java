@@ -46,8 +46,7 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 			break;
 		case "item.tsquareUndo":
 			if (player.isSneaking()){
-				
-				DoUndo.undo(player);
+					DoUndo.undo(player);
 			}else{
 			DoUndo.warn(player);
 			}

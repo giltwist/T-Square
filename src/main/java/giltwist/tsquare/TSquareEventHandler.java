@@ -56,7 +56,12 @@ public class TSquareEventHandler {
 				DoRotateBlock.rotation(event.getEntityPlayer(), event.getPos(), event.getFace());
 				break;
 			case "item.tsquareResetAll":
-				DoResetAll.warn(event.getEntityPlayer());
+				if (event.getEntityPlayer().isSneaking()) {
+				DoResetAll.reset(event.getEntityPlayer());
+				}
+				else{
+				DoResetAll.warn(event.getEntityPlayer());}
+				
 				break;
 			case "item.tsquareUndo":
 				if (event.getEntityPlayer().isSneaking()) {

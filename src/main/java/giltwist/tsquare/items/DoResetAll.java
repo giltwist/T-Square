@@ -7,12 +7,12 @@ public class DoResetAll {
 	
 	public static void warn(EntityPlayer player) {
 		if (!player.isSwingInProgress){
-		player.addChatMessage(new TextComponentString("Sneak-Right click to reset your T-Square variables"));
+		player.addChatMessage(new TextComponentString("Sneak-Left click to reset your T-Square variables"));
 	}
 	}
 
 	public static void reset(EntityPlayer player){
-
+		if (!player.isSwingInProgress){
 		for (int i = 0; i < player.getEntityData().getKeySet().size(); i++) {
 
 			String key = player.getEntityData().getKeySet().toArray()[i].toString();
@@ -22,6 +22,7 @@ public class DoResetAll {
 				player.getEntityData().getKeySet().remove(key);
 			}
 
+		}
 		}
 		
 	}
