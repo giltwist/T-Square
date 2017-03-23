@@ -105,7 +105,7 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 			}
 			break;
 		case "item.tsquareBlob":
-			if (player.isSneaking()) {
+			if (!player.isSneaking()) {
 				DoBlob.material(player);
 			} else {
 				DoBlob.changeGrowth(player, 1);

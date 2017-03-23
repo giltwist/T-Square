@@ -110,7 +110,7 @@ public class TSquareEventHandler {
 				}
 				break;
 			case "item.tsquareBlob":
-				if (event.getEntityPlayer().isSneaking()) {
+				if (!event.getEntityPlayer().isSneaking()) {
 					DoBlob.material(event.getEntityPlayer());
 				} else {
 					DoBlob.changeGrowth(event.getEntityPlayer(), 1);
@@ -254,7 +254,7 @@ Random rnd = new Random();
 				}
 				break;
 			case "item.tsquareBlob":
-				if (event.getEntityPlayer().isSneaking()) {
+				if (!event.getEntityPlayer().isSneaking()) {
 					DoBlob.blockstate(event.getEntityPlayer());
 				} else {
 					DoBlob.changeGrowth(event.getEntityPlayer(), -1);
