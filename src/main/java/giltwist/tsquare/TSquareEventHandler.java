@@ -19,6 +19,8 @@ import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoRotateBlock;
 import giltwist.tsquare.items.DoSphereCenter;
+import giltwist.tsquare.items.DoSplatterCircle;
+import giltwist.tsquare.items.DoSplatterOverlay;
 import giltwist.tsquare.items.DoSplatterSphere;
 import giltwist.tsquare.items.DoSquareCenter;
 import giltwist.tsquare.items.DoTerraform;
@@ -123,6 +125,20 @@ public class TSquareEventHandler {
 					DoSplatterSphere.material(event.getEntityPlayer());
 				} else {
 					DoSplatterSphere.changeGrowth(event.getEntityPlayer(), 1);
+				}
+				break;
+			case "item.tsquareSplatterCircle":
+				if (!event.getEntityPlayer().isSneaking()) {
+					DoSplatterCircle.material(event.getEntityPlayer());
+				} else {
+					DoSplatterCircle.changeGrowth(event.getEntityPlayer(), 1);
+				}
+				break;
+			case "item.tsquareSplatterOverlay":
+				if (!event.getEntityPlayer().isSneaking()) {
+					DoSplatterOverlay.material(event.getEntityPlayer());
+				} else {
+					DoSplatterOverlay.changeGrowth(event.getEntityPlayer(), 1);
 				}
 				break;
 			case "item.tsquareSmooth":
@@ -274,6 +290,20 @@ Random rnd = new Random();
 					DoSplatterSphere.blockstate(event.getEntityPlayer());
 				} else {
 					DoSplatterSphere.changeGrowth(event.getEntityPlayer(), -1);
+				}
+				break;
+			case "item.tsquareSplatterCircle":
+				if (!event.getEntityPlayer().isSneaking()) {
+					DoSplatterCircle.blockstate(event.getEntityPlayer());
+				} else {
+					DoSplatterCircle.changeGrowth(event.getEntityPlayer(), -1);
+				}
+				break;
+			case "item.tsquareSplatterOverlay":
+				if (!event.getEntityPlayer().isSneaking()) {
+					DoSplatterOverlay.blockstate(event.getEntityPlayer());
+				} else {
+					DoSplatterOverlay.changeGrowth(event.getEntityPlayer(), -1);
 				}
 				break;
 			case "item.tsquareSmooth":

@@ -28,3 +28,4 @@ Changelog
 0.6.2 - Added Filldown, swapped click and sneak+click on blob
 0.6.3 - Added Up tool
 0.6.4 - Added Splatter Sphere
+0.6.4 - Added Splatter Circle & Splatter Overlay

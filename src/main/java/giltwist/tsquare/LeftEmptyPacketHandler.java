@@ -15,6 +15,8 @@ import giltwist.tsquare.items.DoOverlay;
 import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoSphereCenter;
+import giltwist.tsquare.items.DoSplatterCircle;
+import giltwist.tsquare.items.DoSplatterOverlay;
 import giltwist.tsquare.items.DoSplatterSphere;
 import giltwist.tsquare.items.DoSquareCenter;
 import giltwist.tsquare.items.DoTerraform;
@@ -117,6 +119,20 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 				DoSplatterSphere.material(player);
 			} else {
 				DoSplatterSphere.changeGrowth(player, 1);
+			}
+			break;
+		case "item.tsquareSplatterCircle":
+			if (!player.isSneaking()) {
+				DoSplatterCircle.material(player);
+			} else {
+				DoSplatterCircle.changeGrowth(player, 1);
+			}
+			break;
+		case "item.tsquareSplatterOverlay":
+			if (!player.isSneaking()) {
+				DoSplatterOverlay.material(player);
+			} else {
+				DoSplatterOverlay.changeGrowth(player, 1);
 			}
 			break;
 		case "item.tsquareSmooth":

@@ -11,6 +11,7 @@ item.tsquareReplaceMode.name=Replace Mode: All
 item.tsquareEraser.name=Eraser: All
 item.tsquareUndo.name=Undo
 item.tsquareUp.name=Up
+item.tsquareLoadArea.name=Load Area
 
 # Basic Shapes
 item.tsquareSquareCenter.name=Square by Center
@@ -27,6 +28,9 @@ item.tsquareLine.name=Line
 
 #Randomized Shapes
 item.tsquareBlob.name=Blob
+item.tsquareSplatterSphere.name=Splatter Sphere
+item.tsquareSplatterCircle.name=Splatter Circle
+item.tsquareSplatterOverlay.name=Splatter Overlay
 
 #Terraformers
 item.tsquareBlendSphere.name=Blend Sphere

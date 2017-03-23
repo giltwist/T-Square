@@ -36,6 +36,8 @@ public class ModItems {
 	//Randomized Shapes
 	public static ItemBase tsquareBlob;
 	public static ItemBase tsquareSplatterSphere;
+	public static ItemBase tsquareSplatterCircle;
+	public static ItemBase tsquareSplatterOverlay;
 	
 	//Terraformers
 	public static ItemBase tsquareBlendSphere;
@@ -68,6 +70,8 @@ public class ModItems {
 		tsquareRotateBlock = register(new ItemBase("tsquareRotateBlock").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareSmooth = register(new ItemBase("tsquareSmooth").setCreativeTab(TSquare.creativeTab));
 		tsquareSphereCenter = register(new ItemBase("tsquareSphereCenter").setCreativeTab(TSquare.creativeTab));
+		tsquareSplatterCircle = register(new ItemBase("tsquareSplatterCircle").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
+		tsquareSplatterOverlay = register(new ItemBase("tsquareSplatterOverlay").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
 		tsquareSplatterSphere = register(new ItemBase("tsquareSplatterSphere").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
 		tsquareSquareCenter = register(new ItemBase("tsquareSquareCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareUndo = register(new ItemBase("tsquareUndo").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
