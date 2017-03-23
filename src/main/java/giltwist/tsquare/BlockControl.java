@@ -536,6 +536,15 @@ public class BlockControl {
 				String rollbackPath = undoPath + player.getName() + "@" + newestUndo;
 				List<String> undoInfo = Files.readAllLines(Paths.get(rollbackPath));
 				String[] currentUndo;
+				String[] firstUndo = undoInfo.get(0).split(",");
+				
+				
+				int minPosX = Integer.parseInt(firstUndo[0]);
+				int minPosY = Integer.parseInt(firstUndo[1]);
+				int minPosZ = Integer.parseInt(firstUndo[2]);
+				int maxPosX = Integer.parseInt(firstUndo[0]);
+				int maxPosY = Integer.parseInt(firstUndo[1]);
+				int maxPosZ = Integer.parseInt(firstUndo[2]);
 
 				for (int i = 0; i < undoInfo.size(); i++) {
 
@@ -544,9 +553,30 @@ public class BlockControl {
 					undoMaterial = net.minecraft.block.Block.getBlockFromName(currentUndo[3]);
 					undoState = undoMaterial.getStateFromMeta(Integer.parseInt(currentUndo[4]));
 					player.worldObj.setBlockState(undoPos, undoState);
+					
+					if (undoPos.getX() < minPosX) {
+						minPosX = undoPos.getX();
+					}
+					if (undoPos.getY() < minPosY) {
+						minPosY = undoPos.getY();
+					}
+					if (undoPos.getZ() < minPosZ) {
+						minPosZ = undoPos.getZ();
+					}
+
+					if (undoPos.getX() > maxPosX) {
+						maxPosX = undoPos.getX();
+					}
+					if (undoPos.getY() > maxPosY) {
+						maxPosY = undoPos.getY();
+					}
+					if (undoPos.getZ() > maxPosZ) {
+						maxPosZ = undoPos.getZ();
+					}
 
 				}
 				Files.deleteIfExists(Paths.get(rollbackPath));
+				player.worldObj.markBlockRangeForRenderUpdate(minPosX, minPosY, minPosZ, maxPosX, maxPosY, maxPosZ);
 			} catch (IOException ioe) {
 				player.addChatMessage(new TextComponentString(ioe.getMessage()));
 			}
