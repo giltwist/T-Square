@@ -18,6 +18,7 @@ public class ItemReplaceMode extends Item {
 		setRegistryName("tsquareReplaceMode");
 		setUnlocalizedName("tsquareReplaceMode");
 		setCreativeTab(TSquare.creativeTab);
+		setMaxStackSize(1);
 		GameRegistry.register(this);
 		
 	}

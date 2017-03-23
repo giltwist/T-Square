@@ -30,5 +30,11 @@ public class ItemBase extends Item {
 		super.setMaxDamage(i);
 		return this;
 	}
+	
+	@Override
+	public ItemBase setMaxStackSize(int i) {
+		super.setMaxStackSize(i);
+		return this;
+	}
 
 }

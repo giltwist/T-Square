@@ -18,6 +18,7 @@ public class ItemEraser extends Item {
 		setRegistryName("tsquareEraser");
 		setUnlocalizedName("tsquareEraser");
 		setCreativeTab(TSquare.creativeTab);
+		setMaxStackSize(1);
 		GameRegistry.register(this);
 		
 	}

@@ -19,6 +19,7 @@ import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoRotateBlock;
 import giltwist.tsquare.items.DoSphereCenter;
+import giltwist.tsquare.items.DoSplatterSphere;
 import giltwist.tsquare.items.DoSquareCenter;
 import giltwist.tsquare.items.DoTerraform;
 import giltwist.tsquare.items.DoUndo;
@@ -115,6 +116,13 @@ public class TSquareEventHandler {
 					DoBlob.material(event.getEntityPlayer());
 				} else {
 					DoBlob.changeGrowth(event.getEntityPlayer(), 1);
+				}
+				break;
+			case "item.tsquareSplatterSphere":
+				if (!event.getEntityPlayer().isSneaking()) {
+					DoSplatterSphere.material(event.getEntityPlayer());
+				} else {
+					DoSplatterSphere.changeGrowth(event.getEntityPlayer(), 1);
 				}
 				break;
 			case "item.tsquareSmooth":
@@ -259,6 +267,13 @@ Random rnd = new Random();
 					DoBlob.blockstate(event.getEntityPlayer());
 				} else {
 					DoBlob.changeGrowth(event.getEntityPlayer(), -1);
+				}
+				break;
+			case "item.tsquareSplatterSphere":
+				if (!event.getEntityPlayer().isSneaking()) {
+					DoSplatterSphere.blockstate(event.getEntityPlayer());
+				} else {
+					DoSplatterSphere.changeGrowth(event.getEntityPlayer(), -1);
 				}
 				break;
 			case "item.tsquareSmooth":
