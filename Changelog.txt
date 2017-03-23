@@ -26,3 +26,5 @@ Changelog
 0.6.0 - Added overlay
 0.6.1 - Undos older than an hour are deleted when using Undo
 0.6.2 - Added Filldown, swapped click and sneak+click on blob
+0.6.3 - Added Up tool
+0.6.4 - Added Splatter Sphere

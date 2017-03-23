@@ -10,6 +10,7 @@ item.tsquareBlockInfo.name=Block Info
 item.tsquareReplaceMode.name=Replace Mode: All
 item.tsquareEraser.name=Eraser: All
 item.tsquareUndo.name=Undo
+item.tsquareUp.name=Up
 
 # Basic Shapes
 item.tsquareSquareCenter.name=Square by Center

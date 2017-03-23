@@ -22,6 +22,7 @@ import giltwist.tsquare.items.DoSphereCenter;
 import giltwist.tsquare.items.DoSquareCenter;
 import giltwist.tsquare.items.DoTerraform;
 import giltwist.tsquare.items.DoUndo;
+import giltwist.tsquare.items.DoUp;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -262,9 +263,8 @@ Random rnd = new Random();
 				break;
 			case "item.tsquareSmooth":
 				DoTerraform.sphere(event.getEntityPlayer(), 5, 4); // weak
-																	// smooth
 				break;
-			case "item.tsquareMelt":
+				case "item.tsquareMelt":
 				DoTerraform.sphere(event.getEntityPlayer(), 2, 7); // weak melt
 				break;
 			case "item.tsquareFill":
@@ -275,6 +275,9 @@ Random rnd = new Random();
 				break;
 			case "item.tsquareRandomTerraform":
 				DoTerraform.sphere(event.getEntityPlayer(),rnd.nextInt(6)+1 , rnd.nextInt(3)+1);
+				break;
+			case "item.tsquareUp":
+				DoUp.goUp(event.getEntityPlayer());
 				break;
 			default:
 				shouldCancel = false;

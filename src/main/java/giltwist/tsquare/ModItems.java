@@ -16,6 +16,7 @@ public class ModItems {
 	public static ItemBase tsquareRotateBlock;
 	public static ItemBase tsquareBlockInfo;
 	public static ItemBase tsquareUndo;
+	public static ItemBase tsquareUp;
 	
 	public static ItemReplaceMode tsquareReplaceMode;
 	public static ItemEraser tsquareEraser;
@@ -68,6 +69,7 @@ public class ModItems {
 		tsquareSphereCenter = register(new ItemBase("tsquareSphereCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareSquareCenter = register(new ItemBase("tsquareSquareCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareUndo = register(new ItemBase("tsquareUndo").setCreativeTab(TSquare.creativeTab));
+		tsquareUp = register(new ItemBase("tsquareUp").setCreativeTab(TSquare.creativeTab));
 		
 		tsquareEraser = new ItemEraser();
 		tsquareEraser.initModel();
