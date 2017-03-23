@@ -25,3 +25,4 @@ Changelog
 0.5.2 - Added Random Terraformer, added milk bucket offhand to replace anything NOT air
 0.6.0 - Added overlay
 0.6.1 - Undos older than an hour are deleted when using Undo
+0.6.2 - Added Filldown

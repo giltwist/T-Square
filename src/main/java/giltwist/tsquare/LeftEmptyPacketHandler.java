@@ -9,6 +9,7 @@ import giltwist.tsquare.items.DoCubeCenter;
 import giltwist.tsquare.items.DoCuboid2Corners;
 import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
+import giltwist.tsquare.items.DoFillDown;
 import giltwist.tsquare.items.DoLine;
 import giltwist.tsquare.items.DoOverlay;
 import giltwist.tsquare.items.DoReplaceMode;
@@ -41,7 +42,7 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 		} else {
 			itemUnlocal = player.getHeldItemMainhand().getUnlocalizedName();
 		}
-Random rnd = new Random();
+		Random rnd = new Random();
 		switch (itemUnlocal) {
 
 		case "item.tsquareResetAll":
@@ -79,6 +80,9 @@ Random rnd = new Random();
 			break;
 		case "item.tsquareOverlay":
 			DoOverlay.material(player);
+			break;
+		case "item.tsquareFillDown":
+			DoFillDown.material(player);
 			break;
 		case "item.tsquareSphereCenter":
 			DoSphereCenter.material(player);
@@ -120,7 +124,7 @@ Random rnd = new Random();
 			DoTerraform.sphere(player, 7, 1); // strong grow
 			break;
 		case "item.tsquareRandomTerraform":
-			DoTerraform.sphere(player,rnd.nextInt(3)+1 , rnd.nextInt(6)+1);
+			DoTerraform.sphere(player, rnd.nextInt(3) + 1, rnd.nextInt(6) + 1);
 			break;
 		default:
 			break;

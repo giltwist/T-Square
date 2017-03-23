@@ -10,6 +10,7 @@ import giltwist.tsquare.items.DoCubeCenter;
 import giltwist.tsquare.items.DoCuboid2Corners;
 import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
+import giltwist.tsquare.items.DoFillDown;
 import giltwist.tsquare.items.DoLine;
 import giltwist.tsquare.items.DoMoveBlock;
 import giltwist.tsquare.items.DoOverlay;
@@ -81,6 +82,9 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareOverlay":
 				DoOverlay.material(event.getEntityPlayer());
+				break;
+			case "item.tsquareFillDown":
+				DoFillDown.material(event.getEntityPlayer());
 				break;
 			case "item.tsquareCubeCenter":
 				DoCubeCenter.material(event.getEntityPlayer());
@@ -222,6 +226,9 @@ Random rnd = new Random();
 				break;
 			case "item.tsquareOverlay":
 				DoOverlay.blockstate(event.getEntityPlayer());
+				break;
+			case "item.tsquareFillDown":
+				DoFillDown.blockstate(event.getEntityPlayer());
 				break;
 			case "item.tsquareCubeCenter":
 				DoCubeCenter.blockstate(event.getEntityPlayer());
