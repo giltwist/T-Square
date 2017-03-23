@@ -83,7 +83,8 @@ public class BlockControl {
 			offhandItemUnlocal = "EmptyOffhand";
 		} else {
 			offhandItemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
-			//player.addChatMessage(new TextComponentString("Offhand: " + offhandItemUnlocal));
+			// player.addChatMessage(new TextComponentString("Offhand: " +
+			// offhandItemUnlocal));
 
 		}
 
@@ -93,7 +94,8 @@ public class BlockControl {
 				placemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
 				if (offhandItem.hasTagCompound() && offhandItem.getTagCompound().hasKey("mode")) {
 					replaceMode = offhandItem.getTagCompound().getString("mode");
-					//player.addChatMessage(new TextComponentString("Replace Mode: " + replaceMode));
+					// player.addChatMessage(new TextComponentString("Replace
+					// Mode: " + replaceMode));
 				}
 
 			} else {
@@ -147,27 +149,27 @@ public class BlockControl {
 						int maxPosX = toReplace[0].getX();
 						int maxPosY = toReplace[0].getY();
 						int maxPosZ = toReplace[0].getZ();
-						
+
 						for (int i = 0; i < toReplace.length; i++) {
-							
-							if (toReplace[i].getX()<minPosX){
-								minPosX=toReplace[i].getX();
+
+							if (toReplace[i].getX() < minPosX) {
+								minPosX = toReplace[i].getX();
 							}
-							if (toReplace[i].getY()<minPosY){
-								minPosY=toReplace[i].getY();
+							if (toReplace[i].getY() < minPosY) {
+								minPosY = toReplace[i].getY();
 							}
-							if (toReplace[i].getZ()<minPosZ){
-								minPosZ=toReplace[i].getZ();
+							if (toReplace[i].getZ() < minPosZ) {
+								minPosZ = toReplace[i].getZ();
 							}
-							
-							if (toReplace[i].getX()>maxPosX){
-								maxPosX=toReplace[i].getX();
+
+							if (toReplace[i].getX() > maxPosX) {
+								maxPosX = toReplace[i].getX();
 							}
-							if (toReplace[i].getY()>maxPosY){
-								maxPosY=toReplace[i].getY();
+							if (toReplace[i].getY() > maxPosY) {
+								maxPosY = toReplace[i].getY();
 							}
-							if (toReplace[i].getZ()>maxPosZ){
-								maxPosZ=toReplace[i].getZ();
+							if (toReplace[i].getZ() > maxPosZ) {
+								maxPosZ = toReplace[i].getZ();
 							}
 
 							switch (replaceMode) {
@@ -285,27 +287,27 @@ public class BlockControl {
 		int maxPosX = toReplace[0].getX();
 		int maxPosY = toReplace[0].getY();
 		int maxPosZ = toReplace[0].getZ();
-		
+
 		for (int i = 0; i < toReplace.length; i++) {
-			
-			if (toReplace[i].getX()<minPosX){
-				minPosX=toReplace[i].getX();
+
+			if (toReplace[i].getX() < minPosX) {
+				minPosX = toReplace[i].getX();
 			}
-			if (toReplace[i].getY()<minPosY){
-				minPosY=toReplace[i].getY();
+			if (toReplace[i].getY() < minPosY) {
+				minPosY = toReplace[i].getY();
 			}
-			if (toReplace[i].getZ()<minPosZ){
-				minPosZ=toReplace[i].getZ();
+			if (toReplace[i].getZ() < minPosZ) {
+				minPosZ = toReplace[i].getZ();
 			}
-			
-			if (toReplace[i].getX()>maxPosX){
-				maxPosX=toReplace[i].getX();
+
+			if (toReplace[i].getX() > maxPosX) {
+				maxPosX = toReplace[i].getX();
 			}
-			if (toReplace[i].getY()>maxPosY){
-				maxPosY=toReplace[i].getY();
+			if (toReplace[i].getY() > maxPosY) {
+				maxPosY = toReplace[i].getY();
 			}
-			if (toReplace[i].getZ()>maxPosZ){
-				maxPosZ=toReplace[i].getZ();
+			if (toReplace[i].getZ() > maxPosZ) {
+				maxPosZ = toReplace[i].getZ();
 			}
 
 			neighbors = new HashMap<IBlockState, Integer>();
@@ -372,9 +374,8 @@ public class BlockControl {
 
 	public static void terraformBlocks(EntityPlayer player, BlockPos[] toReplace, int minAirFacesToMelt, int minNonAirNeighborsToGrow) {
 
-		
 		IBlockState[] bestNeighbor = new IBlockState[toReplace.length];
-		
+
 		Map<IBlockState, Integer> neighbors = new HashMap<IBlockState, Integer>();
 		int tempCount;
 		IBlockState tempState = null;
@@ -389,27 +390,27 @@ public class BlockControl {
 		int maxPosX = toReplace[0].getX();
 		int maxPosY = toReplace[0].getY();
 		int maxPosZ = toReplace[0].getZ();
-		
+
 		for (int i = 0; i < toReplace.length; i++) {
-			
-			if (toReplace[i].getX()<minPosX){
-				minPosX=toReplace[i].getX();
+
+			if (toReplace[i].getX() < minPosX) {
+				minPosX = toReplace[i].getX();
 			}
-			if (toReplace[i].getY()<minPosY){
-				minPosY=toReplace[i].getY();
+			if (toReplace[i].getY() < minPosY) {
+				minPosY = toReplace[i].getY();
 			}
-			if (toReplace[i].getZ()<minPosZ){
-				minPosZ=toReplace[i].getZ();
+			if (toReplace[i].getZ() < minPosZ) {
+				minPosZ = toReplace[i].getZ();
 			}
-			
-			if (toReplace[i].getX()>maxPosX){
-				maxPosX=toReplace[i].getX();
+
+			if (toReplace[i].getX() > maxPosX) {
+				maxPosX = toReplace[i].getX();
 			}
-			if (toReplace[i].getY()>maxPosY){
-				maxPosY=toReplace[i].getY();
+			if (toReplace[i].getY() > maxPosY) {
+				maxPosY = toReplace[i].getY();
 			}
-			if (toReplace[i].getZ()>maxPosZ){
-				maxPosZ=toReplace[i].getZ();
+			if (toReplace[i].getZ() > maxPosZ) {
+				maxPosZ = toReplace[i].getZ();
 			}
 
 			neighbors = new HashMap<IBlockState, Integer>();
@@ -417,11 +418,11 @@ public class BlockControl {
 			for (EnumFacing f : EnumFacing.values()) {
 
 				tempState = player.worldObj.getBlockState(toReplace[i].offset(f));
-				
-				if (tempState.getBlock()==net.minecraft.block.Block.getBlockFromName("minecraft:air")){
-					airCheat=-1;
-				}else{
-					airCheat=1;
+
+				if (tempState.getBlock() == net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
+					airCheat = -1;
+				} else {
+					airCheat = 1;
 				}
 
 				if (neighbors.containsKey(tempState)) {
@@ -441,7 +442,6 @@ public class BlockControl {
 				}
 			}
 
-			
 			for (IBlockState n : neighbors.keySet()) {
 				if (neighbors.get(n) == countMax) {
 					tempState = n;
@@ -449,27 +449,25 @@ public class BlockControl {
 			}
 
 			if (player.worldObj.getBlockState(toReplace[i]) == net.minecraft.block.Block.getBlockFromName("minecraft:air").getDefaultState()) {
-				
+
 				if (countMax < minNonAirNeighborsToGrow) {
 					bestNeighbor[i] = player.worldObj.getBlockState(toReplace[i]);
-					
 
 				} else {
-					
+
 					bestNeighbor[i] = tempState;
 
 				}
-			}else{
-				
-				
-				if ( Math.abs(neighbors.get(net.minecraft.block.Block.getBlockFromName("minecraft:air").getDefaultState())) >=minAirFacesToMelt){
-					
-					bestNeighbor[i]=net.minecraft.block.Block.getBlockFromName("minecraft:air").getDefaultState();
-				}else{
-					
+			} else {
+
+				if (Math.abs(neighbors.get(net.minecraft.block.Block.getBlockFromName("minecraft:air").getDefaultState())) >= minAirFacesToMelt) {
+
+					bestNeighbor[i] = net.minecraft.block.Block.getBlockFromName("minecraft:air").getDefaultState();
+				} else {
+
 					bestNeighbor[i] = player.worldObj.getBlockState(toReplace[i]);
 				}
-				
+
 			}
 
 		}
@@ -485,6 +483,9 @@ public class BlockControl {
 	@SuppressWarnings("deprecation")
 	public static void rollbackMostRecent(EntityPlayer player) {
 
+		Calendar calendar = Calendar.getInstance();
+		Date now = calendar.getTime();
+		Timestamp time = new Timestamp(now.getTime());
 		File rootDirectory = player.getServer().getDataDirectory();
 		String configPath = rootDirectory.getAbsolutePath() + File.separator + "config" + File.separator;
 		String tsquarePath = configPath + "T-Square" + File.separator;
@@ -516,8 +517,14 @@ public class BlockControl {
 			bits = file.getName().split("@");
 			// player.addChatMessage(new TextComponentString("Timestamp check: "
 			// + bits[1]));
-			if (bits[0].equalsIgnoreCase(player.getName()) && Long.parseLong(bits[1]) > newestUndo) {
-				newestUndo = Long.parseLong(bits[1]);
+			if (time.getTime() - 3600000 > Long.parseLong(bits[1])) {
+				//delete if older than an hour
+				file.delete();
+
+			} else {
+				if (bits[0].equalsIgnoreCase(player.getName()) && Long.parseLong(bits[1]) > newestUndo) {
+					newestUndo = Long.parseLong(bits[1]);
+				}
 			}
 		}
 
@@ -529,8 +536,6 @@ public class BlockControl {
 				String rollbackPath = undoPath + player.getName() + "@" + newestUndo;
 				List<String> undoInfo = Files.readAllLines(Paths.get(rollbackPath));
 				String[] currentUndo;
-				
-				
 
 				for (int i = 0; i < undoInfo.size(); i++) {
 
