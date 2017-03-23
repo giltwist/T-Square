@@ -22,3 +22,4 @@ Changelog
 0.4.1 - Mostly bugfixes.  Moved undo to sneak+left to prevent accidental multiple firings
 0.5.0 - Added Terraformers - Fill, Smooth, Melt, and Grow
 0.5.1 - Clientside rendering reliability fixes
+0.5.2 - Added Random Terraformer, added milk bucket offhand to replace anything NOT air

@@ -1,5 +1,7 @@
 package giltwist.tsquare;
 
+import java.util.Random;
+
 import giltwist.tsquare.items.DoBlend;
 import giltwist.tsquare.items.DoBlob;
 import giltwist.tsquare.items.DoBlockInfo;
@@ -37,7 +39,7 @@ public class TSquareEventHandler {
 		}
 
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
-
+			Random rnd = new Random();
 			switch (itemUnlocal) {
 
 			case "item.tsquareEyeDropper":
@@ -108,19 +110,21 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareSmooth":
 				DoTerraform.sphere(event.getEntityPlayer(), 4, 3); // strong
-																	// smooth
 				break;
 			case "item.tsquareMelt":
 				DoTerraform.sphere(event.getEntityPlayer(), 1, 7); // strong
-																	// melt
+
 				break;
 			case "item.tsquareFill":
 				DoTerraform.sphere(event.getEntityPlayer(), 7, 3); // strong
-																	// fill
+
 				break;
 			case "item.tsquareGrow":
 				DoTerraform.sphere(event.getEntityPlayer(), 7, 1); // strong
-																	// fill
+				break;
+			case "item.tsquareRandomTerraform":
+				
+				DoTerraform.sphere(event.getEntityPlayer(),rnd.nextInt(3)+1 , rnd.nextInt(6)+1); // strong
 				break;
 			default:
 				shouldCancel = false;
@@ -186,7 +190,7 @@ public class TSquareEventHandler {
 			}
 		}
 		if (event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
-
+Random rnd = new Random();
 			switch (itemUnlocal) {
 
 			case "item.tsquareResetAll":
@@ -254,6 +258,9 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareGrow":
 				DoTerraform.sphere(event.getEntityPlayer(), 7, 2); // weak grow
+				break;
+			case "item.tsquareRandomTerraform":
+				DoTerraform.sphere(event.getEntityPlayer(),rnd.nextInt(6)+1 , rnd.nextInt(3)+1);
 				break;
 			default:
 				shouldCancel = false;

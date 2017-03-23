@@ -39,6 +39,7 @@ public class ModItems {
 	public static ItemBase tsquareMelt;
 	public static ItemBase tsquareFill;
 	public static ItemBase tsquareGrow;
+	public static ItemBase tsquareRandomTerraform;
 	
 	public static void init() {
 		
@@ -55,6 +56,7 @@ public class ModItems {
 		tsquareMelt = register(new ItemBase("tsquareMelt").setCreativeTab(TSquare.creativeTab));
 		tsquareMoveBlock = register(new ItemBase("tsquareMoveBlock").setCreativeTab(TSquare.creativeTab));
 		tsquarePaintbrush = register(new ItemBase("tsquarePaintbrush").setCreativeTab(TSquare.creativeTab));
+		tsquareRandomTerraform = register(new ItemBase("tsquareRandomTerraform").setCreativeTab(TSquare.creativeTab));
 		tsquareResetAll = register(new ItemBase("tsquareResetAll").setCreativeTab(TSquare.creativeTab));
 		tsquareRotateBlock = register(new ItemBase("tsquareRotateBlock").setCreativeTab(TSquare.creativeTab));
 		tsquareSmooth = register(new ItemBase("tsquareSmooth").setCreativeTab(TSquare.creativeTab));

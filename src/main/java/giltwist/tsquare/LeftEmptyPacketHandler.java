@@ -1,5 +1,7 @@
 package giltwist.tsquare;
 
+import java.util.Random;
+
 import giltwist.tsquare.items.DoBlend;
 import giltwist.tsquare.items.DoBlob;
 import giltwist.tsquare.items.DoCircleCenter;
@@ -38,7 +40,7 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 		} else {
 			itemUnlocal = player.getHeldItemMainhand().getUnlocalizedName();
 		}
-
+Random rnd = new Random();
 		switch (itemUnlocal) {
 
 		case "item.tsquareResetAll":
@@ -112,6 +114,9 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 			break;
 		case "item.tsquareGrow":
 			DoTerraform.sphere(player, 7, 1); // strong grow
+			break;
+		case "item.tsquareRandomTerraform":
+			DoTerraform.sphere(player,rnd.nextInt(3)+1 , rnd.nextInt(6)+1);
 			break;
 		default:
 			break;

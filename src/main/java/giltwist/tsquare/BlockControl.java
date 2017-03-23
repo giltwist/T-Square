@@ -83,8 +83,7 @@ public class BlockControl {
 			offhandItemUnlocal = "EmptyOffhand";
 		} else {
 			offhandItemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
-			// player.addChatMessage(new TextComponentString("Offhand: " +
-			// offhandItemUnlocal));
+			//player.addChatMessage(new TextComponentString("Offhand: " + offhandItemUnlocal));
 
 		}
 
@@ -114,6 +113,9 @@ public class BlockControl {
 
 			if (offhandItemUnlocal.equalsIgnoreCase("item.bucket")) {
 				replaceMode = "air";
+			}
+			if (offhandItemUnlocal.equalsIgnoreCase("item.milk")) {
+				replaceMode = "milk";
 			}
 			if (offhandItemUnlocal.equalsIgnoreCase("item.bucketWater")) {
 
@@ -203,6 +205,13 @@ public class BlockControl {
 								replacemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
 								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
 								if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
+									player.worldObj.setBlockState(toReplace[i], placematState);
+								}
+								break;
+							case "milk": // anything NOT air
+								replacemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
+								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
+								if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
 									player.worldObj.setBlockState(toReplace[i], placematState);
 								}
 								break;

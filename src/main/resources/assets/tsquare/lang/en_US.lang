@@ -30,5 +30,6 @@ item.tsquareSmooth.name=Smooth
 item.tsquareMelt.name=Melt
 item.tsquareFill.name=Fill
 item.tsquareGrow.name=Grow
+item.tsquareRandomTerraform.name=Random Terraform
 
 # Blocks
