@@ -25,6 +25,7 @@ public class ModItems {
 	public static ItemBase tsquareCircleCenter;
 	public static ItemBase tsquareCubeCenter;
 	public static ItemBase tsquareSphereCenter;
+	public static ItemBase tsquareOverlay;
 	
 	//Advanced Shapes
 	public static ItemBase tsquareCuboid2Corners;
@@ -41,6 +42,7 @@ public class ModItems {
 	public static ItemBase tsquareGrow;
 	public static ItemBase tsquareRandomTerraform;
 	
+	
 	public static void init() {
 		
 		tsquareBlendSphere = register(new ItemBase("tsquareBlendSphere").setCreativeTab(TSquare.creativeTab));
@@ -55,6 +57,7 @@ public class ModItems {
 		tsquareLine = register(new ItemBase("tsquareLine").setCreativeTab(TSquare.creativeTab));
 		tsquareMelt = register(new ItemBase("tsquareMelt").setCreativeTab(TSquare.creativeTab));
 		tsquareMoveBlock = register(new ItemBase("tsquareMoveBlock").setCreativeTab(TSquare.creativeTab));
+		tsquareOverlay = register(new ItemBase("tsquareOverlay").setCreativeTab(TSquare.creativeTab));
 		tsquarePaintbrush = register(new ItemBase("tsquarePaintbrush").setCreativeTab(TSquare.creativeTab));
 		tsquareRandomTerraform = register(new ItemBase("tsquareRandomTerraform").setCreativeTab(TSquare.creativeTab));
 		tsquareResetAll = register(new ItemBase("tsquareResetAll").setCreativeTab(TSquare.creativeTab));

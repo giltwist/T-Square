@@ -23,3 +23,4 @@ Changelog
 0.5.0 - Added Terraformers - Fill, Smooth, Melt, and Grow
 0.5.1 - Clientside rendering reliability fixes
 0.5.2 - Added Random Terraformer, added milk bucket offhand to replace anything NOT air
+0.6.0 - Added overlay

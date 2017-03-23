@@ -10,6 +10,7 @@ import giltwist.tsquare.items.DoCuboid2Corners;
 import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoLine;
+import giltwist.tsquare.items.DoOverlay;
 import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoSphereCenter;
@@ -75,6 +76,9 @@ Random rnd = new Random();
 			break;
 		case "item.tsquareCircleCenter":
 			DoCircleCenter.material(player);
+			break;
+		case "item.tsquareOverlay":
+			DoOverlay.material(player);
 			break;
 		case "item.tsquareSphereCenter":
 			DoSphereCenter.material(player);
