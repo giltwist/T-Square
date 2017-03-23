@@ -6,6 +6,7 @@ import java.util.Set;
 import giltwist.tsquare.BlockControl;
 import giltwist.tsquare.FindLookedBlock;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 
@@ -95,9 +96,14 @@ public class DoOverlay {
 
 							for (int n = 0; n <= 10; n++) {
 								tempPos = new BlockPos(center.getX() + i, center.getY() - n, center.getZ() + j);
-								if (yCheck < depth && player.worldObj.getBlockState(tempPos).getBlock() != net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
+								if (yCheck==0 && player.worldObj.getBlockState(tempPos).getBlock() != net.minecraft.block.Block.getBlockFromName("minecraft:air")&& player.worldObj.getBlockState(tempPos.offset(EnumFacing.UP)).getBlock() == net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
 									yCheck++;
 									blocksToChange.add(tempPos);
+									if (depth==3){
+										blocksToChange.add(tempPos.offset(EnumFacing.DOWN));
+										blocksToChange.add(tempPos.offset(EnumFacing.DOWN).offset(EnumFacing.DOWN));
+									}
+									
 								}
 
 							}
