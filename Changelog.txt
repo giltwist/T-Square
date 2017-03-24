@@ -1,33 +1,33 @@
 Changelog
 
-0.0.1 - Initial setup of mcmod.info, etc.
-0.0.2 - Move Block added
-0.0.3 - Eyedropper & Paintbrush added 
-0.0.4 - Reset All & Rotate Block added
-0.0.5 - Separate tool actions from EventHandler
-0.0.6 - Replace Mode,  and Block Info added.  Tweaked Eye Dropper. Refactored unlocalized item names to be more unique.
-0.0.7 - Square by center added
-0.0.8 - Eraser added
-0.1.0 - Undo logging added
-0.1.1 - Undo tool added
-0.2.0 - Replace Mode & Eraser functionality added to Block Control
-0.2.1 - Cube by Center added
-0.2.2 - Circle by Center added
-0.2.3 - Sphere by Center added, eyedropper now works at range
-0.2.4 - Cuboid by 2 corners added
-0.2.5 - Line added
-0.2.6 - Bucket to replace air, water, lava added
-0.3.0 - Blob added
-0.4.0 - Blend Sphere added
-0.4.1 - Mostly bugfixes.  Moved undo to sneak+left to prevent accidental multiple firings
-0.5.0 - Added Terraformers - Fill, Smooth, Melt, and Grow
-0.5.1 - Clientside rendering reliability fixes
-0.5.2 - Added Random Terraformer, added milk bucket offhand to replace anything NOT air
-0.6.0 - Added overlay
-0.6.1 - Undos older than an hour are deleted when using Undo
-0.6.2 - Added Filldown, swapped click and sneak+click on blob
-0.6.3 - Added Up tool
-0.6.4 - Added Splatter Sphere
-0.6.5 - Added Splatter Circle & Splatter Overlay
-0.6.6 - Added Load Area tool
 0.6.7 - Added Color Wheel
+0.6.6 - Added Load Area tool
+0.6.5 - Added Splatter Circle & Splatter Overlay
+0.6.4 - Added Splatter Sphere
+0.6.3 - Added Up tool
+0.6.2 - Added Filldown, swapped click and sneak+click on blob
+0.6.1 - Undos older than an hour are deleted when using Undo
+0.6.0 - Added overlay
+0.5.2 - Added Random Terraformer, added milk bucket offhand to replace anything NOT air
+0.5.1 - Clientside rendering reliability fixes
+0.5.0 - Added Terraformers - Fill, Smooth, Melt, and Grow
+0.4.1 - Mostly bugfixes.  Moved undo to sneak+left to prevent accidental multiple firings
+0.4.0 - Blend Sphere added
+0.3.0 - Blob added
+0.2.6 - Bucket to replace air, water, lava added
+0.2.5 - Line added
+0.2.4 - Cuboid by 2 corners added
+0.2.3 - Sphere by Center added, eyedropper now works at range
+0.2.2 - Circle by Center added
+0.2.1 - Cube by Center added
+0.2.0 - Replace Mode & Eraser functionality added to Block Control
+0.1.1 - Undo tool added
+0.1.0 - Undo logging added
+0.0.8 - Eraser added
+0.0.7 - Square by center added
+0.0.6 - Replace Mode,  and Block Info added.  Tweaked Eye Dropper. Refactored unlocalized item names to be more unique.
+0.0.5 - Separate tool actions from EventHandler
+0.0.4 - Reset All & Rotate Block added
+0.0.3 - Eyedropper & Paintbrush added 
+0.0.2 - Move Block added
+0.0.1 - Initial setup of mcmod.info, etc.
