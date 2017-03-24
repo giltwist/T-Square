@@ -17,6 +17,7 @@ public class ModItems {
 	public static ItemBase tsquareBlockInfo;
 	public static ItemBase tsquareUndo;
 	public static ItemBase tsquareUp;
+	public static ItemBase tsquareLoadArea;
 	
 	public static ItemReplaceMode tsquareReplaceMode;
 	public static ItemEraser tsquareEraser;
@@ -61,6 +62,7 @@ public class ModItems {
 		tsquareFillDown = register(new ItemBase("tsquareFillDown").setCreativeTab(TSquare.creativeTab));
 		tsquareGrow = register(new ItemBase("tsquareGrow").setCreativeTab(TSquare.creativeTab));
 		tsquareLine = register(new ItemBase("tsquareLine").setCreativeTab(TSquare.creativeTab));
+		tsquareLoadArea = register(new ItemBase("tsquareLoadArea").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareMelt = register(new ItemBase("tsquareMelt").setCreativeTab(TSquare.creativeTab));
 		tsquareMoveBlock = register(new ItemBase("tsquareMoveBlock").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareOverlay = register(new ItemBase("tsquareOverlay").setCreativeTab(TSquare.creativeTab));

@@ -12,6 +12,7 @@ import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoFillDown;
 import giltwist.tsquare.items.DoLine;
+import giltwist.tsquare.items.DoLoadArea;
 import giltwist.tsquare.items.DoMoveBlock;
 import giltwist.tsquare.items.DoOverlay;
 import giltwist.tsquare.items.DoPaintbrush;
@@ -78,6 +79,13 @@ public class TSquareEventHandler {
 					DoUndo.warn(event.getEntityPlayer());
 				}
 				break;
+			case "item.tsquareLoadArea":
+				if (event.getEntityPlayer().isSneaking()) {
+					DoLoadArea.renderChunk(event.getEntityPlayer());
+				} else {
+					DoLoadArea.warn(event.getEntityPlayer());
+				}
+				break;
 			case "item.tsquareSquareCenter":
 				DoSquareCenter.material(event.getEntityPlayer());
 				break;
@@ -93,6 +101,7 @@ public class TSquareEventHandler {
 			case "item.tsquareCubeCenter":
 				DoCubeCenter.material(event.getEntityPlayer());
 				break;
+
 			case "item.tsquareSphereCenter":
 				DoCubeCenter.material(event.getEntityPlayer());
 				break;
@@ -230,9 +239,10 @@ Random rnd = new Random();
 				DoResetAll.warn(event.getEntityPlayer());
 				break;
 			case "item.tsquareUndo":
-
 				DoUndo.warn(event.getEntityPlayer());
-
+				break;
+			case "item.tsquareLoadArea":
+				DoLoadArea.warn(event.getEntityPlayer());
 				break;
 			case "item.tsquareEyeDropper":
 				DoEyeDropper.blockstate(event.getEntityPlayer());

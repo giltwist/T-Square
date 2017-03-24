@@ -11,6 +11,7 @@ import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoFillDown;
 import giltwist.tsquare.items.DoLine;
+import giltwist.tsquare.items.DoLoadArea;
 import giltwist.tsquare.items.DoOverlay;
 import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
@@ -61,6 +62,13 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 				DoUndo.undo(player);
 			} else {
 				DoUndo.warn(player);
+			}
+			break;
+		case "item.tsquareLoadArea":
+			if (player.isSneaking()) {
+				DoLoadArea.renderChunk(player);
+			} else {
+				DoLoadArea.warn(player);
 			}
 			break;
 		case "item.tsquareReplaceMode":
