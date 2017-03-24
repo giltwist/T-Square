@@ -6,6 +6,7 @@ import giltwist.tsquare.items.DoBlend;
 import giltwist.tsquare.items.DoBlob;
 import giltwist.tsquare.items.DoBlockInfo;
 import giltwist.tsquare.items.DoCircleCenter;
+import giltwist.tsquare.items.DoColorWheel;
 import giltwist.tsquare.items.DoCubeCenter;
 import giltwist.tsquare.items.DoCuboid2Corners;
 import giltwist.tsquare.items.DoEraser;
@@ -70,7 +71,13 @@ public class TSquareEventHandler {
 				} else {
 					DoResetAll.warn(event.getEntityPlayer());
 				}
-
+				break;
+			case "item.tsquareColorWheel":
+				if (event.getEntityPlayer().isSneaking()) {
+					DoColorWheel.setMeta(event.getEntityPlayer(), 0);;
+				} else {
+					DoColorWheel.adjustMeta(event.getEntityPlayer(),-1);
+				}
 				break;
 			case "item.tsquareUndo":
 				if (event.getEntityPlayer().isSneaking()) {
@@ -207,6 +214,13 @@ public class TSquareEventHandler {
 				break;
 			case "item.tsquareRotateBlock":
 				DoRotateBlock.rotation(event.getEntityPlayer(), event.getPos(), event.getFace().getOpposite());
+				break;
+			case "item.tsquareColorWheel":
+				if (event.getEntityPlayer().isSneaking()) {
+					DoColorWheel.setMeta(event.getEntityPlayer(), 15);
+				} else {
+					DoColorWheel.adjustMeta(event.getEntityPlayer(),1);
+				}
 				break;
 			default:
 				shouldCancel = false;

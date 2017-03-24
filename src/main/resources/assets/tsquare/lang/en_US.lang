@@ -12,6 +12,7 @@ item.tsquareEraser.name=Eraser: All
 item.tsquareUndo.name=Undo
 item.tsquareUp.name=Up
 item.tsquareLoadArea.name=Load Area
+item.tsquareColorWheel.name=Color Wheel
 
 # Basic Shapes
 item.tsquareSquareCenter.name=Square by Center

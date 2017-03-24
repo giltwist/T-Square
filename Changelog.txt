@@ -30,3 +30,4 @@ Changelog
 0.6.4 - Added Splatter Sphere
 0.6.5 - Added Splatter Circle & Splatter Overlay
 0.6.6 - Added Load Area tool
+0.6.7 - Added Color Wheel
