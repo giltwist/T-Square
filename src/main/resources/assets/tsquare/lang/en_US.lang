@@ -13,6 +13,7 @@ item.tsquareUndo.name=Undo
 item.tsquareUp.name=Up
 item.tsquareLoadArea.name=Load Area
 item.tsquareColorWheel.name=Color Wheel
+item.tsquareGreenThumb.name=Green Thumb
 
 # Basic Shapes
 item.tsquareSquareCenter.name=Square by Center

@@ -19,6 +19,7 @@ public class ModItems {
 	public static ItemBase tsquareUp;
 	public static ItemBase tsquareLoadArea;
 	public static ItemBase tsquareColorWheel;
+	public static ItemBase tsquareGreenThumb;
 	
 	public static ItemReplaceMode tsquareReplaceMode;
 	public static ItemEraser tsquareEraser;
@@ -62,6 +63,7 @@ public class ModItems {
 		tsquareEyeDropper = register(new ItemBase("tsquareEyeDropper").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareFill = register(new ItemBase("tsquareFill").setCreativeTab(TSquare.creativeTab));
 		tsquareFillDown = register(new ItemBase("tsquareFillDown").setCreativeTab(TSquare.creativeTab));
+		tsquareGreenThumb = register(new ItemBase("tsquareGreenThumb").setCreativeTab(TSquare.creativeTab));
 		tsquareGrow = register(new ItemBase("tsquareGrow").setCreativeTab(TSquare.creativeTab));
 		tsquareLine = register(new ItemBase("tsquareLine").setCreativeTab(TSquare.creativeTab));
 		tsquareLoadArea = register(new ItemBase("tsquareLoadArea").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));

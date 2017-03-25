@@ -12,6 +12,7 @@ import giltwist.tsquare.items.DoCuboid2Corners;
 import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoFillDown;
+import giltwist.tsquare.items.DoGreenThumb;
 import giltwist.tsquare.items.DoLine;
 import giltwist.tsquare.items.DoLoadArea;
 import giltwist.tsquare.items.DoMoveBlock;
@@ -347,6 +348,9 @@ Random rnd = new Random();
 				break;
 			case "item.tsquareUp":
 				DoUp.goUp(event.getEntityPlayer());
+				break;
+			case "item.tsquareGreenThumb":
+				DoGreenThumb.growSphere(event.getEntityPlayer());
 				break;
 			default:
 				shouldCancel = false;

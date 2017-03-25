@@ -57,7 +57,7 @@ public class DoSplatterOverlay {
 					float growthPercent = growth / 20;
 
 					Set<BlockPos> blocksToChange = new HashSet<BlockPos>();
-					blocksToChange.add(center);
+					// blocksToChange.add(center);
 					Random rnd = new Random();
 					int yCheck = 0;
 					BlockPos tempPos = null;
@@ -81,10 +81,11 @@ public class DoSplatterOverlay {
 							}
 						}
 					}
-
-					BlockPos[] toReplace = blocksToChange.toArray(new BlockPos[blocksToChange.size()]);
-					BlockControl.logUndo(player, toReplace);
-					BlockControl.changeBlocks(player, toReplace, false);
+					if (blocksToChange.size() > 0) {
+						BlockPos[] toReplace = blocksToChange.toArray(new BlockPos[blocksToChange.size()]);
+						BlockControl.logUndo(player, toReplace);
+						BlockControl.changeBlocks(player, toReplace, false);
+					}
 
 				} else {
 					player.addChatMessage(new TextComponentString("No material saved"));
