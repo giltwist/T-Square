@@ -9,6 +9,7 @@ import giltwist.tsquare.FindLookedBlock;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.text.TextComponentString;
 
 public class DoSplatterOverlay {
@@ -23,6 +24,21 @@ public class DoSplatterOverlay {
 	public static void material(EntityPlayer player) {
 		ItemStack mainItem = player.getHeldItemMainhand();
 		if (!player.isSwingInProgress) {
+
+			ItemStack offhandItem = player.getHeldItemOffhand();
+			String offhandItemUnlocal;
+
+			if (offhandItem == null) {
+				offhandItemUnlocal = "EmptyOffhand";
+			} else {
+				offhandItemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
+			}
+
+			Vec3i sapFix = new Vec3i(0, 0, 0);
+
+			if (offhandItemUnlocal.contains("sapling")) {
+				sapFix = new Vec3i(0, 1, 0);
+			}
 
 			if (mainItem.getMaxDamage() == 0) {
 				mainItem.getItem().setMaxDamage(20);
@@ -56,7 +72,7 @@ public class DoSplatterOverlay {
 										tempPos = new BlockPos(center.getX() + i, center.getY() - n, center.getZ() + j);
 										if (yCheck < 1 && player.worldObj.getBlockState(tempPos).getBlock() != net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
 											yCheck++;
-											blocksToChange.add(tempPos);
+											blocksToChange.add(tempPos.add(sapFix));
 										}
 
 									}
@@ -82,6 +98,21 @@ public class DoSplatterOverlay {
 	public static void blockstate(EntityPlayer player) {
 
 		ItemStack mainItem = player.getHeldItemMainhand();
+		ItemStack offhandItem = player.getHeldItemOffhand();
+		String offhandItemUnlocal;
+
+		if (offhandItem == null) {
+			offhandItemUnlocal = "EmptyOffhand";
+		} else {
+			offhandItemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
+		}
+
+		Vec3i sapFix = new Vec3i(0, 0, 0);
+
+		if (offhandItemUnlocal.contains("sapling")) {
+
+			sapFix = new Vec3i(0, 1, 0);
+		}
 
 		if (mainItem.getMaxDamage() == 0) {
 			mainItem.getItem().setMaxDamage(20);
@@ -115,7 +146,7 @@ public class DoSplatterOverlay {
 									tempPos = new BlockPos(center.getX() + i, center.getY() - n, center.getZ() + j);
 									if (yCheck < 1 && player.worldObj.getBlockState(tempPos).getBlock() != net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
 										yCheck++;
-										blocksToChange.add(tempPos);
+										blocksToChange.add(tempPos.add(sapFix));
 									}
 
 								}

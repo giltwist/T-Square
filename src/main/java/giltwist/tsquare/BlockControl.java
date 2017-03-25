@@ -139,7 +139,7 @@ public class BlockControl {
 
 			if (hasPlaceStateIfNeeded) {
 				if (hasReplaceStateIfNeeded) {
-					if (replaceMode.equalsIgnoreCase("all") || replaceMode.equalsIgnoreCase("air") || replaceMode.equalsIgnoreCase("water") || replaceMode.equalsIgnoreCase("lava") || player.getEntityData().hasKey("TSquareReplaceMaterial")) {
+					if (replaceMode.equalsIgnoreCase("all") || replaceMode.equalsIgnoreCase("air")|| replaceMode.equalsIgnoreCase("milk") || replaceMode.equalsIgnoreCase("water") || replaceMode.equalsIgnoreCase("lava") || player.getEntityData().hasKey("TSquareReplaceMaterial")) {
 
 						String tempmat;
 						int tempmeta;

@@ -6,14 +6,34 @@ import java.util.Set;
 import giltwist.tsquare.BlockControl;
 import giltwist.tsquare.FindLookedBlock;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.text.TextComponentString;
 
 public class DoOverlay {
 
 	public static void material(EntityPlayer player) {
 		if (!player.isSwingInProgress) {
+			
+			ItemStack offhandItem = player.getHeldItemOffhand();
+			String offhandItemUnlocal;
+
+			if (offhandItem == null) {
+				offhandItemUnlocal = "EmptyOffhand";
+			} else {
+				offhandItemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
+			}
+			
+			Vec3i sapFix = new Vec3i(0,0,0);
+			EnumFacing upDown=EnumFacing.DOWN;
+			
+			if (offhandItemUnlocal.contains("sapling")){
+				upDown = EnumFacing.UP;
+				sapFix = new Vec3i(0,1,0);
+			}
+			
 			int depth;
 			BlockPos center = FindLookedBlock.getBlockPos(player);
 			if (center == null) {
@@ -41,12 +61,21 @@ public class DoOverlay {
 								yCheck = 0;
 
 								for (int n = 0; n <= 10; n++) {
+									
+									
+									
 									tempPos = new BlockPos(center.getX() + i, center.getY() - n, center.getZ() + j);
-									if (yCheck < depth && player.worldObj.getBlockState(tempPos).getBlock() != net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
+									if (yCheck==0 && player.worldObj.getBlockState(tempPos).getBlock() != net.minecraft.block.Block.getBlockFromName("minecraft:air")&& player.worldObj.getBlockState(tempPos.offset(EnumFacing.UP)).getBlock() == net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
 										yCheck++;
-										blocksToChange.add(tempPos);
+										blocksToChange.add(tempPos.add(sapFix));
+										if (depth==3){
+											blocksToChange.add(tempPos.add(sapFix).offset(upDown));
+											blocksToChange.add(tempPos.add(sapFix).offset(upDown,2));
+										}
+										
 									}
 
+								
 								}
 
 							}
@@ -66,16 +95,32 @@ public class DoOverlay {
 	}
 
 	public static void blockstate(EntityPlayer player) {
+		
+		ItemStack offhandItem = player.getHeldItemOffhand();
+		String offhandItemUnlocal;
 
+		if (offhandItem == null) {
+			offhandItemUnlocal = "EmptyOffhand";
+		} else {
+			offhandItemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
+		}
+		
+		Vec3i sapFix = new Vec3i(0,0,0);
+		EnumFacing upDown=EnumFacing.DOWN;
+		
+		if (offhandItemUnlocal.contains("sapling")){
+			upDown = EnumFacing.UP;
+			sapFix = new Vec3i(0,1,0);
+		}
+		
 		int depth;
 		BlockPos center = FindLookedBlock.getBlockPos(player);
 		if (center == null) {
 			player.addChatMessage(new TextComponentString("No block found within 200m"));
 		} else {
 
-			if (player.getEntityData().hasKey("TSquarePlaceState")) {
+			if (player.getEntityData().hasKey("TSquarePlaceMaterial")) {
 
-				
 				int size = player.getHeldItemMainhand().stackSize;
 
 				if (player.isSneaking()) {
@@ -95,17 +140,21 @@ public class DoOverlay {
 							yCheck = 0;
 
 							for (int n = 0; n <= 10; n++) {
+								
+								
+								
 								tempPos = new BlockPos(center.getX() + i, center.getY() - n, center.getZ() + j);
 								if (yCheck==0 && player.worldObj.getBlockState(tempPos).getBlock() != net.minecraft.block.Block.getBlockFromName("minecraft:air")&& player.worldObj.getBlockState(tempPos.offset(EnumFacing.UP)).getBlock() == net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
 									yCheck++;
-									blocksToChange.add(tempPos);
+									blocksToChange.add(tempPos.add(sapFix));
 									if (depth==3){
-										blocksToChange.add(tempPos.offset(EnumFacing.DOWN));
-										blocksToChange.add(tempPos.offset(EnumFacing.DOWN).offset(EnumFacing.DOWN));
+										blocksToChange.add(tempPos.add(sapFix).offset(upDown));
+										blocksToChange.add(tempPos.add(sapFix).offset(upDown,2));
 									}
 									
 								}
 
+							
 							}
 
 						}
