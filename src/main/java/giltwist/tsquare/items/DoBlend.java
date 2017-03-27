@@ -11,7 +11,7 @@ import net.minecraft.util.text.TextComponentString;
 
 public class DoBlend {
 
-	public static void sphere(EntityPlayer player, boolean includeAir) {
+	public static void sphere(EntityPlayer player, boolean excludeAir) {
 		if (!player.isSwingInProgress) {
 			BlockPos center = FindLookedBlock.getBlockPos(player);
 			if (center == null) {
@@ -33,7 +33,7 @@ public class DoBlend {
 				}
 				BlockPos[] toReplace = blocksToChange.toArray(new BlockPos[blocksToChange.size()]);
 				BlockControl.logUndo(player, toReplace);
-				BlockControl.blendBlocks(player, toReplace, includeAir);
+				BlockControl.blendBlocks(player, toReplace, !excludeAir);
 			}
 
 		}

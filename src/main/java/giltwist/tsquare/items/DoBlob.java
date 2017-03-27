@@ -14,14 +14,20 @@ import net.minecraft.util.text.TextComponentString;
 
 public class DoBlob {
 
-	public static void changeGrowth(EntityPlayer player, int amount) {
+	public static void changeGrowth(EntityPlayer player, boolean isRight) {
 		ItemStack mainItem = player.getHeldItemMainhand();
 				mainItem.getItem().showDurabilityBar(mainItem);
+				int amount=0;
+				if (isRight){
+					amount=-1;
+				}else{
+					amount=1;
+				}
 			int newDamage = Math.min(Math.max(mainItem.getItemDamage() + amount, 0), 19);
 		mainItem.setItemDamage(newDamage);
 	}
 
-	public static void material(EntityPlayer player) {
+	public static void activate(EntityPlayer player, boolean fullBlockState) {
 		ItemStack mainItem = player.getHeldItemMainhand();
 		if (!player.isSwingInProgress) {
 			if (mainItem.getMaxDamage() == 0) {
@@ -34,8 +40,7 @@ public class DoBlob {
 				player.addChatMessage(new TextComponentString("No block found within 200m"));
 			} else {
 
-				if (player.getEntityData().hasKey("TSquarePlaceMaterial")) {
-
+				
 					int size = mainItem.stackSize;
 					float growth = mainItem.getMaxDamage() - mainItem.getItemDamage();
 					float growthPercent = growth / 20;
@@ -65,67 +70,14 @@ public class DoBlob {
 
 					BlockPos[] toReplace = blocksToChange.toArray(new BlockPos[blocksToChange.size()]);
 					BlockControl.logUndo(player, toReplace);
-					BlockControl.changeBlocks(player, toReplace, false);
+					BlockControl.changeBlocks(player, toReplace, fullBlockState);
 
-				} else {
-					player.addChatMessage(new TextComponentString("No material saved"));
-				}
+				
 
 			}
 
 		}
 	}
 
-	public static void blockstate(EntityPlayer player) {
-
-		ItemStack mainItem = player.getHeldItemMainhand();
-
-		
-			mainItem.getItem().showDurabilityBar(mainItem);
-		
-		BlockPos center = FindLookedBlock.getBlockPos(player);
-		if (center == null) {
-			player.addChatMessage(new TextComponentString("No block found within 200m"));
-		} else {
-
-			if (player.getEntityData().hasKey("TSquarePlaceState")) {
-
-				int size = mainItem.stackSize;
-				float growth = mainItem.getMaxDamage() - mainItem.getItemDamage();
-				float growthPercent = growth / 20;
-
-				Set<BlockPos> blocksToChange = new HashSet<BlockPos>();
-				blocksToChange.add(center);
-				Random rnd = new Random();
-
-				Set<BlockPos> tempAdd = new HashSet<BlockPos>();
-
-				for (int r = 1; r < size; r++) {
-					for (BlockPos temp : blocksToChange) {
-
-						for (EnumFacing f : EnumFacing.values()) {
-							float tempChance = rnd.nextFloat();
-
-							if (tempChance <= growthPercent) {
-
-								tempAdd.add(temp.offset(f));
-
-							}
-						}
-
-					}
-					blocksToChange.addAll(tempAdd);
-				}
-
-				BlockPos[] toReplace = blocksToChange.toArray(new BlockPos[blocksToChange.size()]);
-				BlockControl.logUndo(player, toReplace);
-				BlockControl.changeBlocks(player, toReplace, true);
-
-			} else {
-				player.addChatMessage(new TextComponentString("No blockstate saved"));
-			}
-
-		}
-
-	}
+	
 }

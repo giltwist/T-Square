@@ -15,7 +15,7 @@ public class DoLoadArea {
 		}
 	}
 
-	public static void renderChunk(EntityPlayer player) {
+	public static void activate(EntityPlayer player) {
 
 		if (!player.isSwingInProgress) {
 			BlockPos targetBlock = FindLookedBlock.getBlockPos(player);

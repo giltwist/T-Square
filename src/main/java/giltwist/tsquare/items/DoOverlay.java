@@ -14,7 +14,7 @@ import net.minecraft.util.text.TextComponentString;
 
 public class DoOverlay {
 
-	public static void material(EntityPlayer player) {
+	public static void activate(EntityPlayer player,boolean fullBlockState) {
 		if (!player.isSwingInProgress) {
 			
 			ItemStack offhandItem = player.getHeldItemOffhand();
@@ -40,8 +40,7 @@ public class DoOverlay {
 				player.addChatMessage(new TextComponentString("No block found within 200m"));
 			} else {
 
-				if (player.getEntityData().hasKey("TSquarePlaceMaterial")) {
-
+				
 					int size = player.getHeldItemMainhand().stackSize;
 
 					if (player.isSneaking()) {
@@ -83,93 +82,14 @@ public class DoOverlay {
 					}
 					BlockPos[] toReplace = blocksToChange.toArray(new BlockPos[blocksToChange.size()]);
 					BlockControl.logUndo(player, toReplace);
-					BlockControl.changeBlocks(player, toReplace, false);
+					BlockControl.changeBlocks(player, toReplace, fullBlockState);
 
-				} else {
-					player.addChatMessage(new TextComponentString("No material saved"));
-				}
+
 
 			}
 
 		}
 	}
 
-	public static void blockstate(EntityPlayer player) {
-		
-		ItemStack offhandItem = player.getHeldItemOffhand();
-		String offhandItemUnlocal;
-
-		if (offhandItem == null) {
-			offhandItemUnlocal = "EmptyOffhand";
-		} else {
-			offhandItemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
-		}
-		
-		Vec3i sapFix = new Vec3i(0,0,0);
-		EnumFacing upDown=EnumFacing.DOWN;
-		
-		if (offhandItemUnlocal.contains("sapling")){
-			upDown = EnumFacing.UP;
-			sapFix = new Vec3i(0,1,0);
-		}
-		
-		int depth;
-		BlockPos center = FindLookedBlock.getBlockPos(player);
-		if (center == null) {
-			player.addChatMessage(new TextComponentString("No block found within 200m"));
-		} else {
-
-			if (player.getEntityData().hasKey("TSquarePlaceMaterial")) {
-
-				int size = player.getHeldItemMainhand().stackSize;
-
-				if (player.isSneaking()) {
-					depth = 3;
-				} else {
-					depth = 1;
-				}
-
-				Set<BlockPos> blocksToChange = new HashSet<BlockPos>();
-				int yCheck = 0;
-				BlockPos tempPos = null;
-				for (int i = -1 * (size - 1); i <= (size - 1); i++) {
-					for (int j = -1 * (size - 1); j <= (size - 1); j++) {
-						// the -1 <= below prevents "nipples"
-						if ((i * i + j * j) - 1 <= (size - 1) * (size - 1)) {
-
-							yCheck = 0;
-
-							for (int n = 0; n <= 10; n++) {
-								
-								
-								
-								tempPos = new BlockPos(center.getX() + i, center.getY() - n, center.getZ() + j);
-								if (yCheck==0 && player.worldObj.getBlockState(tempPos).getBlock() != net.minecraft.block.Block.getBlockFromName("minecraft:air")&& player.worldObj.getBlockState(tempPos.offset(EnumFacing.UP)).getBlock() == net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
-									yCheck++;
-									blocksToChange.add(tempPos.add(sapFix));
-									if (depth==3){
-										blocksToChange.add(tempPos.add(sapFix).offset(upDown));
-										blocksToChange.add(tempPos.add(sapFix).offset(upDown,2));
-									}
-									
-								}
-
-							
-							}
-
-						}
-					}
-				}
-					BlockPos[] toReplace = blocksToChange.toArray(new BlockPos[blocksToChange.size()]);
-					BlockControl.logUndo(player, toReplace);
-					BlockControl.changeBlocks(player, toReplace, true);
-				
-
-			} else {
-				player.addChatMessage(new TextComponentString("No blockstate saved"));
-			}
-
-		}
-	}
 
 }

@@ -10,7 +10,7 @@ import net.minecraft.util.text.TextComponentString;
 
 public class DoGreenThumb {
 
-	public static void growSphere(EntityPlayer player) {
+	public static void activate(EntityPlayer player) {
 		if (!player.isSwingInProgress) {
 			EnumFacing face;
 			BlockPos center = FindLookedBlock.getBlockPos(player);

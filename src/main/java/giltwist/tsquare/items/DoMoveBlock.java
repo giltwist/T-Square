@@ -1,40 +1,42 @@
 package giltwist.tsquare.items;
 
+import giltwist.tsquare.FindLookedBlock;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraft.util.text.TextComponentString;
 
 public class DoMoveBlock {
 
-	public static void push(PlayerInteractEvent.LeftClickBlock event) {
-if (!event.getEntityPlayer().isSwingInProgress){
-		BlockPos movestart = event.getPos();
-		BlockPos moveend = event.getPos().subtract(event.getFace().getDirectionVec());
-		IBlockState moveblock = event.getWorld().getBlockState(movestart);
+	public static void activate(EntityPlayer player, boolean isRightClick) {
 
-		if (event.getWorld().getBlockState(moveend).getMaterial() == net.minecraft.block.material.Material.AIR || event.getEntityPlayer().isSneaking()) {
-			event.getWorld().setBlockToAir(movestart);
+		if (!player.isSwingInProgress) {
+			BlockPos targetBlock = FindLookedBlock.getBlockPos(player);
+			EnumFacing face = FindLookedBlock.getBlockFace(player);
+			if (targetBlock == null) {
+				player.addChatMessage(new TextComponentString("No block found within 200m"));
+			} else {
+				BlockPos movestart = targetBlock;
+				BlockPos moveend;
+				if (isRightClick) {
+					moveend = targetBlock.add(face.getDirectionVec());
+				} else {
 
-			event.getWorld().setBlockState(moveend, moveblock);
+					moveend = targetBlock.subtract(face.getDirectionVec());
+				}
+				IBlockState moveblock = player.worldObj.getBlockState(movestart);
+
+				if (player.worldObj.getBlockState(moveend).getMaterial() == net.minecraft.block.material.Material.AIR || player.isSneaking()) {
+					player.worldObj.setBlockToAir(movestart);
+
+					player.worldObj.setBlockState(moveend, moveblock);
+
+				}
+
+			}
 
 		}
-}
 
 	}
-
-	public static void pull(PlayerInteractEvent.RightClickBlock event) {
-
-		BlockPos movestart = event.getPos();
-		BlockPos moveend = event.getPos().add(event.getFace().getDirectionVec());
-		IBlockState moveblock = event.getWorld().getBlockState(movestart);
-
-		if (event.getWorld().getBlockState(moveend).getMaterial() == net.minecraft.block.material.Material.AIR || event.getEntityPlayer().isSneaking()) {
-			event.getWorld().setBlockToAir(movestart);
-
-			event.getWorld().setBlockState(moveend, moveblock);
-
-		}
-
-	}
-
 }

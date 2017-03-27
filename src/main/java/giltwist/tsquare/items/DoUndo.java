@@ -12,7 +12,7 @@ public class DoUndo {
 		}
 	}
 	
-	public static void undo(EntityPlayer player){
+	public static void activate(EntityPlayer player){
 		if (!player.isSwingInProgress) {
 		BlockControl.rollbackMostRecent(player);
 		}

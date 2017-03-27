@@ -9,14 +9,14 @@ import net.minecraft.util.math.BlockPos;
 public class DoUp {
 
 
-	public static void goUp(EntityPlayer player) {
+	public static void activate(EntityPlayer player, boolean fullBlockState) {
 
 		ItemStack mainItem = player.getHeldItemMainhand();
 		int distance=mainItem.stackSize;
 		BlockPos[] toReplace=new BlockPos[1];
 		
 		toReplace[0]=player.getPosition().offset(EnumFacing.UP, distance);
-		BlockControl.changeBlocks(player, toReplace, true);		
+		BlockControl.changeBlocks(player, toReplace, fullBlockState);		
 		//player.attemptTeleport(player.getPosition().getX(), player.getPosition().getY()+distance, player.getPosition().getZ());
 
 

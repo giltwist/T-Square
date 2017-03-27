@@ -1,5 +1,6 @@
 Changelog
 
+0.7.0 - Under-the-hood code cleanup
 0.6.9 - Added Green Thumb
 0.6.8 - Added adding sapling mode to overlay, fix replace material error when using bucket
 0.6.7 - Added Color Wheel
