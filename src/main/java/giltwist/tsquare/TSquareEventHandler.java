@@ -74,13 +74,13 @@ public class TSquareEventHandler {
 		if (event.getHand().toString() == "MAIN_HAND") {
 			if (event.getEntityPlayer().getHeldItemMainhand() != null) {
 
-				if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab && event.getHand().toString() == "MAIN_HAND") {
+				if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab) {
 					// For the love of Notch, why is this the only client-side
 					// only
 					// click event?
 					// Packet triggers LeftEmptyPacketHandler server-side
 
-					TSquarePacketHandler.INSTANCE.sendToServer(new LeftEmptyPacket(7));
+					TSquarePacketHandler.INSTANCE.sendToServer(new LeftEmptyPacket(0));
 
 				}
 			}

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,45 +23,17 @@ import net.minecraft.util.text.TextComponentString;
 public class BlockControl {
 
 	public static void logUndo(EntityPlayer player, BlockPos[] toReplace) {
-		Calendar calendar = Calendar.getInstance();
-		Date now = calendar.getTime();
-		Timestamp time = new Timestamp(now.getTime());
-		File rootDirectory = player.getServer().getDataDirectory();
-		String configPath = rootDirectory.getAbsolutePath() + File.separator + "config" + File.separator;
-		String tsquarePath = configPath + "T-Square" + File.separator;
-		String undoPath = tsquarePath + "undo" + File.separator;
-
-		File configFile = new File(configPath);
-		if (!configFile.exists() || !configFile.isDirectory()) {
-			configFile.mkdir();
+		
+		Map<BlockPos,IBlockState> undoInfo=new HashMap<BlockPos,IBlockState>();
+		
+		for (BlockPos b:toReplace) {
+			
+			undoInfo.put(b, player.worldObj.getBlockState(b));
 		}
-		File tsquareFile = new File(tsquarePath);
-		if (!tsquareFile.exists() || !tsquareFile.isDirectory()) {
-			tsquareFile.mkdir();
-		}
-		File undoFile = new File(undoPath);
-		if (!undoFile.exists() || !undoFile.isDirectory()) {
-			undoFile.mkdir();
-		}
-
-		File undoLog = new File(undoPath + player.getName() + "@" + time.getTime());
-
-		try {
-			undoLog.createNewFile();
-			String toLog = null;
-			for (int i = 0; i < toReplace.length; i++) {
-				if (i != toReplace.length - 1) {
-					toLog = toReplace[i].getX() + "," + toReplace[i].getY() + "," + toReplace[i].getZ() + "," + player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString() + ","
-							+ player.worldObj.getBlockState(toReplace[i]).getBlock().getMetaFromState(player.worldObj.getBlockState(toReplace[i])) + "\n";
-				} else {
-					toLog = toReplace[i].getX() + "," + toReplace[i].getY() + "," + toReplace[i].getZ() + "," + player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString() + ","
-							+ player.worldObj.getBlockState(toReplace[i]).getBlock().getMetaFromState(player.worldObj.getBlockState(toReplace[i]));
-				}
-				Files.write(Paths.get(undoLog.getAbsolutePath()), toLog.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-			}
-		} catch (IOException ioe) {
-			player.addChatMessage(new TextComponentString(ioe.getMessage()));
-		}
+		
+		Thread fileIOThread = new Thread(new TSquareUndoWriter(player, undoInfo));
+		fileIOThread.start();
+		
 
 	}
 
@@ -143,98 +114,78 @@ public class BlockControl {
 
 						String tempmat;
 						int tempmeta;
-						int minPosX = toReplace[0].getX();
-						int minPosY = toReplace[0].getY();
-						int minPosZ = toReplace[0].getZ();
-						int maxPosX = toReplace[0].getX();
-						int maxPosY = toReplace[0].getY();
-						int maxPosZ = toReplace[0].getZ();
+				
 
-						for (int i = 0; i < toReplace.length; i++) {
+						for (BlockPos b:toReplace) {
 
-							if (toReplace[i].getX() < minPosX) {
-								minPosX = toReplace[i].getX();
-							}
-							if (toReplace[i].getY() < minPosY) {
-								minPosY = toReplace[i].getY();
-							}
-							if (toReplace[i].getZ() < minPosZ) {
-								minPosZ = toReplace[i].getZ();
-							}
-
-							if (toReplace[i].getX() > maxPosX) {
-								maxPosX = toReplace[i].getX();
-							}
-							if (toReplace[i].getY() > maxPosY) {
-								maxPosY = toReplace[i].getY();
-							}
-							if (toReplace[i].getZ() > maxPosZ) {
-								maxPosZ = toReplace[i].getZ();
-							}
+						
 
 							switch (replaceMode) {
 							case "m":
 								replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
-								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
+								tempmat = player.worldObj.getBlockState(b).getBlock().getRegistryName().toString();
 								if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
-									player.worldObj.setBlockState(toReplace[i], placematState);
+									player.worldObj.setBlockState(b, placematState);
 								}
 								break;
 							case "mx":
 								replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
-								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
+								tempmat = player.worldObj.getBlockState(b).getBlock().getRegistryName().toString();
 								if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
-									player.worldObj.setBlockState(toReplace[i], placematState);
+									player.worldObj.setBlockState(b, placematState);
 								}
 								break;
 							case "s":
 								replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
-								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
-								tempmeta = player.worldObj.getBlockState(toReplace[i]).getBlock().getMetaFromState(player.worldObj.getBlockState(toReplace[i]));
+								tempmat = player.worldObj.getBlockState(b).getBlock().getRegistryName().toString();
+								tempmeta = player.worldObj.getBlockState(b).getBlock().getMetaFromState(player.worldObj.getBlockState(b));
 								if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat) && tempmeta == player.getEntityData().getInteger("TSquareReplaceState")) {
-									player.worldObj.setBlockState(toReplace[i], placematState);
+									player.worldObj.setBlockState(b, placematState);
 								}
 								break;
 							case "sx":
 								replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
-								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
-								tempmeta = player.worldObj.getBlockState(toReplace[i]).getBlock().getMetaFromState(player.worldObj.getBlockState(toReplace[i]));
+								tempmat = player.worldObj.getBlockState(b).getBlock().getRegistryName().toString();
+								tempmeta = player.worldObj.getBlockState(b).getBlock().getMetaFromState(player.worldObj.getBlockState(b));
 								if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat) || tempmeta != player.getEntityData().getInteger("TSquareReplaceState")) {
-									player.worldObj.setBlockState(toReplace[i], placematState);
+									player.worldObj.setBlockState(b, placematState);
 								}
 								break;
 							case "air":
 								replacemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
-								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
+								tempmat = player.worldObj.getBlockState(b).getBlock().getRegistryName().toString();
 								if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
-									player.worldObj.setBlockState(toReplace[i], placematState);
+									player.worldObj.setBlockState(b, placematState);
 								}
 								break;
 							case "milk": // anything NOT air
 								replacemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
-								tempmat = player.worldObj.getBlockState(toReplace[i]).getBlock().getRegistryName().toString();
+								tempmat = player.worldObj.getBlockState(b).getBlock().getRegistryName().toString();
 								if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
-									player.worldObj.setBlockState(toReplace[i], placematState);
+									player.worldObj.setBlockState(b, placematState);
 								}
 								break;
 							case "water":
-								if (player.worldObj.getBlockState(toReplace[i]).getMaterial() == Material.WATER) {
-									player.worldObj.setBlockState(toReplace[i], placematState);
+								if (player.worldObj.getBlockState(b).getMaterial() == Material.WATER) {
+									player.worldObj.setBlockState(b, placematState);
 								}
 								break;
 							case "lava":
-								if (player.worldObj.getBlockState(toReplace[i]).getMaterial() == Material.LAVA) {
-									player.worldObj.setBlockState(toReplace[i], placematState);
+								if (player.worldObj.getBlockState(b).getMaterial() == Material.LAVA) {
+									player.worldObj.setBlockState(b, placematState);
 								}
 								break;
 							default: // Replace all blocks
-								player.worldObj.setBlockState(toReplace[i], placematState);
+								player.worldObj.setBlockState(b, placematState);
 								break;
 
 							}
 
 						}
-						player.worldObj.markBlockRangeForRenderUpdate(minPosX, minPosY, minPosZ, maxPosX, maxPosY, maxPosZ);
+						
+						
+						//player.worldObj.markBlockRangeForRenderUpdate(minPosX, minPosY, minPosZ, maxPosX, maxPosY, maxPosZ);
+						//DoLoadArea.activate(player);
 					} else {
 						player.addChatMessage(new TextComponentString("Error: No replace material saved"));
 					}
@@ -502,9 +453,9 @@ public class BlockControl {
 		if (!tsquareFile.exists() || !tsquareFile.isDirectory()) {
 			tsquareFile.mkdir();
 		}
-		File undoFile = new File(undoPath);
-		if (!undoFile.exists() || !undoFile.isDirectory()) {
-			undoFile.mkdir();
+		File undoFileRollback = new File(undoPath);
+		if (!undoFileRollback.exists() || !undoFileRollback.isDirectory()) {
+			undoFileRollback.mkdir();
 		}
 
 		long newestUndo = 0;

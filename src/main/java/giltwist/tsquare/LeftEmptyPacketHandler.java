@@ -1,6 +1,7 @@
 package giltwist.tsquare;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -15,12 +16,18 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 	@Override
 	public IMessage onMessage(LeftEmptyPacket message, MessageContext ctx) {
 		// This is the player the packet was sent to the server from
-		EntityPlayer player = ctx.getServerHandler().playerEntity;
+		FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() -> handle(message, ctx));
+        return null;
+		
+		// No response packet
+			}
+	
+	public void handle(LeftEmptyPacket message, MessageContext ctx){
+		
+		EntityPlayer player = (EntityPlayer) ctx.getServerHandler().playerEntity;
 		// The value that was sent
 TSquareItemSwitch.whichAction(player, false, false);
 		
-		// No response packet
-		return null;
 	}
 
 }
