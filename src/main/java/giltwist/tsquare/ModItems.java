@@ -1,8 +1,7 @@
 package giltwist.tsquare;
 
 import giltwist.tsquare.items.ItemBase;
-import giltwist.tsquare.items.ItemEraser;
-import giltwist.tsquare.items.ItemReplaceMode;
+import giltwist.tsquare.items.ModifierBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -21,8 +20,8 @@ public class ModItems {
 	public static ItemBase tsquareColorWheel;
 	public static ItemBase tsquareGreenThumb;
 	
-	public static ItemReplaceMode tsquareReplaceMode;
-	public static ItemEraser tsquareEraser;
+	public static ModifierBase tsquareReplaceMode;
+	public static ModifierBase tsquareEraser;
 	
 	//Basic Shapes
 	public static ItemBase tsquareSquareCenter;
@@ -83,11 +82,13 @@ public class ModItems {
 		tsquareUndo = register(new ItemBase("tsquareUndo").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareUp = register(new ItemBase("tsquareUp").setCreativeTab(TSquare.creativeTab));
 		
-		tsquareEraser = new ItemEraser();
-		tsquareEraser.initModel();
+		tsquareEraser = new ModifierBase("tsquareEraser");
+		tsquareReplaceMode = new ModifierBase("tsquareReplaceMode");
 		
-		tsquareReplaceMode = new ItemReplaceMode();
+		
+		tsquareEraser.initModel();
 		tsquareReplaceMode.initModel();
+		
 		
 				
 		

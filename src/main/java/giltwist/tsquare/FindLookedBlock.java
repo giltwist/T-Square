@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 
 public class FindLookedBlock {
 	
@@ -19,17 +20,19 @@ public class FindLookedBlock {
 	  //  int maxDistance = 200; //in meters
 	 //   int stepsPerBlock = 100; 
 	    
-	    RayTraceResult rtr = player.rayTrace(200, 1.0F);
-	    searchBlock=rtr.getBlockPos();
-	    if (player.worldObj.getBlockState(searchBlock).getMaterial()!=Material.AIR){
-	    	result=searchBlock;
-	    	
-	    }
+	    Vec3d eyes=player.getPositionVector().addVector(0, player.eyeHeight, 0);
+	    Vec3d look=player.getLookVec().scale(200);
 	    
-
-	      
-	    
-	    
+	    RayTraceResult rtr =  player.getEntityWorld().rayTraceBlocks(eyes, eyes.add(look), true, false, false);
+		   
+		   
+		   if (rtr!=null){
+			   searchBlock=rtr.getBlockPos();
+		    if (player.worldObj.getBlockState(searchBlock).getMaterial()!=Material.AIR){
+		    	result=searchBlock;
+		    }
+		    }
+	   
 	    return result;
 		
 	}
@@ -37,7 +40,10 @@ public class FindLookedBlock {
 	public static EnumFacing getBlockFace(EntityPlayer player){
 		
 		EnumFacing result=null;
-		RayTraceResult rtr = player.rayTrace(200, 1.0F);
+		Vec3d eyes=player.getPositionVector().addVector(0, player.eyeHeight, 0);
+	    Vec3d look=player.getLookVec().scale(200);
+	    
+	    RayTraceResult rtr =  player.getEntityWorld().rayTraceBlocks(eyes, eyes.add(look), true, false, false);
 		result=rtr.sideHit;
 		
 		

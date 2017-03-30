@@ -1,7 +1,8 @@
 Changelog
 
 
-0.7.2 - Move undo file writing to separate thread
+0.8.0 - Basic multiplayer functionality
+0.7.2 - Move undo file writing to separate thread for better performance
 0.7.1 - Water/lava buckets offhand force eyedropper to select fluid
 0.7.0 - Under-the-hood code cleanup
 0.6.9 - Added Green Thumb

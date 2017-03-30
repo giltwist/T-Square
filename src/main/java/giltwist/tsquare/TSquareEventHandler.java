@@ -12,7 +12,7 @@ public class TSquareEventHandler {
 		
 		} else {
 		
-			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab) {
+			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getUnlocalizedName().contains("tsquare")) {
 				shouldCancel = true;
 			}
 		}
@@ -35,7 +35,7 @@ public class TSquareEventHandler {
 			
 		} else {
 			
-			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab) {
+			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getUnlocalizedName().contains("tsquare")) {
 				shouldCancel = true;
 			}
 
@@ -56,7 +56,7 @@ public class TSquareEventHandler {
 
 		} else {
 
-			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab) {
+			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getUnlocalizedName().contains("tsquare")) {
 				shouldCancel = true;
 			}
 		}
@@ -74,7 +74,7 @@ public class TSquareEventHandler {
 		if (event.getHand().toString() == "MAIN_HAND") {
 			if (event.getEntityPlayer().getHeldItemMainhand() != null) {
 
-				if (event.getEntityPlayer().getHeldItemMainhand().getItem().getCreativeTab() == TSquare.creativeTab) {
+				if (event.getEntityPlayer().getHeldItemMainhand().getItem().getUnlocalizedName().contains("tsquare")) {
 					// For the love of Notch, why is this the only client-side
 					// only
 					// click event?
