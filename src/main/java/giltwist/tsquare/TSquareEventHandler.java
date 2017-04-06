@@ -8,9 +8,9 @@ public class TSquareEventHandler {
 	@SubscribeEvent
 	public void leftBlockClick(PlayerInteractEvent.LeftClickBlock event) {
 		Boolean shouldCancel = false;
-		if (event.getItemStack() == null) { // Prevent NPE in switch if empty
+		if (event.getItemStack() != null) { // Prevent NPE in switch if empty
 		
-		} else {
+		
 		
 			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getUnlocalizedName().contains("tsquare")) {
 				shouldCancel = true;
@@ -31,9 +31,7 @@ public class TSquareEventHandler {
 		// only items which MUST click a block
 		Boolean shouldCancel = false;
 	
-		if (event.getEntityPlayer().getHeldItemMainhand() == null) {
-			
-		} else {
+		if (event.getEntityPlayer().getHeldItemMainhand() != null) {
 			
 			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getUnlocalizedName().contains("tsquare")) {
 				shouldCancel = true;
@@ -52,9 +50,9 @@ public class TSquareEventHandler {
 	@SubscribeEvent
 	public void rightClickItem(PlayerInteractEvent.RightClickItem event) {
 		Boolean shouldCancel = false;
-		if (event.getEntityPlayer().getHeldItemMainhand() == null) {
+		if (event.getEntityPlayer().getHeldItemMainhand() != null) {
 
-		} else {
+	
 
 			if (event.getEntityPlayer().getHeldItemMainhand().getItem().getUnlocalizedName().contains("tsquare")) {
 				shouldCancel = true;
