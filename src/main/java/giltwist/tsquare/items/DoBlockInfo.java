@@ -14,14 +14,14 @@ public class DoBlockInfo {
 			BlockPos targetBlock = FindLookedBlock.getBlockPos(player);
 
 			if (targetBlock == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 
 				if (fullBlockState) {
-					player.addChatMessage(new TextComponentString("Block's state: " + player.worldObj.getBlockState(targetBlock).toString()));
+					player.sendMessage(new TextComponentString("Block's state: " + player.getEntityWorld().getBlockState(targetBlock).toString()));
 				} else {
 
-					player.addChatMessage(new TextComponentString("Block's material: " + player.worldObj.getBlockState(targetBlock).getBlock().getRegistryName().toString()));
+					player.sendMessage(new TextComponentString("Block's material: " + player.getEntityWorld().getBlockState(targetBlock).getBlock().getRegistryName().toString()));
 
 				}
 			}

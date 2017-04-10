@@ -28,7 +28,7 @@ public class DoPaintbrush {
 		BlockPos targetBlock = FindLookedBlock.getBlockPos(player);
 
 		if (targetBlock == null) {
-			player.addChatMessage(new TextComponentString("No block found within 200m"));
+			player.sendMessage(new TextComponentString("No block found within 200m"));
 		} else {
 
 			if (isBlock && !player.isSneaking()) {
@@ -41,7 +41,7 @@ public class DoPaintbrush {
 				} else {
 					placematState = placemat.getDefaultState();
 				}
-				player.worldObj.setBlockState(targetBlock, placematState);
+				player.getEntityWorld().setBlockState(targetBlock, placematState);
 			} else {
 				//use normal means
 				

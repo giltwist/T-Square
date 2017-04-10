@@ -8,7 +8,7 @@ public class DoUndo {
 
 	public static void warn(EntityPlayer player) {
 		if (!player.isSwingInProgress) {
-			player.addChatMessage(new TextComponentString("Sneak-Left click to undo"));
+			player.sendMessage(new TextComponentString("Sneak-Left click to undo"));
 		}
 	}
 	

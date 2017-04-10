@@ -15,7 +15,7 @@ public class DoEyeDropper {
 			BlockPos targetBlock = FindLookedBlock.getBlockPos(player);
 
 			if (targetBlock == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 				if (player.getHeldItemOffhand() == null) {
 					itemUnlocal = "EmptyHand";
@@ -27,19 +27,19 @@ public class DoEyeDropper {
 
 				case "item.bucketWater":
 					if (player.isSneaking()) {
-						player.addChatMessage(new TextComponentString("Replace Material: Water"));
+						player.sendMessage(new TextComponentString("Replace Material: Water"));
 						player.getEntityData().setString("TSquareReplaceMaterial", "minecraft:water");						
 					} else {
-						player.addChatMessage(new TextComponentString("Place Material: Water"));
+						player.sendMessage(new TextComponentString("Place Material: Water"));
 						player.getEntityData().setString("TSquarePlaceMaterial", "minecraft:water");
 					}
 					break;
 				case "item.bucketLava":
 					if (player.isSneaking()) {
-						player.addChatMessage(new TextComponentString("Replace Material: Lava"));
+						player.sendMessage(new TextComponentString("Replace Material: Lava"));
 						player.getEntityData().setString("TSquareReplaceMaterial", "minecraft:lava");						
 					} else {
-						player.addChatMessage(new TextComponentString("Place Material: Lava"));
+						player.sendMessage(new TextComponentString("Place Material: Lava"));
 						player.getEntityData().setString("TSquarePlaceMaterial", "minecraft:lava");
 					}
 					break;
@@ -47,25 +47,25 @@ public class DoEyeDropper {
 					if (fullBlockState) {
 						if (player.isSneaking()) {
 
-							player.addChatMessage(new TextComponentString("Replace Blockstate: " + player.worldObj.getBlockState(targetBlock).toString()));
-							player.getEntityData().setInteger("TSquareReplaceState", player.worldObj.getBlockState(targetBlock).getBlock().getMetaFromState(player.worldObj.getBlockState(targetBlock)));
-							player.getEntityData().setString("TSquareReplaceMaterial", player.worldObj.getBlockState(targetBlock).getBlock().getRegistryName().toString());
+							player.sendMessage(new TextComponentString("Replace Blockstate: " + player.getEntityWorld().getBlockState(targetBlock).toString()));
+							player.getEntityData().setInteger("TSquareReplaceState", player.getEntityWorld().getBlockState(targetBlock).getBlock().getMetaFromState(player.getEntityWorld().getBlockState(targetBlock)));
+							player.getEntityData().setString("TSquareReplaceMaterial", player.getEntityWorld().getBlockState(targetBlock).getBlock().getRegistryName().toString());
 
 						} else {
-							player.addChatMessage(new TextComponentString("Place Blockstate: " + player.worldObj.getBlockState(targetBlock).toString()));
-							player.getEntityData().setInteger("TSquarePlaceState", player.worldObj.getBlockState(targetBlock).getBlock().getMetaFromState(player.worldObj.getBlockState(targetBlock)));
-							player.getEntityData().setString("TSquarePlaceMaterial", player.worldObj.getBlockState(targetBlock).getBlock().getRegistryName().toString());
+							player.sendMessage(new TextComponentString("Place Blockstate: " + player.getEntityWorld().getBlockState(targetBlock).toString()));
+							player.getEntityData().setInteger("TSquarePlaceState", player.getEntityWorld().getBlockState(targetBlock).getBlock().getMetaFromState(player.getEntityWorld().getBlockState(targetBlock)));
+							player.getEntityData().setString("TSquarePlaceMaterial", player.getEntityWorld().getBlockState(targetBlock).getBlock().getRegistryName().toString());
 
 						}
 
 					} else {
 						if (player.isSneaking()) {
 
-							player.addChatMessage(new TextComponentString("Replace Material: " + player.worldObj.getBlockState(targetBlock).getBlock().getRegistryName().toString()));
-							player.getEntityData().setString("TSquareReplaceMaterial", player.worldObj.getBlockState(targetBlock).getBlock().getRegistryName().toString());
+							player.sendMessage(new TextComponentString("Replace Material: " + player.getEntityWorld().getBlockState(targetBlock).getBlock().getRegistryName().toString()));
+							player.getEntityData().setString("TSquareReplaceMaterial", player.getEntityWorld().getBlockState(targetBlock).getBlock().getRegistryName().toString());
 						} else {
-							player.addChatMessage(new TextComponentString("Place Material: " + player.worldObj.getBlockState(targetBlock).getBlock().getRegistryName().toString()));
-							player.getEntityData().setString("TSquarePlaceMaterial", player.worldObj.getBlockState(targetBlock).getBlock().getRegistryName().toString());
+							player.sendMessage(new TextComponentString("Place Material: " + player.getEntityWorld().getBlockState(targetBlock).getBlock().getRegistryName().toString()));
+							player.getEntityData().setString("TSquarePlaceMaterial", player.getEntityWorld().getBlockState(targetBlock).getBlock().getRegistryName().toString());
 						}
 					}
 					break;

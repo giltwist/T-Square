@@ -15,7 +15,7 @@ public class DoRotateBlock {
 			BlockPos targetBlock = FindLookedBlock.getBlockPos(player);
 			EnumFacing face = FindLookedBlock.getBlockFace(player);
 			if (targetBlock == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 
 				if (isRightClick) {

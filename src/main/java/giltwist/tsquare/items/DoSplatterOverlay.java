@@ -53,12 +53,12 @@ public class DoSplatterOverlay {
 
 			BlockPos center = FindLookedBlock.getBlockPos(player);
 			if (center == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 
 				
 
-					int size = mainItem.stackSize;
+					int size = mainItem.getCount();
 					float growth = mainItem.getMaxDamage() - mainItem.getItemDamage();
 					float growthPercent = growth / 20;
 
@@ -76,7 +76,7 @@ public class DoSplatterOverlay {
 								if (rnd.nextFloat() <= growthPercent) {
 									for (int n = 0; n <= 10; n++) {
 										tempPos = new BlockPos(center.getX() + i, center.getY() - n, center.getZ() + j);
-										if (yCheck < 1 && player.worldObj.getBlockState(tempPos).getBlock() != net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
+										if (yCheck < 1 && player.getEntityWorld().getBlockState(tempPos).getBlock() != net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
 											yCheck++;
 											blocksToChange.add(tempPos.add(sapFix));
 										}

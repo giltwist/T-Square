@@ -12,7 +12,7 @@ public class DoUp {
 	public static void activate(EntityPlayer player, boolean fullBlockState) {
 
 		ItemStack mainItem = player.getHeldItemMainhand();
-		int distance=mainItem.stackSize;
+		int distance=mainItem.getCount();
 		BlockPos[] toReplace=new BlockPos[1];
 		
 		toReplace[0]=player.getPosition().offset(EnumFacing.UP, distance);

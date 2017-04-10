@@ -22,9 +22,9 @@ public class DoCuboid2Corners {
 			}
 			BlockPos point = FindLookedBlock.getBlockPos(player);
 			if (point == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
-				player.addChatMessage(new TextComponentString("Cuboid point " + whichPoint + " saved."));
+				player.sendMessage(new TextComponentString("Cuboid point " + whichPoint + " saved."));
 				player.getEntityData().setInteger("TSquareCuboid" + whichPoint + "X", point.getX());
 				player.getEntityData().setInteger("TSquareCuboid" + whichPoint + "Y", point.getY());
 				player.getEntityData().setInteger("TSquareCuboid" + whichPoint + "Z", point.getZ());
@@ -37,7 +37,7 @@ public class DoCuboid2Corners {
 		if (!player.isSwingInProgress) {
 
 			if (!player.getEntityData().hasKey("TSquareCuboid1X") || !player.getEntityData().hasKey("TSquareCuboid2X")) {
-				player.addChatMessage(new TextComponentString("Please set two points."));
+				player.sendMessage(new TextComponentString("Please set two points."));
 			} else {
 
 				BlockPos pointOne = new BlockPos(player.getEntityData().getInteger("TSquareCuboid1X"), player.getEntityData().getInteger("TSquareCuboid1Y"), player.getEntityData().getInteger("TSquareCuboid1Z"));

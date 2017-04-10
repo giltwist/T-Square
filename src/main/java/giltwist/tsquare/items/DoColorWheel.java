@@ -19,13 +19,13 @@ public class DoColorWheel {
 			BlockPos targetBlock = FindLookedBlock.getBlockPos(player);
 
 			if (targetBlock == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 				
-				placemat = player.worldObj.getBlockState(targetBlock).getBlock();
+				placemat = player.getEntityWorld().getBlockState(targetBlock).getBlock();
 
 				placematState = placemat.getStateFromMeta(meta);
-				player.worldObj.setBlockState(targetBlock, placematState);
+				player.getEntityWorld().setBlockState(targetBlock, placematState);
 
 			}
 		}
@@ -41,15 +41,15 @@ public class DoColorWheel {
 			BlockPos targetBlock = FindLookedBlock.getBlockPos(player);
 
 			if (targetBlock == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 				
-				placemat = player.worldObj.getBlockState(targetBlock).getBlock();
+				placemat = player.getEntityWorld().getBlockState(targetBlock).getBlock();
 				
-				int newMeta=placemat.getMetaFromState(player.worldObj.getBlockState(targetBlock))+meta;
+				int newMeta=placemat.getMetaFromState(player.getEntityWorld().getBlockState(targetBlock))+meta;
 				newMeta=Math.floorMod(newMeta, 16);
 				placematState = placemat.getStateFromMeta(newMeta);
-				player.worldObj.setBlockState(targetBlock, placematState);
+				player.getEntityWorld().setBlockState(targetBlock, placematState);
 
 			}
 		}

@@ -81,7 +81,7 @@ public class TSquareUndoWriter implements Runnable {
 				
 				
 			} catch (IOException ioe) {
-				player.addChatMessage(new TextComponentString(ioe.getMessage()));
+				player.sendMessage(new TextComponentString(ioe.getMessage()));
 			}
 		 
 	    }

@@ -23,9 +23,9 @@ public class DoLine {
 
 			BlockPos point = FindLookedBlock.getBlockPos(player);
 			if (point == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
-				player.addChatMessage(new TextComponentString("Line point " + whichPoint + " saved."));
+				player.sendMessage(new TextComponentString("Line point " + whichPoint + " saved."));
 				player.getEntityData().setInteger("TSquareLine" + whichPoint + "X", point.getX());
 				player.getEntityData().setInteger("TSquareLine" + whichPoint + "Y", point.getY());
 				player.getEntityData().setInteger("TSquareLine" + whichPoint + "Z", point.getZ());
@@ -38,7 +38,7 @@ public class DoLine {
 		if (!player.isSwingInProgress) {
 
 			if (!player.getEntityData().hasKey("TSquareLine1X") || !player.getEntityData().hasKey("TSquareLine2X")) {
-				player.addChatMessage(new TextComponentString("Please set two points."));
+				player.sendMessage(new TextComponentString("Please set two points."));
 			} else {
 
 				BlockPos pointOne = new BlockPos(player.getEntityData().getInteger("TSquareLine1X"), player.getEntityData().getInteger("TSquareLine1Y"), player.getEntityData().getInteger("TSquareLine1Z"));

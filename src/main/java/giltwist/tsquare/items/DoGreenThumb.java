@@ -15,13 +15,13 @@ public class DoGreenThumb {
 			EnumFacing face;
 			BlockPos center = FindLookedBlock.getBlockPos(player);
 			if (center == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 
 				
 
 					face = FindLookedBlock.getBlockFace(player);
-					int size = player.getHeldItemMainhand().stackSize;
+					int size = player.getHeldItemMainhand().getCount();
 
 					if (face != null) {
 						if (player.isSneaking()) {
@@ -34,7 +34,7 @@ public class DoGreenThumb {
 									if ((i * i + j * j + k * k) - 1 <= (size - 1) * (size - 1)) {
 
 										BlockPos target =  new BlockPos(center.getX() + i, center.getY() + j, center.getZ() + k);
-										IBlockState iblockstate = player.worldObj.getBlockState(target);
+										IBlockState iblockstate = player.getEntityWorld().getBlockState(target);
 										
 										
 										//This section adapted from net.minecraft.item.ItemDye.applybonemeal
@@ -42,13 +42,13 @@ public class DoGreenThumb {
 								        {
 								            IGrowable igrowable = (IGrowable)iblockstate.getBlock();
 
-								            if (igrowable.canGrow(player.worldObj, target, iblockstate, player.worldObj.isRemote))
+								            if (igrowable.canGrow(player.getEntityWorld(), target, iblockstate, player.getEntityWorld().isRemote))
 								            {
-								                if (!player.worldObj.isRemote)
+								                if (!player.getEntityWorld().isRemote)
 								                {
-								                    if (igrowable.canUseBonemeal(player.worldObj, player.worldObj.rand, target, iblockstate))
+								                    if (igrowable.canUseBonemeal(player.getEntityWorld(), player.getEntityWorld().rand, target, iblockstate))
 								                    {
-								                        igrowable.grow(player.worldObj, player.worldObj.rand, target, iblockstate);
+								                        igrowable.grow(player.getEntityWorld(), player.getEntityWorld().rand, target, iblockstate);
 								                    }
 
 								                    

@@ -37,11 +37,11 @@ public class DoOverlay {
 			int depth;
 			BlockPos center = FindLookedBlock.getBlockPos(player);
 			if (center == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 
 				
-					int size = player.getHeldItemMainhand().stackSize;
+					int size = player.getHeldItemMainhand().getCount();
 
 					if (player.isSneaking()) {
 						depth = 3;
@@ -64,7 +64,7 @@ public class DoOverlay {
 									
 									
 									tempPos = new BlockPos(center.getX() + i, center.getY() - n, center.getZ() + j);
-									if (yCheck==0 && player.worldObj.getBlockState(tempPos).getBlock() != net.minecraft.block.Block.getBlockFromName("minecraft:air")&& player.worldObj.getBlockState(tempPos.offset(EnumFacing.UP)).getBlock() == net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
+									if (yCheck==0 && player.getEntityWorld().getBlockState(tempPos).getBlock() != net.minecraft.block.Block.getBlockFromName("minecraft:air")&& player.getEntityWorld().getBlockState(tempPos.offset(EnumFacing.UP)).getBlock() == net.minecraft.block.Block.getBlockFromName("minecraft:air")) {
 										yCheck++;
 										blocksToChange.add(tempPos.add(sapFix));
 										if (depth==3){

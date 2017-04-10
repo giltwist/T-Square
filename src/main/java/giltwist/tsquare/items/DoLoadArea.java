@@ -11,7 +11,7 @@ public class DoLoadArea {
 	
 	public static void warn(EntityPlayer player) {
 		if (!player.isSwingInProgress) {
-			player.addChatMessage(new TextComponentString("Sneak-Left click to force a chunk to render"));
+			player.sendMessage(new TextComponentString("Sneak-Left click to force a chunk to render"));
 		}
 	}
 
@@ -21,11 +21,11 @@ public class DoLoadArea {
 			BlockPos targetBlock = FindLookedBlock.getBlockPos(player);
 
 			if (targetBlock == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 		
-				Chunk targetChunk = player.worldObj.getChunkFromBlockCoords(targetBlock);
-				//player.worldObj.markBlockRangeForRenderUpdate(targetChunk.xPosition, 0, targetChunk.zPosition, targetChunk.xPosition+15, 255, targetChunk.zPosition+15);
+				Chunk targetChunk = player.getEntityWorld().getChunkFromBlockCoords(targetBlock);
+				//player.getEntityWorld().markBlockRangeForRenderUpdate(targetChunk.xPosition, 0, targetChunk.zPosition, targetChunk.xPosition+15, 255, targetChunk.zPosition+15);
 				
 				short[] wholeChunk= new short[655356];
 				

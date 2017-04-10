@@ -15,12 +15,12 @@ public class DoFillDown {
 		if (!player.isSwingInProgress) {
 			BlockPos center = FindLookedBlock.getBlockPos(player);
 			if (center == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 
 				
 
-					int size = player.getHeldItemMainhand().stackSize;
+					int size = player.getHeldItemMainhand().getCount();
 
 					Set<BlockPos> blocksToChange = new HashSet<BlockPos>();
 					BlockPos tempPos = null;

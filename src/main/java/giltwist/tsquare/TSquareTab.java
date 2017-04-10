@@ -2,7 +2,7 @@ package giltwist.tsquare;
 
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 
 public class TSquareTab extends CreativeTabs {
@@ -12,8 +12,8 @@ public class TSquareTab extends CreativeTabs {
 	}
 
 	@Override
-	public Item getTabIconItem() {
-		return ModItems.tsquareMoveBlock;
+	public ItemStack getTabIconItem() {
+		return new ItemStack(ModItems.tsquareMoveBlock);
 	}
 
 }

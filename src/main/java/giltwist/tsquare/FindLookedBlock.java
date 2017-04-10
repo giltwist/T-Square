@@ -28,7 +28,7 @@ public class FindLookedBlock {
 		   
 		   if (rtr!=null){
 			   searchBlock=rtr.getBlockPos();
-		    if (player.worldObj.getBlockState(searchBlock).getMaterial()!=Material.AIR){
+		    if (player.getEntityWorld().getBlockState(searchBlock).getMaterial()!=Material.AIR){
 		    	result=searchBlock;
 		    }
 		    }

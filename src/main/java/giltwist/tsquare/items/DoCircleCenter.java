@@ -17,13 +17,13 @@ public class DoCircleCenter {
 			EnumFacing face;
 			BlockPos center = FindLookedBlock.getBlockPos(player);
 			if (center == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 
 				
 
 					face = FindLookedBlock.getBlockFace(player);
-					int size = player.getHeldItemMainhand().stackSize;
+					int size = player.getHeldItemMainhand().getCount();
 
 					if (face != null) {
 						if (player.isSneaking()) {

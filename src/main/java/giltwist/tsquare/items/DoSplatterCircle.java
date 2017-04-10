@@ -42,7 +42,7 @@ public class DoSplatterCircle {
 
 			BlockPos center = FindLookedBlock.getBlockPos(player);
 			if (center == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 
 				if (face != null) {
@@ -52,7 +52,7 @@ public class DoSplatterCircle {
 				}
 				
 
-					int size = mainItem.stackSize;
+					int size = mainItem.getCount();
 					float growth = mainItem.getMaxDamage() - mainItem.getItemDamage();
 					float growthPercent = growth / 20;
 

@@ -15,7 +15,7 @@ public class DoMoveBlock {
 			BlockPos targetBlock = FindLookedBlock.getBlockPos(player);
 			EnumFacing face = FindLookedBlock.getBlockFace(player);
 			if (targetBlock == null) {
-				player.addChatMessage(new TextComponentString("No block found within 200m"));
+				player.sendMessage(new TextComponentString("No block found within 200m"));
 			} else {
 				BlockPos movestart = targetBlock;
 				BlockPos moveend;
@@ -25,12 +25,12 @@ public class DoMoveBlock {
 
 					moveend = targetBlock.subtract(face.getDirectionVec());
 				}
-				IBlockState moveblock = player.worldObj.getBlockState(movestart);
+				IBlockState moveblock = player.getEntityWorld().getBlockState(movestart);
 
-				if (player.worldObj.getBlockState(moveend).getMaterial() == net.minecraft.block.material.Material.AIR || player.isSneaking()) {
-					player.worldObj.setBlockToAir(movestart);
+				if (player.getEntityWorld().getBlockState(moveend).getMaterial() == net.minecraft.block.material.Material.AIR || player.isSneaking()) {
+					player.getEntityWorld().setBlockToAir(movestart);
 
-					player.worldObj.setBlockState(moveend, moveblock);
+					player.getEntityWorld().setBlockState(moveend, moveblock);
 
 				}
 

@@ -22,7 +22,7 @@ public class TSquareEventHandler {
 				TSquareItemSwitch.whichAction(event.getEntityPlayer(), true, false);
 			} else {
 				if (!event.getEntityPlayer().isSwingInProgress) {
-					event.getEntityPlayer().addChatMessage(new TextComponentString("You do not have permission to use T-Square."));
+					event.getEntityPlayer().sendMessage(new TextComponentString("You do not have permission to use T-Square."));
 				}
 			}
 		}
@@ -48,7 +48,7 @@ public class TSquareEventHandler {
 				TSquareItemSwitch.whichAction(event.getEntityPlayer(), true, true);
 			} else {
 				if (!event.getEntityPlayer().isSwingInProgress) {
-					event.getEntityPlayer().addChatMessage(new TextComponentString("You do not have permission to use T-Square."));
+					event.getEntityPlayer().sendMessage(new TextComponentString("You do not have permission to use T-Square."));
 				}
 			}
 		}
@@ -70,7 +70,7 @@ public class TSquareEventHandler {
 				TSquareItemSwitch.whichAction(event.getEntityPlayer(), false, true);
 			} else {
 				if (!event.getEntityPlayer().isSwingInProgress) {
-					event.getEntityPlayer().addChatMessage(new TextComponentString("You do not have permission to use T-Square."));
+					event.getEntityPlayer().sendMessage(new TextComponentString("You do not have permission to use T-Square."));
 				}
 			}
 		}
@@ -93,7 +93,7 @@ public class TSquareEventHandler {
 						TSquarePacketHandler.INSTANCE.sendToServer(new LeftEmptyPacket(0));
 					} else {
 						if (!event.getEntityPlayer().isSwingInProgress) {
-							event.getEntityPlayer().addChatMessage(new TextComponentString("You do not have permission to use T-Square."));
+							event.getEntityPlayer().sendMessage(new TextComponentString("You do not have permission to use T-Square."));
 						}
 					}
 				}
