@@ -20,12 +20,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 
-@Mod(modid = TSquare.MODID, name = TSquare.MODNAME, version = TSquare.MODVERSION, dependencies = "required-after:Forge@[11.16.0.1865,)", useMetadata = true)
+@Mod(modid = TSquare.MODID, name = TSquare.MODNAME, version = TSquare.MODVERSION, dependencies = "required-after:Forge@[11.16.0.1865,)", updateJSON="https://gist.githubusercontent.com/giltwist/42200603524a59ae900025946252c92f/raw/75ce7cf54ffd64d0658cf7b0570040428061f2bd/tsquare-update.json", useMetadata = true)
 public class TSquare {
 
     public static final String MODID = "tsquare";
     public static final String MODNAME = "T-Square Builder Tools";
-    public static final String MODVERSION = "0.8.4";
+    public static final String MODVERSION = "0.8.5";
     public static Set<String> USERWHITELIST;
 
     public static final TSquareTab creativeTab = new TSquareTab();
