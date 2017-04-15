@@ -1,6 +1,9 @@
 package giltwist.tsquare;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -99,5 +102,28 @@ public class TSquareEventHandler {
 			}
 
 		}
+	}
+	
+	@SubscribeEvent
+	public void mouseEvent(MouseEvent event) {
+
+		EntityPlayer player = (EntityPlayer) Minecraft.getMinecraft().player;
+
+		int scroll = event.getDwheel();
+
+		if (scroll != 0) {
+			if (player.getHeldItemMainhand() != null) {
+				if (player.getHeldItemMainhand().getItem().getUnlocalizedName().contains("tsquare") && player.isSneaking()) {
+					if (scroll > 0 && player.getHeldItemMainhand().getCount() < player.getHeldItemMainhand().getMaxStackSize()) {
+						TSquarePacketHandler.INSTANCE.sendToServer(new ScrollWheelPacket(1));
+					}
+					if (scroll < 0 && player.getHeldItemMainhand().getCount() > 1) {
+						TSquarePacketHandler.INSTANCE.sendToServer(new ScrollWheelPacket(-1));
+					}
+					event.setCanceled(true);
+				}
+			}
+		}
+
 	}
 }

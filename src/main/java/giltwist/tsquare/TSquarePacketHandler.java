@@ -1,5 +1,6 @@
 package giltwist.tsquare;
 
+import giltwist.tsquare.ScrollWheelPacket.ScrollWheelPacketHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,6 +25,7 @@ public class TSquarePacketHandler {
     public static void registerMessages() {
         // Register messages which are sent from the client to the server here:
         INSTANCE.registerMessage(LeftEmptyPacketHandler.class, LeftEmptyPacket.class, nextID(), Side.SERVER);
+        INSTANCE.registerMessage(ScrollWheelPacketHandler.class, ScrollWheelPacket.class, nextID(), Side.SERVER);
     }
 	
 }
