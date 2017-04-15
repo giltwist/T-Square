@@ -1,6 +1,7 @@
 Changelog
 
 
+0.8.4 - Sneak+Scroll lets you change stack size of T-Square items
 0.8.3 - Fixed NPE in multiplayer left click empty
 0.8.2 - Created 1.11.2 Version
 0.8.1 - Configurable user whitelist
