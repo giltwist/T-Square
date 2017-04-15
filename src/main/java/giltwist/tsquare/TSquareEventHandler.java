@@ -89,13 +89,9 @@ public class TSquareEventHandler {
 					// only
 					// click event?
 					// Packet triggers LeftEmptyPacketHandler server-side
-					if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())) {
+					
 						TSquarePacketHandler.INSTANCE.sendToServer(new LeftEmptyPacket(0));
-					} else {
-						if (!event.getEntityPlayer().isSwingInProgress) {
-							event.getEntityPlayer().addChatMessage(new TextComponentString("You do not have permission to use T-Square."));
-						}
-					}
+					
 				}
 			}
 

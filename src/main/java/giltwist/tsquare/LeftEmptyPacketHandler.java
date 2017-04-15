@@ -1,6 +1,7 @@
 package giltwist.tsquare;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -26,7 +27,14 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 		
 		EntityPlayer player = (EntityPlayer) ctx.getServerHandler().playerEntity;
 		// The value that was sent
-TSquareItemSwitch.whichAction(player, false, false);
+		if (TSquare.USERWHITELIST.contains(player.getName())) {
+			TSquareItemSwitch.whichAction(player, false, false);
+	} else {
+		if (player.isSwingInProgress) {
+			player.addChatMessage(new TextComponentString("You do not have permission to use T-Square."));
+		}
+	}
+
 		
 	}
 
