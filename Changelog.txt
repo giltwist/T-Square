@@ -1,6 +1,6 @@
 Changelog
 
-
+0.8.3 - Fixed NPE in multiplayer on left click empty
 0.8.2 - Created 1.11.2 branch
 0.8.1 - Configurable user whitelist
 0.8.0 - Basic multiplayer functionality

@@ -81,21 +81,20 @@ public class TSquareEventHandler {
 
 	@SubscribeEvent
 	public void leftClickEmpty(PlayerInteractEvent.LeftClickEmpty event) {
+
 		if (event.getHand().toString() == "MAIN_HAND") {
+
 			if (event.getEntityPlayer().getHeldItemMainhand() != null) {
 
 				if (event.getEntityPlayer().getHeldItemMainhand().getItem().getUnlocalizedName().contains("tsquare")) {
+
 					// For the love of Notch, why is this the only client-side
 					// only
 					// click event?
 					// Packet triggers LeftEmptyPacketHandler server-side
-					if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())) {
+					
 						TSquarePacketHandler.INSTANCE.sendToServer(new LeftEmptyPacket(0));
-					} else {
-						if (!event.getEntityPlayer().isSwingInProgress) {
-							event.getEntityPlayer().sendMessage(new TextComponentString("You do not have permission to use T-Square."));
-						}
-					}
+					
 				}
 			}
 
