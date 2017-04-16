@@ -6,6 +6,8 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TSquareEventHandler {
 
@@ -105,6 +107,7 @@ public class TSquareEventHandler {
 	}
 	
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void mouseEvent(MouseEvent event) {
 
 		EntityPlayer player = (EntityPlayer) Minecraft.getMinecraft().player;

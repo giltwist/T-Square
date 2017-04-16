@@ -11,6 +11,7 @@ import java.util.Set;
 import org.apache.logging.log4j.Logger;
 
 import giltwist.tsquare.proxy.CommonProxy;
+import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -18,6 +19,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 
 @Mod(modid = TSquare.MODID, name = TSquare.MODNAME, version = TSquare.MODVERSION, dependencies = "required-after:forge@[13.20.0.2222,);",updateJSON="https://gist.githubusercontent.com/giltwist/42200603524a59ae900025946252c92f/raw/75ce7cf54ffd64d0658cf7b0570040428061f2bd/tsquare-update.json", useMetadata = true)
@@ -25,8 +27,9 @@ public class TSquare {
 
     public static final String MODID = "tsquare";
     public static final String MODNAME = "T-Square Builder Tools";
-    public static final String MODVERSION = "0.8.5";
+    public static final String MODVERSION = "0.9.0";
     public static Set<String> USERWHITELIST;
+    public static Set<Block> BLOCKBLACKLIST;
 
     public static final TSquareTab creativeTab = new TSquareTab();
     
@@ -101,7 +104,46 @@ public class TSquare {
 			}
 
 		USERWHITELIST = tempWhitelist;
-		
+		// Load Block Black List
+
+				Set<Block> tempBlacklist = new HashSet<Block>();
+
+				String blockPath = tsquarePath + "blockBlacklist.txt";
+
+				File blockFile = new File(blockPath);
+				if (blockFile.exists() && blockFile.isFile()) {
+
+					try {
+						List<String> blocknames = Files.readAllLines(Paths.get(blockPath));
+						List<Block> allBlocks = ForgeRegistries.BLOCKS.getValues();
+
+						for (Block b : allBlocks) {
+							for (int i = 0; i < blocknames.size(); i++) {
+								
+								if (b.getRegistryName().toString().contains(blocknames.get(i))) {
+									System.out.println(MODNAME + " blacklisted a block - "+ b.getRegistryName().toString());
+									tempBlacklist.add(b);
+								}
+							}
+
+						}
+
+					} catch (IOException ioe) {
+
+					}
+
+				} else {
+
+					try {
+						blockFile.createNewFile();
+
+					} catch (IOException ioe) {
+
+					}
+
+				}
+
+				BLOCKBLACKLIST = tempBlacklist;
 	}
     
     

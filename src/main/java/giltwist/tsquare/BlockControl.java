@@ -23,17 +23,16 @@ import net.minecraft.util.text.TextComponentString;
 public class BlockControl {
 
 	public static void logUndo(EntityPlayer player, BlockPos[] toReplace) {
-		
-		Map<BlockPos,IBlockState> undoInfo=new HashMap<BlockPos,IBlockState>();
-		
-		for (BlockPos b:toReplace) {
-			
+
+		Map<BlockPos, IBlockState> undoInfo = new HashMap<BlockPos, IBlockState>();
+
+		for (BlockPos b : toReplace) {
+
 			undoInfo.put(b, player.getEntityWorld().getBlockState(b));
 		}
-		
+
 		Thread fileIOThread = new Thread(new TSquareUndoWriter(player, undoInfo));
 		fileIOThread.start();
-		
 
 	}
 
@@ -110,82 +109,80 @@ public class BlockControl {
 
 			if (hasPlaceStateIfNeeded) {
 				if (hasReplaceStateIfNeeded) {
-					if (replaceMode.equalsIgnoreCase("all") || replaceMode.equalsIgnoreCase("air")|| replaceMode.equalsIgnoreCase("milk") || replaceMode.equalsIgnoreCase("water") || replaceMode.equalsIgnoreCase("lava") || player.getEntityData().hasKey("TSquareReplaceMaterial")) {
+					if (replaceMode.equalsIgnoreCase("all") || replaceMode.equalsIgnoreCase("air") || replaceMode.equalsIgnoreCase("milk") || replaceMode.equalsIgnoreCase("water") || replaceMode.equalsIgnoreCase("lava")
+							|| player.getEntityData().hasKey("TSquareReplaceMaterial")) {
 
 						String tempmat;
 						int tempmeta;
-				
 
-						for (BlockPos b:toReplace) {
+						for (BlockPos b : toReplace) {
+							tempmat = player.getEntityWorld().getBlockState(b).getBlock().getRegistryName().toString();
+							tempmeta = player.getEntityWorld().getBlockState(b).getBlock().getMetaFromState(player.getEntityWorld().getBlockState(b));
 
-						
+							if (!TSquare.BLOCKBLACKLIST.contains(player.getEntityWorld().getBlockState(b).getBlock()) && !TSquare.BLOCKBLACKLIST.contains(placemat)) {
 
-							switch (replaceMode) {
-							case "m":
-								replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
-								tempmat = player.getEntityWorld().getBlockState(b).getBlock().getRegistryName().toString();
-								if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
+								switch (replaceMode) {
+								case "m":
+									replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
+									if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
+										player.getEntityWorld().setBlockState(b, placematState);
+									}
+									break;
+								case "mx":
+									replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
+									if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
+										player.getEntityWorld().setBlockState(b, placematState);
+									}
+									break;
+								case "s":
+									replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
+
+									if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat) && tempmeta == player.getEntityData().getInteger("TSquareReplaceState")) {
+										player.getEntityWorld().setBlockState(b, placematState);
+									}
+									break;
+								case "sx":
+									replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
+									if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat) || tempmeta != player.getEntityData().getInteger("TSquareReplaceState")) {
+										player.getEntityWorld().setBlockState(b, placematState);
+									}
+									break;
+								case "air":
+									replacemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
+									if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
+										player.getEntityWorld().setBlockState(b, placematState);
+									}
+									break;
+								case "milk": // anything NOT air
+									replacemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
+
+									if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
+										player.getEntityWorld().setBlockState(b, placematState);
+									}
+									break;
+								case "water":
+									if (player.getEntityWorld().getBlockState(b).getMaterial() == Material.WATER) {
+										player.getEntityWorld().setBlockState(b, placematState);
+									}
+									break;
+								case "lava":
+									if (player.getEntityWorld().getBlockState(b).getMaterial() == Material.LAVA) {
+										player.getEntityWorld().setBlockState(b, placematState);
+									}
+									break;
+								default: // Replace all blocks
 									player.getEntityWorld().setBlockState(b, placematState);
-								}
-								break;
-							case "mx":
-								replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
-								tempmat = player.getEntityWorld().getBlockState(b).getBlock().getRegistryName().toString();
-								if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
-									player.getEntityWorld().setBlockState(b, placematState);
-								}
-								break;
-							case "s":
-								replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
-								tempmat = player.getEntityWorld().getBlockState(b).getBlock().getRegistryName().toString();
-								tempmeta = player.getEntityWorld().getBlockState(b).getBlock().getMetaFromState(player.getEntityWorld().getBlockState(b));
-								if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat) && tempmeta == player.getEntityData().getInteger("TSquareReplaceState")) {
-									player.getEntityWorld().setBlockState(b, placematState);
-								}
-								break;
-							case "sx":
-								replacemat = net.minecraft.block.Block.getBlockFromName(player.getEntityData().getString("TSquareReplaceMaterial"));
-								tempmat = player.getEntityWorld().getBlockState(b).getBlock().getRegistryName().toString();
-								tempmeta = player.getEntityWorld().getBlockState(b).getBlock().getMetaFromState(player.getEntityWorld().getBlockState(b));
-								if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat) || tempmeta != player.getEntityData().getInteger("TSquareReplaceState")) {
-									player.getEntityWorld().setBlockState(b, placematState);
-								}
-								break;
-							case "air":
-								replacemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
-								tempmat = player.getEntityWorld().getBlockState(b).getBlock().getRegistryName().toString();
-								if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
-									player.getEntityWorld().setBlockState(b, placematState);
-								}
-								break;
-							case "milk": // anything NOT air
-								replacemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
-								tempmat = player.getEntityWorld().getBlockState(b).getBlock().getRegistryName().toString();
-								if (!replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
-									player.getEntityWorld().setBlockState(b, placematState);
-								}
-								break;
-							case "water":
-								if (player.getEntityWorld().getBlockState(b).getMaterial() == Material.WATER) {
-									player.getEntityWorld().setBlockState(b, placematState);
-								}
-								break;
-							case "lava":
-								if (player.getEntityWorld().getBlockState(b).getMaterial() == Material.LAVA) {
-									player.getEntityWorld().setBlockState(b, placematState);
-								}
-								break;
-							default: // Replace all blocks
-								player.getEntityWorld().setBlockState(b, placematState);
-								break;
+									break;
+
+								} // end switch
 
 							}
 
 						}
-						
-						
-						//player.getEntityWorld().markBlockRangeForRenderUpdate(minPosX, minPosY, minPosZ, maxPosX, maxPosY, maxPosZ);
-						//DoLoadArea.activate(player);
+
+						// player.getEntityWorld().markBlockRangeForRenderUpdate(minPosX,
+						// minPosY, minPosZ, maxPosX, maxPosY, maxPosZ);
+						// DoLoadArea.activate(player);
 					} else {
 						player.sendMessage(new TextComponentString("Error: No replace material saved"));
 					}
@@ -232,34 +229,9 @@ public class BlockControl {
 		int tieCheck;
 
 		// Do search
-		int minPosX = toReplace[0].getX();
-		int minPosY = toReplace[0].getY();
-		int minPosZ = toReplace[0].getZ();
-		int maxPosX = toReplace[0].getX();
-		int maxPosY = toReplace[0].getY();
-		int maxPosZ = toReplace[0].getZ();
+
 
 		for (int i = 0; i < toReplace.length; i++) {
-
-			if (toReplace[i].getX() < minPosX) {
-				minPosX = toReplace[i].getX();
-			}
-			if (toReplace[i].getY() < minPosY) {
-				minPosY = toReplace[i].getY();
-			}
-			if (toReplace[i].getZ() < minPosZ) {
-				minPosZ = toReplace[i].getZ();
-			}
-
-			if (toReplace[i].getX() > maxPosX) {
-				maxPosX = toReplace[i].getX();
-			}
-			if (toReplace[i].getY() > maxPosY) {
-				maxPosY = toReplace[i].getY();
-			}
-			if (toReplace[i].getZ() > maxPosZ) {
-				maxPosZ = toReplace[i].getZ();
-			}
 
 			neighbors = new HashMap<IBlockState, Integer>();
 			for (int a = -1; a <= 1; a++) {
@@ -317,9 +289,12 @@ public class BlockControl {
 
 		// Do the replacements
 		for (int i = 0; i < toReplace.length; i++) {
+			
+			if (!TSquare.BLOCKBLACKLIST.contains(player.getEntityWorld().getBlockState(toReplace[i]).getBlock())&&!TSquare.BLOCKBLACKLIST.contains(bestNeighbor[i].getBlock())){
 			player.getEntityWorld().setBlockState(toReplace[i], bestNeighbor[i]);
+			}
 		}
-		player.getEntityWorld().markBlockRangeForRenderUpdate(minPosX, minPosY, minPosZ, maxPosX, maxPosY, maxPosZ);
+		
 
 	}
 
@@ -335,34 +310,9 @@ public class BlockControl {
 
 		// Do search
 		int airCheat;
-		int minPosX = toReplace[0].getX();
-		int minPosY = toReplace[0].getY();
-		int minPosZ = toReplace[0].getZ();
-		int maxPosX = toReplace[0].getX();
-		int maxPosY = toReplace[0].getY();
-		int maxPosZ = toReplace[0].getZ();
 
 		for (int i = 0; i < toReplace.length; i++) {
 
-			if (toReplace[i].getX() < minPosX) {
-				minPosX = toReplace[i].getX();
-			}
-			if (toReplace[i].getY() < minPosY) {
-				minPosY = toReplace[i].getY();
-			}
-			if (toReplace[i].getZ() < minPosZ) {
-				minPosZ = toReplace[i].getZ();
-			}
-
-			if (toReplace[i].getX() > maxPosX) {
-				maxPosX = toReplace[i].getX();
-			}
-			if (toReplace[i].getY() > maxPosY) {
-				maxPosY = toReplace[i].getY();
-			}
-			if (toReplace[i].getZ() > maxPosZ) {
-				maxPosZ = toReplace[i].getZ();
-			}
 
 			neighbors = new HashMap<IBlockState, Integer>();
 			neighbors.put(net.minecraft.block.Block.getBlockFromName("minecraft:air").getDefaultState(), 0);
@@ -425,9 +375,11 @@ public class BlockControl {
 
 		// Do the replacements
 		for (int i = 0; i < toReplace.length; i++) {
+			if (!TSquare.BLOCKBLACKLIST.contains(player.getEntityWorld().getBlockState(toReplace[i]).getBlock())&&!TSquare.BLOCKBLACKLIST.contains(bestNeighbor[i].getBlock())){
 			player.getEntityWorld().setBlockState(toReplace[i], bestNeighbor[i]);
+			}
 		}
-		player.getEntityWorld().markBlockRangeForRenderUpdate(minPosX, minPosY, minPosZ, maxPosX, maxPosY, maxPosZ);
+		
 
 	}
 
@@ -469,7 +421,7 @@ public class BlockControl {
 			// player.addChatMessage(new TextComponentString("Timestamp check: "
 			// + bits[1]));
 			if (time.getTime() - 3600000 > Long.parseLong(bits[1])) {
-				//delete if older than an hour
+				// delete if older than an hour
 				file.delete();
 
 			} else {
@@ -488,8 +440,7 @@ public class BlockControl {
 				List<String> undoInfo = Files.readAllLines(Paths.get(rollbackPath));
 				String[] currentUndo;
 				String[] firstUndo = undoInfo.get(0).split(",");
-				
-				
+
 				int minPosX = Integer.parseInt(firstUndo[0]);
 				int minPosY = Integer.parseInt(firstUndo[1]);
 				int minPosZ = Integer.parseInt(firstUndo[2]);
@@ -504,7 +455,7 @@ public class BlockControl {
 					undoMaterial = net.minecraft.block.Block.getBlockFromName(currentUndo[3]);
 					undoState = undoMaterial.getStateFromMeta(Integer.parseInt(currentUndo[4]));
 					player.getEntityWorld().setBlockState(undoPos, undoState);
-					
+
 					if (undoPos.getX() < minPosX) {
 						minPosX = undoPos.getX();
 					}

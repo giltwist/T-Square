@@ -2,6 +2,7 @@ package giltwist.tsquare.items;
 
 import giltwist.tsquare.BlockControl;
 import giltwist.tsquare.FindLookedBlock;
+import giltwist.tsquare.TSquare;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,7 +42,11 @@ public class DoPaintbrush {
 				} else {
 					placematState = placemat.getDefaultState();
 				}
+				if (!TSquare.BLOCKBLACKLIST.contains(player.getEntityWorld().getBlockState(targetBlock).getBlock())&&!TSquare.BLOCKBLACKLIST.contains(placematState.getBlock())) {
 				player.getEntityWorld().setBlockState(targetBlock, placematState);
+				}else {
+					player.sendMessage(new TextComponentString("Error: Either target block or offhand material is on global blacklist"));
+				}
 			} else {
 				//use normal means
 				
