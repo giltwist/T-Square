@@ -1,6 +1,7 @@
 package giltwist.tsquare.items;
 
 import giltwist.tsquare.FindLookedBlock;
+import giltwist.tsquare.TSquare;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
@@ -22,7 +23,9 @@ public class DoBlockInfo {
 				} else {
 
 					player.addChatMessage(new TextComponentString("Block's material: " + player.worldObj.getBlockState(targetBlock).getBlock().getRegistryName().toString()));
-
+				}
+				if (TSquare.BLOCKBLACKLIST.contains(player.worldObj.getBlockState(targetBlock).getBlock())) {
+					player.addChatMessage(new TextComponentString("WARNING: Block is on global blacklist"));
 				}
 			}
 

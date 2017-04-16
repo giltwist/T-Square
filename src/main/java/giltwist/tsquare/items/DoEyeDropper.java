@@ -1,6 +1,7 @@
 package giltwist.tsquare.items;
 
 import giltwist.tsquare.FindLookedBlock;
+import giltwist.tsquare.TSquare;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
@@ -11,39 +12,15 @@ public class DoEyeDropper {
 
 		if (!player.isSwingInProgress) {
 
-			String itemUnlocal;
+		
 			BlockPos targetBlock = FindLookedBlock.getBlockPos(player);
 
 			if (targetBlock == null) {
 				player.addChatMessage(new TextComponentString("No block found within 200m"));
 			} else {
-				if (player.getHeldItemOffhand() == null) {
-					itemUnlocal = "EmptyHand";
-				} else {
-					itemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
-				}
+				
 
-				switch (itemUnlocal) {
-
-				case "item.bucketWater":
-					if (player.isSneaking()) {
-						player.addChatMessage(new TextComponentString("Replace Material: Water"));
-						player.getEntityData().setString("TSquareReplaceMaterial", "minecraft:water");						
-					} else {
-						player.addChatMessage(new TextComponentString("Place Material: Water"));
-						player.getEntityData().setString("TSquarePlaceMaterial", "minecraft:water");
-					}
-					break;
-				case "item.bucketLava":
-					if (player.isSneaking()) {
-						player.addChatMessage(new TextComponentString("Replace Material: Lava"));
-						player.getEntityData().setString("TSquareReplaceMaterial", "minecraft:lava");						
-					} else {
-						player.addChatMessage(new TextComponentString("Place Material: Lava"));
-						player.getEntityData().setString("TSquarePlaceMaterial", "minecraft:lava");
-					}
-					break;
-				default:
+				if (!TSquare.BLOCKBLACKLIST.contains(player.worldObj.getBlockState(targetBlock).getBlock())) {
 					if (fullBlockState) {
 						if (player.isSneaking()) {
 
@@ -68,9 +45,10 @@ public class DoEyeDropper {
 							player.getEntityData().setString("TSquarePlaceMaterial", player.worldObj.getBlockState(targetBlock).getBlock().getRegistryName().toString());
 						}
 					}
-					break;
-
+				} else {
+					player.addChatMessage(new TextComponentString("Error: Target block is on global blacklist"));
 				}
+
 			}
 		}
 	}
