@@ -35,6 +35,7 @@ public class ModItems {
 	//Advanced Shapes
 	public static ItemBase tsquareCuboid2Corners;
 	public static ItemBase tsquareLine;
+	public static ItemBase tsquareTriangle3Corners;
 	
 	//Randomized Shapes
 	public static ItemBase tsquareBlob;
@@ -81,6 +82,7 @@ public class ModItems {
 		tsquareSplatterOverlay = register(new ItemBase("tsquareSplatterOverlay").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
 		tsquareSplatterSphere = register(new ItemBase("tsquareSplatterSphere").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
 		tsquareSquareCenter = register(new ItemBase("tsquareSquareCenter").setCreativeTab(TSquare.creativeTab));
+		tsquareTriangle3Corners = register(new ItemBase("tsquareTriangle3Corners").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareUndo = register(new ItemBase("tsquareUndo").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareUp = register(new ItemBase("tsquareUp").setCreativeTab(TSquare.creativeTab));
 		

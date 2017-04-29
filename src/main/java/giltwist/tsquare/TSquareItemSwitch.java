@@ -28,6 +28,7 @@ import giltwist.tsquare.items.DoSplatterOverlay;
 import giltwist.tsquare.items.DoSplatterSphere;
 import giltwist.tsquare.items.DoSquareCenter;
 import giltwist.tsquare.items.DoTerraform;
+import giltwist.tsquare.items.DoTriangle3Corners;
 import giltwist.tsquare.items.DoUndo;
 import giltwist.tsquare.items.DoUp;
 import net.minecraft.entity.player.EntityPlayer;
@@ -236,7 +237,18 @@ public class TSquareItemSwitch {
 				
 				
 					//End Terraform
-					
+				case "item.tsquareTriangle3Corners":
+					if (player.isSneaking()) {
+						DoTriangle3Corners.activate(player,isRightClick);
+					} else {
+						if (isRightClick){
+							DoTriangle3Corners.clearPoints(player);	
+						}else{
+							DoTriangle3Corners.setPoint(player);
+						}
+						
+					}
+					break;
 				case "item.tsquareUp":
 					DoUp.activate(player,isRightClick);
 					break;

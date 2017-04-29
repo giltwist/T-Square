@@ -28,6 +28,7 @@ item.tsquareFillDown.name=Fill Down
 # Advanced Shapes
 item.tsquareCuboid2Corners.name=Cuboid by 2 Corners
 item.tsquareLine.name=Line
+item.tsquareTriangle3Corners.name=Triangle by 3 Corners
 
 #Randomized Shapes
 item.tsquareBlob.name=Blob
