@@ -35,6 +35,8 @@ public class ModItems {
 	//Advanced Shapes
 	public static ItemBase tsquareCuboid2Corners;
 	public static ItemBase tsquareLine;
+	public static ItemBase tsquareTriangle3Corners;
+	public static ItemBase tsquareCircle3Points;
 	
 	//Randomized Shapes
 	public static ItemBase tsquareBlob;
@@ -56,6 +58,7 @@ public class ModItems {
 		tsquareBlendSphere = register(new ItemBase("tsquareBlendSphere").setCreativeTab(TSquare.creativeTab));
 		tsquareBlob = register(new ItemBase("tsquareBlob").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
 		tsquareBlockInfo = register(new ItemBase("tsquareBlockInfo").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
+		tsquareCircle3Points = register(new ItemBase("tsquareCircle3Points").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareCircleCenter = register(new ItemBase("tsquareCircleCenter").setCreativeTab(TSquare.creativeTab));
 		tsquareColorWheel = register(new ItemBase("tsquareColorWheel").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareCubeCenter = register(new ItemBase("tsquareCubeCenter").setCreativeTab(TSquare.creativeTab));
@@ -81,6 +84,7 @@ public class ModItems {
 		tsquareSplatterOverlay = register(new ItemBase("tsquareSplatterOverlay").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
 		tsquareSplatterSphere = register(new ItemBase("tsquareSplatterSphere").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
 		tsquareSquareCenter = register(new ItemBase("tsquareSquareCenter").setCreativeTab(TSquare.creativeTab));
+		tsquareTriangle3Corners = register(new ItemBase("tsquareTriangle3Corners").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareUndo = register(new ItemBase("tsquareUndo").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareUp = register(new ItemBase("tsquareUp").setCreativeTab(TSquare.creativeTab));
 		
