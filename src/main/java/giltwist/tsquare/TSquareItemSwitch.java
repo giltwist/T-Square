@@ -5,6 +5,7 @@ import java.util.Random;
 import giltwist.tsquare.items.DoBlend;
 import giltwist.tsquare.items.DoBlob;
 import giltwist.tsquare.items.DoBlockInfo;
+import giltwist.tsquare.items.DoCircle3Points;
 import giltwist.tsquare.items.DoCircleCenter;
 import giltwist.tsquare.items.DoColorWheel;
 import giltwist.tsquare.items.DoCubeCenter;
@@ -83,6 +84,18 @@ public class TSquareItemSwitch {
 					break;
 				case "item.tsquareBlockInfo":
 					DoBlockInfo.activate(player, isRightClick);
+					break;
+				case "item.tsquareCircle3Points":
+					if (player.isSneaking()) {
+						DoCircle3Points.activate(player,isRightClick);
+					} else {
+						if (isRightClick){
+							DoCircle3Points.clearPoints(player);	
+						}else{
+							DoCircle3Points.setPoint(player);
+						}
+						
+					}
 					break;
 				case "item.tsquareCircleCenter":
 					DoCircleCenter.activate(player, isRightClick);
