@@ -9,6 +9,7 @@ import giltwist.tsquare.items.DoCircleCenter;
 import giltwist.tsquare.items.DoColorWheel;
 import giltwist.tsquare.items.DoCubeCenter;
 import giltwist.tsquare.items.DoCuboid2Corners;
+import giltwist.tsquare.items.DoDelete;
 import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoFillDown;
@@ -105,6 +106,9 @@ public class TSquareItemSwitch {
 					} else {
 						DoCuboid2Corners.setPoint(player, isRightClick);
 					}
+					break;
+				case "item.tsquareDelete":
+					DoDelete.activate(player);
 					break;
 				case "item.tsquareEraser":
 					DoEraser.activate(player, isRightClick);
