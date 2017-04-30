@@ -46,6 +46,7 @@ public class ModItems {
 	public static ItemBase tsquareSplatterOverlay;
 	
 	//Terraformers
+	public static ItemBase tsquareBlendCircle;
 	public static ItemBase tsquareBlendSphere;
 	public static ItemBase tsquareSmooth;
 	public static ItemBase tsquareMelt;
@@ -56,6 +57,7 @@ public class ModItems {
 	
 	public static void init() {
 		
+		tsquareBlendCircle = register(new ItemBase("tsquareBlendCircle").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareBlendSphere = register(new ItemBase("tsquareBlendSphere").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareBlob = register(new ItemBase("tsquareBlob").setMaxStackSize(ModConfig.maxBrushSize).setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
 		tsquareBlockInfo = register(new ItemBase("tsquareBlockInfo").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));

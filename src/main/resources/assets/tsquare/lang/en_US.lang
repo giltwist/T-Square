@@ -38,6 +38,7 @@ item.tsquareSplatterCircle.name=Splatter Circle
 item.tsquareSplatterOverlay.name=Splatter Overlay
 
 #Terraformers
+item.tsquareBlendCircle.name=Blend Circle
 item.tsquareBlendSphere.name=Blend Sphere
 item.tsquareSmooth.name=Smooth
 item.tsquareMelt.name=Melt

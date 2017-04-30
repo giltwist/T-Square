@@ -72,7 +72,9 @@ public class TSquareItemSwitch {
 			} else {
 				switch (itemUnlocal) {
 				//all items
-
+				case "item.tsquareBlendCircle":
+					DoBlend.circle(player, isRightClick);
+					break;
 				case "item.tsquareBlendSphere":
 					DoBlend.sphere(player, isRightClick);
 					break;
