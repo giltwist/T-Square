@@ -20,6 +20,7 @@ public class ModItems {
 	public static ItemBase tsquareColorWheel;
 	public static ItemBase tsquareGreenThumb;
 	public static ItemBase tsquareDelete;
+	public static ItemBase tsquareRuler;
 	
 	public static ModifierBase tsquareReplaceMode;
 	public static ModifierBase tsquareEraser;
@@ -82,6 +83,7 @@ public class ModItems {
 		tsquareRandomTerraform = register(new ItemBase("tsquareRandomTerraform").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareResetAll = register(new ItemBase("tsquareResetAll").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareRotateBlock = register(new ItemBase("tsquareRotateBlock").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
+		tsquareRuler = register(new ItemBase("tsquareRuler").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareSmooth = register(new ItemBase("tsquareSmooth").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareSphereCenter = register(new ItemBase("tsquareSphereCenter").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareSplatterCircle = register(new ItemBase("tsquareSplatterCircle").setMaxStackSize(ModConfig.maxBrushSize).setMaxDamage(20).setCreativeTab(TSquare.creativeTab));

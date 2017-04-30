@@ -24,6 +24,7 @@ import giltwist.tsquare.items.DoPaintbrush;
 import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoRotateBlock;
+import giltwist.tsquare.items.DoRuler;
 import giltwist.tsquare.items.DoSphereCenter;
 import giltwist.tsquare.items.DoSplatterCircle;
 import giltwist.tsquare.items.DoSplatterOverlay;
@@ -185,6 +186,13 @@ public class TSquareItemSwitch {
 					//MUST touch block
 					if (isTouchingBlock&&!isRightClick){ 
 					DoRotateBlock.activate(player, isRightClick);
+					}
+					break;
+				case "item.tsquareRuler":
+					if (player.isSneaking()) {
+						DoRuler.activate(player);
+					} else {
+						DoRuler.setPoint(player,isRightClick);
 					}
 					break;
 				case "item.tsquareSphereCenter":

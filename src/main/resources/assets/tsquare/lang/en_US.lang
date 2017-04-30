@@ -15,6 +15,7 @@ item.tsquareLoadArea.name=Load Area
 item.tsquareColorWheel.name=Color Wheel
 item.tsquareGreenThumb.name=Green Thumb
 item.tsquareDelete.name=Delete
+item.tsquareRuler.name=Ruler
 
 # Basic Shapes
 item.tsquareSquareCenter.name=Square by Center

@@ -1,5 +1,6 @@
 Changelog
 
+0.9.8 - Improved line algorithm
 0.9.7 - Added Ruler
 0.9.6 - Added Blend Circle
 0.9.5 - Added Hollow
