@@ -15,6 +15,7 @@ item.tsquareLoadArea.name=Load Area
 item.tsquareColorWheel.name=Color Wheel
 item.tsquareGreenThumb.name=Green Thumb
 item.tsquareDelete.name=Delete
+item.tsquareRuler.name=Ruler
 
 # Basic Shapes
 item.tsquareSquareCenter.name=Square by Center
@@ -23,7 +24,7 @@ item.tsquareCubeCenter.name=Cube by Center
 item.tsquareSphereCenter.name=Sphere by Center
 item.tsquareOverlay.name=Overlay
 item.tsquareFillDown.name=Fill Down
-
+item.tsquareFillDown.name=Hollow
 
 # Advanced Shapes
 item.tsquareCuboid2Corners.name=Cuboid by 2 Corners
@@ -38,6 +39,7 @@ item.tsquareSplatterCircle.name=Splatter Circle
 item.tsquareSplatterOverlay.name=Splatter Overlay
 
 #Terraformers
+item.tsquareBlendCircle.name=Blend Circle
 item.tsquareBlendSphere.name=Blend Sphere
 item.tsquareSmooth.name=Smooth
 item.tsquareMelt.name=Melt

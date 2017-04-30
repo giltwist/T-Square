@@ -15,6 +15,7 @@ import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoFillDown;
 import giltwist.tsquare.items.DoGreenThumb;
+import giltwist.tsquare.items.DoHollow;
 import giltwist.tsquare.items.DoLine;
 import giltwist.tsquare.items.DoLoadArea;
 import giltwist.tsquare.items.DoMoveBlock;
@@ -23,6 +24,7 @@ import giltwist.tsquare.items.DoPaintbrush;
 import giltwist.tsquare.items.DoReplaceMode;
 import giltwist.tsquare.items.DoResetAll;
 import giltwist.tsquare.items.DoRotateBlock;
+import giltwist.tsquare.items.DoRuler;
 import giltwist.tsquare.items.DoSphereCenter;
 import giltwist.tsquare.items.DoSplatterCircle;
 import giltwist.tsquare.items.DoSplatterOverlay;
@@ -71,7 +73,9 @@ public class TSquareItemSwitch {
 			} else {
 				switch (itemUnlocal) {
 				//all items
-
+				case "item.tsquareBlendCircle":
+					DoBlend.circle(player, isRightClick);
+					break;
 				case "item.tsquareBlendSphere":
 					DoBlend.sphere(player, isRightClick);
 					break;
@@ -136,6 +140,9 @@ public class TSquareItemSwitch {
 				case "item.tsquareGreenThumb":
 					DoGreenThumb.activate(player);
 					break;
+				case "item.tsquareHollow":
+					DoHollow.activate(player, isRightClick);
+					break;
 				case "item.tsquareLine":
 					if (player.isSneaking()) {
 						DoLine.activate(player,isRightClick);
@@ -179,6 +186,13 @@ public class TSquareItemSwitch {
 					//MUST touch block
 					if (isTouchingBlock&&!isRightClick){ 
 					DoRotateBlock.activate(player, isRightClick);
+					}
+					break;
+				case "item.tsquareRuler":
+					if (player.isSneaking()) {
+						DoRuler.activate(player);
+					} else {
+						DoRuler.setPoint(player,isRightClick);
 					}
 					break;
 				case "item.tsquareSphereCenter":

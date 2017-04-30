@@ -44,18 +44,18 @@ public class DoLine {
 				BlockPos pointOne = new BlockPos(player.getEntityData().getInteger("TSquareLine1X"), player.getEntityData().getInteger("TSquareLine1Y"), player.getEntityData().getInteger("TSquareLine1Z"));
 				BlockPos pointTwo = new BlockPos(player.getEntityData().getInteger("TSquareLine2X"), player.getEntityData().getInteger("TSquareLine2Y"), player.getEntityData().getInteger("TSquareLine2Z"));
 
-				int xLength = pointTwo.getX() - pointOne.getX();
-				int yLength = pointTwo.getY() - pointOne.getY();
-				int zLength = pointTwo.getZ() - pointOne.getZ();
-
-				double linearDistance = Math.ceil(Math.sqrt(xLength * xLength + yLength * yLength + zLength * zLength));
+				int xChange = pointTwo.getX() - pointOne.getX();
+				int yChange = pointTwo.getY() - pointOne.getY();
+				int zChange = pointTwo.getZ() - pointOne.getZ();
+				
+				int longestSide=Math.max(Math.abs(xChange), Math.max(Math.abs(yChange), Math.abs(zChange)))+1;
 
 
 					Set<BlockPos> blocksToChange = new HashSet<BlockPos>();
 
-					for (int i = 0; i <= linearDistance; i++) {
+					for (int i = 0; i <= longestSide; i++) {
 
-						blocksToChange.add(new BlockPos(pointOne.getX() + i * xLength / linearDistance, pointOne.getY() + i * yLength / linearDistance, pointOne.getZ() + i * zLength / linearDistance));
+						blocksToChange.add(new BlockPos(pointOne.getX() + i * xChange / longestSide, pointOne.getY() + i * yChange / longestSide, pointOne.getZ() + i * zChange / longestSide));
 					}
 					BlockPos[] toReplace = blocksToChange.toArray(new BlockPos[blocksToChange.size()]);
 					BlockControl.logUndo(player, toReplace);

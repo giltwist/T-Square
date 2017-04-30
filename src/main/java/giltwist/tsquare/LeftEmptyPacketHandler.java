@@ -24,13 +24,14 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 			}
 	
 	public void handle(LeftEmptyPacket message, MessageContext ctx){
-		
+				
 		EntityPlayer player = (EntityPlayer) ctx.getServerHandler().playerEntity;
+		
 		// The value that was sent
-		if (TSquare.USERWHITELIST.contains(player.getName())) {
-			TSquareItemSwitch.whichAction(player, false, false);
+		if (TSquare.USERWHITELIST.contains(player.getName())||!ModConfig.useWhitelist||(ModConfig.autoWhitelistOps&&player.getServer().getPlayerList().canSendCommands(player.getGameProfile()))) {
+		TSquareItemSwitch.whichAction(player, false, false);
 	} else {
-		if (player.isSwingInProgress) {
+		if (!player.isSwingInProgress) {
 			player.addChatMessage(new TextComponentString("You do not have permission to use T-Square."));
 		}
 	}

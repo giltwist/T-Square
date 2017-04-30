@@ -23,7 +23,7 @@ public class TSquareEventHandler {
 
 		if (shouldCancel && event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
 
-			if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())) {
+			if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())||!ModConfig.useWhitelist||(ModConfig.autoWhitelistOps&&event.getEntityPlayer().getServer().getPlayerList().canSendCommands(event.getEntityPlayer().getGameProfile()))) {
 				TSquareItemSwitch.whichAction(event.getEntityPlayer(), true, false);
 			} else {
 				if (!event.getEntityPlayer().isSwingInProgress) {
@@ -35,7 +35,6 @@ public class TSquareEventHandler {
 
 	}
 
-	
 	@SubscribeEvent
 	public void rightBlockClick(PlayerInteractEvent.RightClickBlock event) {
 		// only items which MUST click a block
@@ -50,7 +49,7 @@ public class TSquareEventHandler {
 		}
 
 		if (shouldCancel && event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
-			if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())) {
+			if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())||!ModConfig.useWhitelist||(ModConfig.autoWhitelistOps&&event.getEntityPlayer().getServer().getPlayerList().canSendCommands(event.getEntityPlayer().getGameProfile()))) {
 				TSquareItemSwitch.whichAction(event.getEntityPlayer(), true, true);
 			} else {
 				if (!event.getEntityPlayer().isSwingInProgress) {
@@ -72,7 +71,7 @@ public class TSquareEventHandler {
 			}
 		}
 		if (shouldCancel && event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
-			if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())) {
+			if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())||!ModConfig.useWhitelist||(ModConfig.autoWhitelistOps&&event.getEntityPlayer().getServer().getPlayerList().canSendCommands(event.getEntityPlayer().getGameProfile()))) {
 				TSquareItemSwitch.whichAction(event.getEntityPlayer(), false, true);
 			} else {
 				if (!event.getEntityPlayer().isSwingInProgress) {
@@ -87,23 +86,26 @@ public class TSquareEventHandler {
 
 	@SubscribeEvent
 	public void leftClickEmpty(PlayerInteractEvent.LeftClickEmpty event) {
+
 		if (event.getHand().toString() == "MAIN_HAND") {
+
 			if (event.getEntityPlayer().getHeldItemMainhand() != null) {
 
 				if (event.getEntityPlayer().getHeldItemMainhand().getItem().getUnlocalizedName().contains("tsquare")) {
+
 					// For the love of Notch, why is this the only client-side
 					// only
 					// click event?
 					// Packet triggers LeftEmptyPacketHandler server-side
-
-					TSquarePacketHandler.INSTANCE.sendToServer(new LeftEmptyPacket(0));
-
+					
+						TSquarePacketHandler.INSTANCE.sendToServer(new LeftEmptyPacket(0));
+					
 				}
 			}
 
 		}
 	}
-
+	
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void mouseEvent(MouseEvent event) {
