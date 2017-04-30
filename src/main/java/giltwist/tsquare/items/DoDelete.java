@@ -8,27 +8,25 @@ import net.minecraft.util.text.TextComponentString;
 
 public class DoDelete {
 
-
 	public static void activate(EntityPlayer player) {
 
+		if (!player.isSwingInProgress) {
+			BlockPos targetBlock = FindLookedBlock.getBlockPos(player);
 
+			if (targetBlock == null) {
+				player.sendMessage(new TextComponentString("No block found within 200m"));
+			} else {
 
-		BlockPos targetBlock = FindLookedBlock.getBlockPos(player);
+				if (!TSquare.BLOCKBLACKLIST.contains(player.getEntityWorld().getBlockState(targetBlock).getBlock())) {
 
-		if (targetBlock == null) {
-			player.sendMessage(new TextComponentString("No block found within 200m"));
-		} else {
+					player.getEntityWorld().setBlockToAir(targetBlock);
+				} else {
+					player.sendMessage(new TextComponentString("Error: Target block is on global blacklist"));
+				}
 
-			if (!TSquare.BLOCKBLACKLIST.contains(player.getEntityWorld().getBlockState(targetBlock).getBlock())) {
-				
-				player.getEntityWorld().setBlockToAir(targetBlock);
-			}else {
-				player.sendMessage(new TextComponentString("Error: Target block is on global blacklist"));
 			}
-
 		}
-	}
 
-	
+	}
 
 }
