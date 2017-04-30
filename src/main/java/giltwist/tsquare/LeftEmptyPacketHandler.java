@@ -28,7 +28,7 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 		EntityPlayer player = (EntityPlayer) ctx.getServerHandler().playerEntity;
 		
 		// The value that was sent
-		if (TSquare.USERWHITELIST.contains(player.getName())) {
+		if (TSquare.USERWHITELIST.contains(player.getName())||!ModConfig.useWhitelist||(ModConfig.autoWhitelistOps&&player.getServer().getPlayerList().canSendCommands(player.getGameProfile()))) {
 		TSquareItemSwitch.whichAction(player, false, false);
 	} else {
 		if (!player.isSwingInProgress) {

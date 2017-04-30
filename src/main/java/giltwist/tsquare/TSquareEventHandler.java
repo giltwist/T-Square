@@ -23,7 +23,7 @@ public class TSquareEventHandler {
 
 		if (shouldCancel && event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
 
-			if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())) {
+			if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())||!ModConfig.useWhitelist||(ModConfig.autoWhitelistOps&&event.getEntityPlayer().getServer().getPlayerList().canSendCommands(event.getEntityPlayer().getGameProfile()))) {
 				TSquareItemSwitch.whichAction(event.getEntityPlayer(), true, false);
 			} else {
 				if (!event.getEntityPlayer().isSwingInProgress) {
@@ -49,7 +49,7 @@ public class TSquareEventHandler {
 		}
 
 		if (shouldCancel && event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
-			if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())) {
+			if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())||!ModConfig.useWhitelist||(ModConfig.autoWhitelistOps&&event.getEntityPlayer().getServer().getPlayerList().canSendCommands(event.getEntityPlayer().getGameProfile()))) {
 				TSquareItemSwitch.whichAction(event.getEntityPlayer(), true, true);
 			} else {
 				if (!event.getEntityPlayer().isSwingInProgress) {
@@ -71,7 +71,7 @@ public class TSquareEventHandler {
 			}
 		}
 		if (shouldCancel && event.getSide().isServer() && event.getHand().toString() == "MAIN_HAND") {
-			if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())) {
+			if (TSquare.USERWHITELIST.contains(event.getEntityPlayer().getName())||!ModConfig.useWhitelist||(ModConfig.autoWhitelistOps&&event.getEntityPlayer().getServer().getPlayerList().canSendCommands(event.getEntityPlayer().getGameProfile()))) {
 				TSquareItemSwitch.whichAction(event.getEntityPlayer(), false, true);
 			} else {
 				if (!event.getEntityPlayer().isSwingInProgress) {

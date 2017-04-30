@@ -1,5 +1,9 @@
 Changelog
 
+0.9.7 - Added Ruler
+0.9.6 - Added Blend Circle
+0.9.5 - Added Hollow
+0.9.4 - Added configuration file
 0.9.3 - Circle by 3 points added
 0.9.2 - Triangle by 3 corners added, fixed ResetAll
 0.9.1 - Added Delete

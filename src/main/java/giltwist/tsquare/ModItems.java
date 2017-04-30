@@ -55,38 +55,38 @@ public class ModItems {
 	
 	public static void init() {
 		
-		tsquareBlendSphere = register(new ItemBase("tsquareBlendSphere").setCreativeTab(TSquare.creativeTab));
-		tsquareBlob = register(new ItemBase("tsquareBlob").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
+		tsquareBlendSphere = register(new ItemBase("tsquareBlendSphere").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
+		tsquareBlob = register(new ItemBase("tsquareBlob").setMaxStackSize(ModConfig.maxBrushSize).setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
 		tsquareBlockInfo = register(new ItemBase("tsquareBlockInfo").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareCircle3Points = register(new ItemBase("tsquareCircle3Points").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
-		tsquareCircleCenter = register(new ItemBase("tsquareCircleCenter").setCreativeTab(TSquare.creativeTab));
+		tsquareCircleCenter = register(new ItemBase("tsquareCircleCenter").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareColorWheel = register(new ItemBase("tsquareColorWheel").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
-		tsquareCubeCenter = register(new ItemBase("tsquareCubeCenter").setCreativeTab(TSquare.creativeTab));
+		tsquareCubeCenter = register(new ItemBase("tsquareCubeCenter").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareCuboid2Corners = register(new ItemBase("tsquareCuboid2Corners").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareDelete = register(new ItemBase("tsquareDelete").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareEyeDropper = register(new ItemBase("tsquareEyeDropper").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
-		tsquareFill = register(new ItemBase("tsquareFill").setCreativeTab(TSquare.creativeTab));
-		tsquareFillDown = register(new ItemBase("tsquareFillDown").setCreativeTab(TSquare.creativeTab));
-		tsquareGreenThumb = register(new ItemBase("tsquareGreenThumb").setCreativeTab(TSquare.creativeTab));
-		tsquareGrow = register(new ItemBase("tsquareGrow").setCreativeTab(TSquare.creativeTab));
+		tsquareFill = register(new ItemBase("tsquareFill").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
+		tsquareFillDown = register(new ItemBase("tsquareFillDown").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
+		tsquareGreenThumb = register(new ItemBase("tsquareGreenThumb").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
+		tsquareGrow = register(new ItemBase("tsquareGrow").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareLine = register(new ItemBase("tsquareLine").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareLoadArea = register(new ItemBase("tsquareLoadArea").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
-		tsquareMelt = register(new ItemBase("tsquareMelt").setCreativeTab(TSquare.creativeTab));
+		tsquareMelt = register(new ItemBase("tsquareMelt").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareMoveBlock = register(new ItemBase("tsquareMoveBlock").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
-		tsquareOverlay = register(new ItemBase("tsquareOverlay").setCreativeTab(TSquare.creativeTab));
+		tsquareOverlay = register(new ItemBase("tsquareOverlay").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquarePaintbrush = register(new ItemBase("tsquarePaintbrush").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
-		tsquareRandomTerraform = register(new ItemBase("tsquareRandomTerraform").setCreativeTab(TSquare.creativeTab));
+		tsquareRandomTerraform = register(new ItemBase("tsquareRandomTerraform").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareResetAll = register(new ItemBase("tsquareResetAll").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareRotateBlock = register(new ItemBase("tsquareRotateBlock").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
-		tsquareSmooth = register(new ItemBase("tsquareSmooth").setCreativeTab(TSquare.creativeTab));
-		tsquareSphereCenter = register(new ItemBase("tsquareSphereCenter").setCreativeTab(TSquare.creativeTab));
-		tsquareSplatterCircle = register(new ItemBase("tsquareSplatterCircle").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
-		tsquareSplatterOverlay = register(new ItemBase("tsquareSplatterOverlay").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
-		tsquareSplatterSphere = register(new ItemBase("tsquareSplatterSphere").setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
-		tsquareSquareCenter = register(new ItemBase("tsquareSquareCenter").setCreativeTab(TSquare.creativeTab));
+		tsquareSmooth = register(new ItemBase("tsquareSmooth").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
+		tsquareSphereCenter = register(new ItemBase("tsquareSphereCenter").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
+		tsquareSplatterCircle = register(new ItemBase("tsquareSplatterCircle").setMaxStackSize(ModConfig.maxBrushSize).setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
+		tsquareSplatterOverlay = register(new ItemBase("tsquareSplatterOverlay").setMaxStackSize(ModConfig.maxBrushSize).setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
+		tsquareSplatterSphere = register(new ItemBase("tsquareSplatterSphere").setMaxStackSize(ModConfig.maxBrushSize).setMaxDamage(20).setCreativeTab(TSquare.creativeTab));
+		tsquareSquareCenter = register(new ItemBase("tsquareSquareCenter").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareTriangle3Corners = register(new ItemBase("tsquareTriangle3Corners").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareUndo = register(new ItemBase("tsquareUndo").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
-		tsquareUp = register(new ItemBase("tsquareUp").setCreativeTab(TSquare.creativeTab));
+		tsquareUp = register(new ItemBase("tsquareUp").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		
 		tsquareEraser = new ModifierBase("tsquareEraser");
 		tsquareReplaceMode = new ModifierBase("tsquareReplaceMode");
