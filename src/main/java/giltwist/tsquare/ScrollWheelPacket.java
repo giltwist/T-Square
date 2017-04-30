@@ -46,7 +46,7 @@ public class ScrollWheelPacket implements IMessage {
 				EntityPlayer player = (EntityPlayer) ctx.getServerHandler().playerEntity;
 				// The value that was sent
 				
-				if (player.getHeldItemMainhand().getItem().getUnlocalizedName().contains("tsquare")&&player.getHeldItemMainhand().getCount()<player.getHeldItemMainhand().getMaxStackSize()&&player.getHeldItemMainhand().getCount()+message.toSend>0){
+				if (player.getHeldItemMainhand().getItem().getUnlocalizedName().contains("tsquare")&&player.getHeldItemMainhand().getCount()+message.toSend<=player.getHeldItemMainhand().getMaxStackSize()&&player.getHeldItemMainhand().getCount()+message.toSend>0){
 				player.getHeldItemMainhand().setCount(player.getHeldItemMainhand().getCount()+message.toSend);
 				}
 

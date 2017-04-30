@@ -1,5 +1,6 @@
 Changelog
 
+1.0.0 - Finally out of beta!
 0.9.8 - Improved line algorithm
 0.9.7 - Added Ruler
 0.9.6 - Added Blend Circle
