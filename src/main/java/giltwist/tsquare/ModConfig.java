@@ -9,7 +9,6 @@ public class ModConfig {
     // This values below you can access elsewhere in your mod:
     public static boolean useWhitelist = false;
     public static boolean autoWhitelistOps = true;
-    
     public static int maxBrushSize = 64;
 
     // Call this from CommonProxy.preInit(). It will create our config if it doesn't

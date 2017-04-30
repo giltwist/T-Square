@@ -31,6 +31,7 @@ public class ModItems {
 	public static ItemBase tsquareSphereCenter;
 	public static ItemBase tsquareOverlay;
 	public static ItemBase tsquareFillDown;
+	public static ItemBase tsquareHollow;
 	
 	//Advanced Shapes
 	public static ItemBase tsquareCuboid2Corners;
@@ -69,6 +70,7 @@ public class ModItems {
 		tsquareFillDown = register(new ItemBase("tsquareFillDown").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareGreenThumb = register(new ItemBase("tsquareGreenThumb").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareGrow = register(new ItemBase("tsquareGrow").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
+		tsquareHollow = register(new ItemBase("tsquareHollow").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareLine = register(new ItemBase("tsquareLine").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareLoadArea = register(new ItemBase("tsquareLoadArea").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareMelt = register(new ItemBase("tsquareMelt").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));

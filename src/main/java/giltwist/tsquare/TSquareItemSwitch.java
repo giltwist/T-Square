@@ -15,6 +15,7 @@ import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoFillDown;
 import giltwist.tsquare.items.DoGreenThumb;
+import giltwist.tsquare.items.DoHollow;
 import giltwist.tsquare.items.DoLine;
 import giltwist.tsquare.items.DoLoadArea;
 import giltwist.tsquare.items.DoMoveBlock;
@@ -135,6 +136,9 @@ public class TSquareItemSwitch {
 					break;
 				case "item.tsquareGreenThumb":
 					DoGreenThumb.activate(player);
+					break;
+				case "item.tsquareHollow":
+					DoHollow.activate(player, isRightClick);
 					break;
 				case "item.tsquareLine":
 					if (player.isSneaking()) {

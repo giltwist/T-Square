@@ -23,7 +23,7 @@ item.tsquareCubeCenter.name=Cube by Center
 item.tsquareSphereCenter.name=Sphere by Center
 item.tsquareOverlay.name=Overlay
 item.tsquareFillDown.name=Fill Down
-
+item.tsquareFillDown.name=Hollow
 
 # Advanced Shapes
 item.tsquareCuboid2Corners.name=Cuboid by 2 Corners
