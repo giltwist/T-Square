@@ -21,130 +21,132 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-
-@Mod(modid = TSquare.MODID, name = TSquare.MODNAME, version = TSquare.MODVERSION, dependencies = "required-after:Forge@[12.18.0.2001,)",updateJSON="https://gist.githubusercontent.com/giltwist/42200603524a59ae900025946252c92f/raw/75ce7cf54ffd64d0658cf7b0570040428061f2bd/tsquare-update.json", useMetadata = true)
+@Mod(modid = TSquare.MODID, name = TSquare.MODNAME, version = TSquare.MODVERSION, dependencies = "required-after:Forge@[12.18.0.2001,)", updateJSON = "https://gist.githubusercontent.com/giltwist/42200603524a59ae900025946252c92f/raw/75ce7cf54ffd64d0658cf7b0570040428061f2bd/tsquare-update.json", useMetadata = true)
 public class TSquare {
 
-    public static final String MODID = "tsquare";
-    public static final String MODNAME = "T-Square Builder Tools";
-    public static final String MODVERSION = "1.0.0";
-    public static Set<String> USERWHITELIST;
-    public static Set<Block> BLOCKBLACKLIST;
+	public static final String MODID = "tsquare";
+	public static final String MODNAME = "T-Square Builder Tools";
+	public static final String MODVERSION = "1.0.1";
+	public static Set<String> USERWHITELIST;
+	public static Set<Block> BLOCKBLACKLIST;
 
-    public static final TSquareTab creativeTab = new TSquareTab();
-    
-    @SidedProxy(clientSide = "giltwist.tsquare.proxy.ClientProxy", serverSide = "giltwist.tsquare.proxy.ServerProxy")
-    public static CommonProxy proxy;
+	public static final TSquareTab creativeTab = new TSquareTab();
 
-    @Mod.Instance(MODID)
-    public static TSquare instance;
+	@SidedProxy(clientSide = "giltwist.tsquare.proxy.ClientProxy", serverSide = "giltwist.tsquare.proxy.ServerProxy")
+	public static CommonProxy proxy;
 
-    public static Logger logger;
+	@Mod.Instance(MODID)
+	public static TSquare instance;
 
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-    	System.out.println(MODNAME + " is loading!");
-        logger = event.getModLog();
-        proxy.preInit(event);
-    }
+	public static Logger logger;
 
-    @Mod.EventHandler
-    public void init(FMLInitializationEvent e) {
-        proxy.init(e);
-        TSquarePacketHandler.registerMessages("tsquare");
-    }
+	@Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		System.out.println(MODNAME + " is loading!");
+		logger = event.getModLog();
+		proxy.preInit(event);
+	}
 
-    @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent e) {
-    	MinecraftForge.EVENT_BUS.register(new TSquareEventHandler());
-        proxy.postInit(e);
-    }
-    
-    @Mod.EventHandler
-    public void serverStart(FMLServerStartingEvent event){
-	
-			Set<String> tempWhitelist = new HashSet<String>();
+	@Mod.EventHandler
+	public void init(FMLInitializationEvent e) {
+		proxy.init(e);
+		TSquarePacketHandler.registerMessages("tsquare");
+	}
 
-			File rootDirectory = event.getServer().getDataDirectory();
-			String configPath = rootDirectory.getAbsolutePath() + File.separator + "config" + File.separator;
-			String tsquarePath = configPath + "T-Square" + File.separator;
-			String userPath = tsquarePath + "userWhitelist.txt";
+	@Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent e) {
+		MinecraftForge.EVENT_BUS.register(new TSquareEventHandler());
+		proxy.postInit(e);
+	}
 
-			File configFile = new File(configPath);
-			if (!configFile.exists() || !configFile.isDirectory()) {
-				configFile.mkdir();
-			}
-			File tsquareFile = new File(tsquarePath);
-			if (!tsquareFile.exists() || !tsquareFile.isDirectory()) {
-				tsquareFile.mkdir();
-			}
-			File userFile = new File(userPath);
-			if (userFile.exists() && userFile.isFile()) {
+	@Mod.EventHandler
+	public void serverStart(FMLServerStartingEvent event) {
 
-				try {
-					List<String> usernames = Files.readAllLines(Paths.get(userPath));
-					
-					for (int i=0;i<usernames.size();i++){
-						tempWhitelist.add(usernames.get(i));					
-					}
+		Set<String> tempWhitelist = new HashSet<String>();
 
-				} catch (IOException ioe) {
+		File rootDirectory = event.getServer().getDataDirectory();
+		String configPath = rootDirectory.getAbsolutePath() + File.separator + "config" + File.separator;
+		String tsquarePath = configPath + "T-Square" + File.separator;
+		String userPath = tsquarePath + "userWhitelist.txt";
 
+		File configFile = new File(configPath);
+		if (!configFile.exists() || !configFile.isDirectory()) {
+			configFile.mkdir();
+		}
+		File tsquareFile = new File(tsquarePath);
+		if (!tsquareFile.exists() || !tsquareFile.isDirectory()) {
+			tsquareFile.mkdir();
+		}
+		File userFile = new File(userPath);
+		if (userFile.exists() && userFile.isFile()) {
+
+			try {
+				List<String> usernames = Files.readAllLines(Paths.get(userPath));
+
+				for (int i = 0; i < usernames.size(); i++) {
+					tempWhitelist.add(usernames.get(i));
 				}
 
-			} else {
-
-				try {
-					userFile.createNewFile();
-
-				} catch (IOException ioe) {
-
-				}
+			} catch (IOException ioe) {
 
 			}
+
+		} else {
+
+			try {
+				userFile.createNewFile();
+
+			} catch (IOException ioe) {
+
+			}
+
+		}
 
 		USERWHITELIST = tempWhitelist;
 		// Load Block Black List
 
-				Set<Block> tempBlacklist = new HashSet<Block>();
+		Set<Block> tempBlacklist = new HashSet<Block>();
 
-				String blockPath = tsquarePath + "blockBlacklist.txt";
+		String blockPath = tsquarePath + "blockBlacklist.txt";
 
-				File blockFile = new File(blockPath);
-				if (blockFile.exists() && blockFile.isFile()) {
+		File blockFile = new File(blockPath);
+		if (blockFile.exists() && blockFile.isFile()) {
 
-					try {
-						List<String> blocknames = Files.readAllLines(Paths.get(blockPath));
-						List<Block> allBlocks = ForgeRegistries.BLOCKS.getValues();
+			try {
+				List<String> blocknames = Files.readAllLines(Paths.get(blockPath));
+				List<Block> allBlocks = ForgeRegistries.BLOCKS.getValues();
 
-						for (Block b : allBlocks) {
-							for (int i = 0; i < blocknames.size(); i++) {
-								
+				for (Block b : allBlocks) {
+					for (int i = 0; i < blocknames.size(); i++) {
+
+						if (b != null) {
+							if (b.getRegistryName() != null) {
 								if (b.getRegistryName().toString().contains(blocknames.get(i))) {
-									System.out.println(MODNAME + " blacklisted a block - "+ b.getRegistryName().toString());
+									System.out.println(MODNAME + " blacklisted a block - " + b.getRegistryName().toString());
 									tempBlacklist.add(b);
 								}
 							}
-
 						}
-
-					} catch (IOException ioe) {
-
-					}
-
-				} else {
-
-					try {
-						blockFile.createNewFile();
-
-					} catch (IOException ioe) {
-
 					}
 
 				}
 
-				BLOCKBLACKLIST = tempBlacklist;
+			} catch (IOException ioe) {
+
+			}
+
+		} else {
+
+			try {
+				blockFile.createNewFile();
+
+			} catch (IOException ioe) {
+
+			}
+
+		}
+
+		BLOCKBLACKLIST = tempBlacklist;
 	}
-    
-    
+
 }
