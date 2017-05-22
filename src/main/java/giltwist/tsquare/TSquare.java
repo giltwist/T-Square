@@ -27,7 +27,7 @@ public class TSquare {
 
     public static final String MODID = "tsquare";
     public static final String MODNAME = "T-Square Builder Tools";
-    public static final String MODVERSION = "1.0.0";
+    public static final String MODVERSION = "1.0.1";
     public static Set<String> USERWHITELIST;
     public static Set<Block> BLOCKBLACKLIST;
 
@@ -120,9 +120,13 @@ public class TSquare {
 						for (Block b : allBlocks) {
 							for (int i = 0; i < blocknames.size(); i++) {
 								
-								if (b.getRegistryName().toString().contains(blocknames.get(i))) {
-									System.out.println(MODNAME + " blacklisted a block - "+ b.getRegistryName().toString());
-									tempBlacklist.add(b);
+								if (b != null) {
+									if (b.getRegistryName() != null) {
+										if (b.getRegistryName().toString().contains(blocknames.get(i))) {
+											System.out.println(MODNAME + " blacklisted a block - " + b.getRegistryName().toString());
+											tempBlacklist.add(b);
+										}
+									}
 								}
 							}
 
