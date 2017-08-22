@@ -21,6 +21,7 @@ public class ModItems {
 	public static ItemBase tsquareGreenThumb;
 	public static ItemBase tsquareDelete;
 	public static ItemBase tsquareRuler;
+	public static ItemBase tsquareGetBlock;
 	
 	public static ModifierBase tsquareReplaceMode;
 	public static ModifierBase tsquareEraser;
@@ -71,6 +72,7 @@ public class ModItems {
 		tsquareEyeDropper = register(new ItemBase("tsquareEyeDropper").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareFill = register(new ItemBase("tsquareFill").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareFillDown = register(new ItemBase("tsquareFillDown").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
+		tsquareGetBlock = register(new ItemBase("tsquareGetBlock").setMaxStackSize(1).setCreativeTab(TSquare.creativeTab));
 		tsquareGreenThumb = register(new ItemBase("tsquareGreenThumb").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareGrow = register(new ItemBase("tsquareGrow").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));
 		tsquareHollow = register(new ItemBase("tsquareHollow").setMaxStackSize(ModConfig.maxBrushSize).setCreativeTab(TSquare.creativeTab));

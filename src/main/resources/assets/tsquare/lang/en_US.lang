@@ -16,6 +16,8 @@ item.tsquareColorWheel.name=Color Wheel
 item.tsquareGreenThumb.name=Green Thumb
 item.tsquareDelete.name=Delete
 item.tsquareRuler.name=Ruler
+item.tsquareGetBlock.name=Get Block
+
 
 # Basic Shapes
 item.tsquareSquareCenter.name=Square by Center
@@ -24,7 +26,7 @@ item.tsquareCubeCenter.name=Cube by Center
 item.tsquareSphereCenter.name=Sphere by Center
 item.tsquareOverlay.name=Overlay
 item.tsquareFillDown.name=Fill Down
-item.tsquareFillDown.name=Hollow
+item.tsquareHollow.name=Hollow
 
 # Advanced Shapes
 item.tsquareCuboid2Corners.name=Cuboid by 2 Corners

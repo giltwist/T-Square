@@ -14,6 +14,7 @@ import giltwist.tsquare.items.DoDelete;
 import giltwist.tsquare.items.DoEraser;
 import giltwist.tsquare.items.DoEyeDropper;
 import giltwist.tsquare.items.DoFillDown;
+import giltwist.tsquare.items.DoGetBlock;
 import giltwist.tsquare.items.DoGreenThumb;
 import giltwist.tsquare.items.DoHollow;
 import giltwist.tsquare.items.DoLine;
@@ -136,6 +137,9 @@ public class TSquareItemSwitch {
 					break;
 				case "item.tsquareFillDown":
 					DoFillDown.activate(player, isRightClick);
+					break;
+				case "item.tsquareGetBlock":
+					DoGetBlock.activate(player, isRightClick);
 					break;
 				case "item.tsquareGreenThumb":
 					DoGreenThumb.activate(player);
