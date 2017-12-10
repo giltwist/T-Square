@@ -1,5 +1,6 @@
 Changelog
 
+1.0.4 - Ruler fix.
 1.0.3 - Lang fixes.  Added Get Block tool.
 1.0.1 - Fix for bug caused by deleting block-adding mods after world creation
 1.0.0 - Finally out of beta!
