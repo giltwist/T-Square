@@ -53,8 +53,7 @@ public class BlockControl {
 			offhandItemUnlocal = "EmptyOffhand";
 		} else {
 			offhandItemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
-			// player.addChatMessage(new TextComponentString("Offhand: " +
-			// offhandItemUnlocal));
+			player.sendMessage(new TextComponentString("Offhand: " + offhandItemUnlocal));
 
 		}
 
@@ -96,6 +95,9 @@ public class BlockControl {
 			if (offhandItemUnlocal.equalsIgnoreCase("item.bucketLava")) {
 				replaceMode = "lava";
 			}
+			if ((offhandItemUnlocal.contains("axe")||offhandItemUnlocal.contains("Axe")||offhandItemUnlocal.contains("atchet"))&&!offhandItemUnlocal.contains("ick")) {
+				replaceMode = "axe";
+			}
 
 			if (completeState) {
 				if (player.getEntityData().hasKey("TSquarePlaceState")) {
@@ -109,7 +111,7 @@ public class BlockControl {
 
 			if (hasPlaceStateIfNeeded) {
 				if (hasReplaceStateIfNeeded) {
-					if (replaceMode.equalsIgnoreCase("all") || replaceMode.equalsIgnoreCase("air") || replaceMode.equalsIgnoreCase("milk") || replaceMode.equalsIgnoreCase("water") || replaceMode.equalsIgnoreCase("lava")
+					if (replaceMode.equalsIgnoreCase("all") || replaceMode.equalsIgnoreCase("axe")|| replaceMode.equalsIgnoreCase("air") || replaceMode.equalsIgnoreCase("milk") || replaceMode.equalsIgnoreCase("water") || replaceMode.equalsIgnoreCase("lava")
 							|| player.getEntityData().hasKey("TSquareReplaceMaterial")) {
 
 						String tempmat;
@@ -151,6 +153,12 @@ public class BlockControl {
 									replacemat = net.minecraft.block.Block.getBlockFromName("minecraft:air");
 									if (replacemat.getRegistryName().toString().equalsIgnoreCase(tempmat)) {
 										player.getEntityWorld().setBlockState(b, placematState);
+									}
+									break;
+								case "axe": //kill logs
+									
+									if (player.getEntityWorld().getBlockState(b).getBlock().getUnlocalizedName().contains("log")||player.getEntityWorld().getBlockState(b).getBlock().getUnlocalizedName().contains("Log")) {
+										player.getEntityWorld().setBlockToAir(b);
 									}
 									break;
 								case "milk": // anything NOT air

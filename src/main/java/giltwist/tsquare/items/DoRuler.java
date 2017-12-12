@@ -40,9 +40,9 @@ public class DoRuler {
 				BlockPos pointOne = new BlockPos(player.getEntityData().getInteger("TSquareRuler1X"), player.getEntityData().getInteger("TSquareRuler1Y"), player.getEntityData().getInteger("TSquareRuler1Z"));
 				BlockPos pointTwo = new BlockPos(player.getEntityData().getInteger("TSquareRuler2X"), player.getEntityData().getInteger("TSquareRuler2Y"), player.getEntityData().getInteger("TSquareRuler2Z"));
 
-				int xLength = pointTwo.getX() - pointOne.getX()+1; //Never have 0 dimension with +1
-				int yLength = pointTwo.getY() - pointOne.getY()+1;
-				int zLength = pointTwo.getZ() - pointOne.getZ()+1;
+				int xLength = Math.abs(pointTwo.getX() - pointOne.getX())+1; //Never have 0 dimension with +1
+				int yLength = Math.abs(pointTwo.getY() - pointOne.getY())+1;
+				int zLength = Math.abs(pointTwo.getZ() - pointOne.getZ())+1;
 				double linearDistance = Math.sqrt(xLength * xLength + yLength * yLength + zLength * zLength);
 				
 				
