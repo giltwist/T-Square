@@ -53,7 +53,7 @@ public class BlockControl {
 			offhandItemUnlocal = "EmptyOffhand";
 		} else {
 			offhandItemUnlocal = player.getHeldItemOffhand().getUnlocalizedName();
-			player.sendMessage(new TextComponentString("Offhand: " + offhandItemUnlocal));
+			//player.sendMessage(new TextComponentString("Offhand: " + offhandItemUnlocal));
 
 		}
 

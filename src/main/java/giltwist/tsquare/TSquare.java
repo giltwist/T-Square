@@ -27,7 +27,7 @@ public class TSquare {
 
     public static final String MODID = "tsquare";
     public static final String MODNAME = "T-Square Builder Tools";
-    public static final String MODVERSION = "1.0.5";
+    public static final String MODVERSION = "1.0.6";
     public static Set<String> USERWHITELIST;
     public static Set<Block> BLOCKBLACKLIST;
 

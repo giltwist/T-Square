@@ -1,5 +1,6 @@
 Changelog
 
+1.0.6 - Removed debug message that had been accidentally left on.
 1.0.5 - Wood Axe offhand to remove *log* blocks.  Further ruler fixes.
 1.0.4 - Ruler fix.
 1.0.3 - Lang fixes.  Added Get Block tool.
