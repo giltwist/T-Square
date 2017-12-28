@@ -2,7 +2,8 @@ package giltwist.tsquare.items;
 
 import giltwist.tsquare.TSquare;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModifierBase extends Item {
 
@@ -11,13 +12,12 @@ public class ModifierBase extends Item {
 		setUnlocalizedName(name);
 		setCreativeTab(TSquare.creativeTab);
 		setMaxStackSize(1);
-		GameRegistry.register(this);
-		
+	
 	}
 
-	
-	public void initModel() {
-		
-		TSquare.proxy.registerModifierRenderer(this,this.getRegistryName().toString());
-	}
+    @SideOnly(Side.CLIENT)
+    public void initModel() {
+    	TSquare.proxy.registerModifierRenderer(this,this.getRegistryName().toString());
+    }
+
 }

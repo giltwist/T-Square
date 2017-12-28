@@ -67,12 +67,6 @@ public class ClientProxy extends CommonProxy {
 		});
 	}
 
-	// @Override
-	// public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World
-	// world, EntityPlayer playerIn, EnumHand hand) {
-	// return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-	// }
-
 	private NBTTagCompound getTagCompoundSafe(ItemStack stack) {
 		NBTTagCompound tagCompound = stack.getTagCompound();
 		if (tagCompound == null) {

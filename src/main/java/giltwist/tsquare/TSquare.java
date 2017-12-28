@@ -22,12 +22,12 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 
-@Mod(modid = TSquare.MODID, name = TSquare.MODNAME, version = TSquare.MODVERSION, dependencies = "required-after:forge@[13.20.0.2222,);",updateJSON="https://gist.githubusercontent.com/giltwist/42200603524a59ae900025946252c92f/raw/75ce7cf54ffd64d0658cf7b0570040428061f2bd/tsquare-update.json", useMetadata = true)
+@Mod(modid = TSquare.MODID, name = TSquare.MODNAME, version = TSquare.MODVERSION, dependencies = "required-after:forge@[14.23.0.2486,);",updateJSON="https://gist.githubusercontent.com/giltwist/42200603524a59ae900025946252c92f/raw/75ce7cf54ffd64d0658cf7b0570040428061f2bd/tsquare-update.json", useMetadata = true)
 public class TSquare {
 
     public static final String MODID = "tsquare";
     public static final String MODNAME = "T-Square Builder Tools";
-    public static final String MODVERSION = "1.0.6";
+    public static final String MODVERSION = "1.0.7";
     public static Set<String> USERWHITELIST;
     public static Set<Block> BLOCKBLACKLIST;
 

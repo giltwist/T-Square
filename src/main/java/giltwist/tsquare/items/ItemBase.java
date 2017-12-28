@@ -4,6 +4,8 @@ package giltwist.tsquare.items;
 import giltwist.tsquare.TSquare;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBase extends Item {
 
@@ -13,10 +15,6 @@ public class ItemBase extends Item {
 		this.name = name;
 		setUnlocalizedName(name);
 		setRegistryName(name);
-	}
-
-	public void registerItemModel() {
-		TSquare.proxy.registerItemRenderer(this, 0, name);
 	}
 
 	@Override
@@ -37,4 +35,10 @@ public class ItemBase extends Item {
 		return this;
 	}
 
+    @SideOnly(Side.CLIENT)
+    public void initModel() {
+    	TSquare.proxy.registerItemRenderer(this, 0, name);
+    }
+	
+	
 }

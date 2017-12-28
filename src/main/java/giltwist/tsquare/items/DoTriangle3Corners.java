@@ -163,7 +163,7 @@ public class DoTriangle3Corners {
 	}
 	
 	private static double dotProduct(Vec3d a, Vec3d b) {
-		double d= a.xCoord * b.xCoord + a.yCoord * b.yCoord + a.zCoord * b.zCoord;
+		double d= a.x * b.x + a.y * b.y + a.z * b.z;
 		return d;
 	}
 

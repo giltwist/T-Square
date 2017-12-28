@@ -25,7 +25,7 @@ public class LeftEmptyPacketHandler implements IMessageHandler<LeftEmptyPacket, 
 	
 	public void handle(LeftEmptyPacket message, MessageContext ctx){
 				
-		EntityPlayer player = (EntityPlayer) ctx.getServerHandler().playerEntity;
+		EntityPlayer player = (EntityPlayer) ctx.getServerHandler().player;
 		
 		// The value that was sent
 		if (TSquare.USERWHITELIST.contains(player.getName())||!ModConfig.useWhitelist||(ModConfig.autoWhitelistOps&&player.getServer().getPlayerList().canSendCommands(player.getGameProfile()))) {
